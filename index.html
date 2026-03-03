@@ -58,14 +58,25 @@ header {
   transition: transform 0.4s ease;
 }
 
+
+
 /* Navbar Menu */
-.nav-menu {
-  display: flex;
-  gap: 30px; /* reduced slightly from 40px */
-  list-style: none;
-  align-items: center;
+.nav-menu a{
+  text-decoration:none;
+  color:#000000; /* change to white */
+  font-weight:600;
+  padding:10px 5px;
+  transition:0.3s;
+  font-size:15px;
 }
 
+.nav-menu a{
+  color: #fff; /* white text */
+}
+
+.nav-menu a:hover{
+  color: var(--accent); /* red on hover */
+}
 /* Responsive Adjustments */
 @media(max-width: 1024px){
   .nav-menu { gap: 25px; }
@@ -184,11 +195,14 @@ header {
   font-size: 16px;
   border-radius: 50px;
   text-decoration: none;
-  background: linear-gradient(135deg, #C1141C, #224989); /* logo gradient */
-  color: #fff;
+  background: linear-gradient(135deg, #C1141C, #224989); /* fixed red → blue gradient */
+  color: #fff; /* text color white */
   border: 2px solid transparent;
   box-shadow: 0 0 10px #C1141C, 0 0 20px #C1141C, 0 0 40px #224989, 0 0 60px #224989;
   transition: 0.3s ease-in-out;
+  display: inline-block;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* Hover Glow */
@@ -229,6 +243,15 @@ header {
     text-align:center;
   }
 }
+/* Navbar top-level links white */
+.nav-menu > li > a {
+  color: #fff !important; /* Force white */
+  transition: 0.3s;
+}
+
+.nav-menu > li > a:hover {
+  color: var(--accent); /* Keep red on hover */
+}
 
 /* DROPDOWN */
 .dropdown-menu{
@@ -262,25 +285,7 @@ visibility:visible;
 transform:translateY(0);
 }
 
-/* CTA BUTTON */
-.nav-btn{
-margin-left:20px;
-}
 
-.cta-btn{
-background:var(--accent);
-color:#fff;
-padding:10px 22px;
-border-radius:30px;
-text-decoration:none;
-font-weight:600;
-font-size:14px;
-transition:0.3s;
-}
-
-.cta-btn:hover{
-background:var(--primary);
-}
 /* MENU */
 .menu{
 display:flex;
@@ -384,19 +389,21 @@ background:rgba(0,0,0,0.65);
 z-index:-1;
 }
 
-.hero-content{
-max-width:800px;
-}
-
+/* ================= HERO TEXT LEFT ALIGN (MORE LEFT) ================= */
+.hero-content {
+  text-align: left;       /* Align text to left */
+  max-width: 800px;       /* Keep width */
+  margin-left: 20px;      /* More left, closer to edge */
+  padding-left: 10px;  }   /* Optional extra spacing */
 /* Hero heading gradient in light mode */
 .hero h1 {
   font-size: 52px;
   font-weight: 800;
   margin-bottom: 25px;
-  color: transparent; /* Needed for gradient text */
-  background: linear-gradient(90deg, #C1141C, #224989); /* Red to Blue */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #fff; /* plain white */
+  background: none; /* remove gradient */
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
 }
 
 /* Dark mode heading */
@@ -407,6 +414,41 @@ font-size:18px;
 margin-bottom:30px;
 }
 
+.hero-split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 0 80px;
+  gap: 50px;
+  background: #000; /* Black background */
+  color: #fff;
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 600px;
+  text-align: left;
+}
+
+.hero-text h1 {
+  font-size: 50px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.hero-text p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.hero-3d {
+  flex: 1;
+  max-width: 600px;
+  height: 500px; /* adjust for desktop */
+}
 /* ---------------- HERO BUTTONS ---------------- */
 /* Explore Services Button - light mode (transparent border & text) */
 .hero button {
@@ -443,34 +485,41 @@ body.dark-mode .hero button:hover {
   text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
 }
 /* ---------------- DARK MODE NEON ---------------- */
-/* Light Mode Gradient Button */
-.nav-btn .cta-btn {
-  padding: 10px 25px;
-  background: linear-gradient(45deg, var(--accent), var(--primary)); /* logo gradient */
-  color: #fff;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 14px;
-  transition: 0.3s;
-  white-space: nowrap;
-  text-transform: uppercase;
-}
+
 
 .nav-btn .cta-btn:hover {
   filter: brightness(1.1);
 }
 
 /* Dark Mode - neon gradient */
-body.dark-mode .nav-btn .cta-btn {
-  background: linear-gradient(90deg, var(--accent), var(--primary));
+/* NAVBAR CTA BUTTON */
+.nav-btn .cta-btn {
+  padding: 6px 18px;               /* compact size */
+  font-size: 12px;                 /* smaller text */
+  border-radius: 25px;             /* rounded corners */
+  background: linear-gradient(45deg, var(--accent), var(--primary));
   color: #fff;
-  text-shadow: 0 0 10px var(--accent), 0 0 20px var(--primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
   border: none;
+  
+  /* Fix gradient edges */
+  background-clip: border-box;
+  -webkit-background-clip: padding-box;
+  -webkit-text-fill-color: white; /* ensures text color stays white */
+  
+  transition: 0.3s;
+  display: inline-block;
 }
 
-body.dark-mode .nav-btn .cta-btn:hover {
-  filter: brightness(1.2);
+.nav-btn .cta-btn:hover {
+  filter: brightness(1.1);
 }
+
+
+
+
 /* =========================
    SECTION
 ========================= */
@@ -806,6 +855,31 @@ body > section {
 <button>Explore Services</button>
 </div>
 </div>
+
+<!-- Add this in your HERO section -->
+<div class="hero-split">
+  <!-- Left Text -->
+  <div class="hero-text">
+    <h1>Building Scalable Digital Solutions</h1>
+    <p>Enterprise-grade software engineering for modern businesses.</p>
+    <a href="#contact" class="cta-btn">Let's Talk Business</a>
+  </div>
+
+  <!-- Right 3D Model -->
+  <div class="hero-3d">
+    <model-viewer
+      src="https://modelviewer.dev/shared-assets/models/Computer.glb" 
+      alt="3D Computer Model"
+      auto-rotate
+      camera-controls
+      interaction-prompt="hover"
+      style="width:100%; height:100%;">
+    </model-viewer>
+  </div>
+</div>
+
+<!-- Add Model Viewer Script -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
 <!-- SERVICES -->
 <section id="services">
