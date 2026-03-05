@@ -12,7 +12,6 @@
 /* =========================
    GOOGLE FONT
 ========================= */
-@import url('https://fonts.googleapis.com/css2?family=Schabo&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
 
 /* =========================
@@ -39,42 +38,34 @@ background:#000;
 color:#fff;
 }
 
+/* =========================
+   NAVBAR
+========================= */
+/* ================= HEADER ================= */
+/* HEADER */
 header {
-  position: relative;        /* Stays on top when scrolling */
+  position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;             /* Slightly narrower than full width */
-  max-width: 1200px;
-  padding: 8px 10px;      /* Thinner padding */
+  width: 100%;
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(0, 0, 0, 0); /* Transparent background */
-  z-index: 999;
-  transition: background 0.3s ease, padding 0.3s ease;
-  border-radius: 12px;    /* optional soft edges */
+  padding: 10px 40px;  /* reduced from 60px to 40px */
+  z-index: 1000;
+  transition: transform 0.4s ease;
 }
-
-
 
 /* Navbar Menu */
-.nav-menu a{
-  text-decoration:none;
-  color:#000000; /* change to white */
-  font-weight:600;
-  padding:10px 5px;
-  transition:0.3s;
-  font-size:15px;
+.nav-menu {
+  display: flex;
+  gap: 30px; /* reduced slightly from 40px */
+  list-style: none;
+  align-items: center;
 }
 
-.nav-menu a{
-  color: #fff; /* white text */
-}
-
-.nav-menu a:hover{
-  color: var(--accent); /* red on hover */
-}
 /* Responsive Adjustments */
 @media(max-width: 1024px){
   .nav-menu { gap: 25px; }
@@ -118,7 +109,12 @@ header {
 .logo:hover .logo-full{opacity:1;}
 
 /* Navbar Menu */
-
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
 .nav-menu{
   display:flex;
   gap:40px;
@@ -188,14 +184,11 @@ header {
   font-size: 16px;
   border-radius: 50px;
   text-decoration: none;
-  background: linear-gradient(135deg, #C1141C, #224989); /* fixed red → blue gradient */
-  color: #fff; /* text color white */
+  background: linear-gradient(135deg, #C1141C, #224989); /* logo gradient */
+  color: #fff;
   border: 2px solid transparent;
   box-shadow: 0 0 10px #C1141C, 0 0 20px #C1141C, 0 0 40px #224989, 0 0 60px #224989;
   transition: 0.3s ease-in-out;
-  display: inline-block;
-  text-transform: uppercase;
-  white-space: nowrap;
 }
 
 /* Hover Glow */
@@ -222,10 +215,10 @@ header {
 }
 
 @media(max-width:768px){
- header {
-  position: fixed;
-  top: 0;
-}
+  header{
+    padding:10px 20px;
+    flex-wrap:wrap;
+  }
   .nav-menu{
     gap:15px;
     flex-wrap:wrap;
@@ -235,15 +228,6 @@ header {
     width:100%;
     text-align:center;
   }
-}
-/* Navbar top-level links white */
-.nav-menu > li > a {
-  color: #fff !important; /* Force white */
-  transition: 0.3s;
-}
-
-.nav-menu > li > a:hover {
-  color: var(--accent); /* Keep red on hover */
 }
 
 /* DROPDOWN */
@@ -278,7 +262,25 @@ visibility:visible;
 transform:translateY(0);
 }
 
+/* CTA BUTTON */
+.nav-btn{
+margin-left:20px;
+}
 
+.cta-btn{
+background:var(--accent);
+color:#fff;
+padding:10px 22px;
+border-radius:30px;
+text-decoration:none;
+font-weight:600;
+font-size:14px;
+transition:0.3s;
+}
+
+.cta-btn:hover{
+background:var(--primary);
+}
 /* MENU */
 .menu{
 display:flex;
@@ -382,21 +384,19 @@ background:rgba(0,0,0,0.65);
 z-index:-1;
 }
 
-/* ================= HERO TEXT LEFT ALIGN (MORE LEFT) ================= */
-.hero-content {
-  text-align: left;       /* Align text to left */
-  max-width: 800px;       /* Keep width */
-  margin-left: 20px;      /* More left, closer to edge */
-  padding-left: 10px;  }   /* Optional extra spacing */
+.hero-content{
+max-width:800px;
+}
+
 /* Hero heading gradient in light mode */
 .hero h1 {
   font-size: 52px;
   font-weight: 800;
   margin-bottom: 25px;
-  color: #fff; /* plain white */
-  background: none; /* remove gradient */
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: unset;
+  color: transparent; /* Needed for gradient text */
+  background: linear-gradient(90deg, #C1141C, #224989); /* Red to Blue */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Dark mode heading */
@@ -407,41 +407,6 @@ font-size:18px;
 margin-bottom:30px;
 }
 
-.hero-split {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 100vh;
-  padding: 0 80px;
-  gap: 50px;
-  background: #000; /* Black background */
-  color: #fff;
-}
-
-.hero-text {
-  flex: 1;
-  max-width: 600px;
-  text-align: left;
-}
-
-.hero-text h1 {
-  font-size: 50px;
-  font-weight: 800;
-  margin-bottom: 20px;
-  color: #fff;
-}
-
-.hero-text p {
-  font-size: 18px;
-  margin-bottom: 30px;
-  color: #fff;
-}
-
-.hero-3d {
-  flex: 1;
-  max-width: 600px;
-  height: 500px; /* adjust for desktop */
-}
 /* ---------------- HERO BUTTONS ---------------- */
 /* Explore Services Button - light mode (transparent border & text) */
 .hero button {
@@ -478,46 +443,39 @@ body.dark-mode .hero button:hover {
   text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
 }
 /* ---------------- DARK MODE NEON ---------------- */
-
+/* Light Mode Gradient Button */
+.nav-btn .cta-btn {
+  padding: 10px 25px;
+  background: linear-gradient(45deg, var(--accent), var(--primary)); /* logo gradient */
+  color: #fff;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.3s;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
 
 .nav-btn .cta-btn:hover {
   filter: brightness(1.1);
 }
 
 /* Dark Mode - neon gradient */
-/* NAVBAR CTA BUTTON */
-.nav-btn .cta-btn {
-  padding: 6px 18px;               /* compact size */
-  font-size: 12px;                 /* smaller text */
-  border-radius: 25px;             /* rounded corners */
-  background: linear-gradient(45deg, var(--accent), var(--primary));
+body.dark-mode .nav-btn .cta-btn {
+  background: linear-gradient(90deg, var(--accent), var(--primary));
   color: #fff;
-  font-weight: 600;
-  text-transform: uppercase;
-  white-space: nowrap;
+  text-shadow: 0 0 10px var(--accent), 0 0 20px var(--primary);
   border: none;
-  
-  /* Fix gradient edges */
-  background-clip: border-box;
-  -webkit-background-clip: padding-box;
-  -webkit-text-fill-color: white; /* ensures text color stays white */
-  
-  transition: 0.3s;
-  display: inline-block;
 }
 
-.nav-btn .cta-btn:hover {
-  filter: brightness(1.1);
+body.dark-mode .nav-btn .cta-btn:hover {
+  filter: brightness(1.2);
 }
-
-
-
-
 /* =========================
    SECTION
 ========================= */
 section{
-padding: 0px 80px;
+padding:110px 80px;
 }
 
 .section-title{
@@ -527,63 +485,79 @@ font-size:40px;
 font-weight:800;
 color:var(--primary);
 }
+/* ================= FULL PAGE SCROLL SECTION FIX ================= */
+section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh; /* Keep full height for other sections */
+  width: 100%;
+}
 
+/* Footer override: allow content height only */
+.business-footer{
+background:transparent;   /* Transparent */
+color:#fff;
+padding:70px 80px;
+}
+/* Navbar Hide Animation */
+header{
+  transition: transform 0.4s ease;
+}
 
+header.hide-navbar{
+  transform: translateY(-100%);
+}
 /* =========================
    SERVICES
 ========================= */
-.service-card {
-  position: relative;
-  flex: 0 0 300px;      /* Normal card width */
-  border-radius: 20px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.services-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:35px;
 }
 
-.service-card:hover {
-  transform: scale(1.05) translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+.service-card{
+position:relative;
+display:block;
+border-radius:18px;
+overflow:hidden;
+transition:0.4s ease;
+box-shadow:0 10px 30px rgba(255, 254, 254, 0);
 }
 
-/* Image contained inside card, height automatic */
-.service-card img {
-  width: 100%;
-  flex: 0 0 300px;        /* Keeps normal size */
-  display: block;
-  object-fit: cover;    /* Fill width, maintain aspect ratio */
-  filter: brightness(0.6); /* dull effect */
-  transition: filter 0.3s ease;
+.service-card img{
+width:100%;
+height:320px;
+object-fit:cover;
+transition:0.5s ease;
 }
 
-.service-card:hover img {
-  filter: brightness(0.75);
+.service-card .overlay{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(to top,rgba(0,0,0,0.8),rgba(0,0,0,0.5),transparent);
+display:flex;
+align-items:flex-end;
+justify-content:center;
+padding:30px;
 }
 
-/* Text overlay */
-.service-card .overlay {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-  color: #fff;
-  font-family: 'Schabo', serif;
-  font-size: 18px;
-  font-weight: 700;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
-  z-index: 2;
+.service-card h3{
+color:#fff;
+font-size:22px;
+font-weight:700;
 }
 
-/* Gradient overlay behind text */
-.service-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0));
-  pointer-events: none;
-  z-index: 1;
+.service-card:hover{
+transform:translateY(-8px);
+box-shadow:0 18px 40px rgba(0,0,0,0.15);
+}
+
+.service-card:hover img{
+transform:scale(1.1);
 }
 
 /* =========================
@@ -652,6 +626,10 @@ display:none;
 flex-direction:column;
 }
 
+.dropdown.active .mega-menu{
+display:flex;
+}
+
 .stats{
 flex-direction:column;
 gap:30px;
@@ -661,10 +639,40 @@ gap:30px;
 
 
 
+
+
+
+/* ================= SERVICES TOGGLE ================= */
+
+.service-card.hidden-card{
+display:none;
+}
+
+.services-toggle{
+text-align:center;
+margin-top:40px;
+}
+
+.services-toggle button{
+background:transparent;
+border:2px solid var(--accent);
+color:var(--accent);
+padding:12px 30px;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+.services-toggle button:hover{
+background:var(--accent);
+color:#fff;
+}
 /* ================= BUSINESS FOOTER ================= */
 
-.business-footer {
-  height: 100vh;
+.business-footer{
+background:var(--primary);
+color:#fff;
+padding:70px 80px;
 }
 
 .footer-container{
@@ -689,6 +697,37 @@ color:var(--accent);
 font-size:14px;
 line-height:1.8;
 margin-bottom:8px;
+}
+
+
+
+/* ================= STEP SCROLL EFFECT ================= */
+
+/* ================= FULL PAGE SNAP SCROLL ================= */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow-y: scroll;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+body > section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* 🚀 Remove full height from footer section */
+.business-footer {
+  min-height: auto !important;
+  height: auto !important;
+  padding: 60px 80px 40px 80px; /* reduced bottom padding */
 }
 
 </style>
@@ -754,20 +793,19 @@ margin-bottom:8px;
     <a href="#contact" class="cta-btn">Let's Talk Business</a>
   </div>
 
+ 
+
+
 </header>
 <!-- HERO -->
-<section class="hero">
+<div class="hero">
 <div class="hero-overlay"></div>
 <div class="hero-content">
 <h1>Building Scalable Digital Solutions</h1>
 <p>Enterprise-grade software engineering for modern businesses.</p>
 <button>Explore Services</button>
 </div>
-</section>
-
-<!-- Add this in your HERO section -->
-
-
+</div>
 
 <!-- SERVICES -->
 <section id="services">
@@ -815,8 +853,10 @@ margin-bottom:8px;
 <div class="overlay"><h3>UI / UX Design</h3></div>
 </a>
 
-
-
+</div>
+<div class="services-toggle">
+  <button id="servicesToggle">Show More ↓</button>
+</div>
 </section>
 
 <section class="business-footer">
@@ -855,24 +895,129 @@ margin-bottom:8px;
 <p>© 2026 LoopM Technologies. All rights reserved.</p>
 </footer>
 
-
-
 <script>
-window.addEventListener('scroll', () => {
-  const header = document.querySelector('header');
-  if(window.scrollY > 50){
-    header.style.background = 'rgba(0,0,0,0.5)';
-    header.style.padding = '6px 20px';
-  } else {
-    header.style.background = 'rgba(0,0,0,0.2)';
-    header.style.padding = '8px 20px';
-  }
+document.querySelectorAll(".dropdown > a").forEach(item=>{
+item.addEventListener("click",function(e){
+if(window.innerWidth<992){
+e.preventDefault();
+this.parentElement.classList.toggle("active");
+}
+});
+});
+
+/* Load Saved Theme */
+if(localStorage.getItem("theme")==="dark"){
+document.body.classList.add("dark-mode");
+toggleBtn.checked = true;
+}
+
+/* SERVICES SHOW MORE */
+
+const serviceCards = document.querySelectorAll(".services-grid .service-card");
+const servicesToggle = document.getElementById("servicesToggle");
+
+/* Hide cards after first 3 */
+serviceCards.forEach((card, index) => {
+if(index >= 3){
+card.classList.add("hidden-card");
+}
+});
+
+servicesToggle.addEventListener("click", () => {
+
+const hiddenCards = document.querySelectorAll(".hidden-card");
+
+if(hiddenCards.length > 0){
+hiddenCards.forEach(card => card.classList.remove("hidden-card"));
+servicesToggle.textContent = "Show Less ↑";
+}else{
+serviceCards.forEach((card, index) => {
+if(index >= 3){
+card.classList.add("hidden-card");
+}
+});
+servicesToggle.textContent = "Show More ↓";
+}
+
 });
 
 
-</script>
-<script>
 
 </script>
+<script>
+/* ================= FULL PAGE STEP SCROLL ================= */
+const sections = document.querySelectorAll("section");
+let currentSection = 0;
+let isScrolling = false;
+
+function scrollToSection(index) {
+  if (index < 0 || index >= sections.length) return;
+  isScrolling = true;
+
+  const headerOffset = document.querySelector("header").offsetHeight;
+  const sectionTop = sections[index].offsetTop - headerOffset;
+
+  window.scrollTo({
+    top: sectionTop,
+    behavior: "smooth"
+  });
+
+  setTimeout(() => { isScrolling = false; }, 800); // lock scroll
+}
+
+// Mouse wheel
+window.addEventListener("wheel", (e) => {
+  if (isScrolling) return;
+  if (e.deltaY > 0) currentSection++;
+  else currentSection--;
+  currentSection = Math.max(0, Math.min(currentSection, sections.length - 1));
+  scrollToSection(currentSection);
+});
+
+// Keyboard
+window.addEventListener("keydown", (e) => {
+  if (isScrolling) return;
+  if (e.key === "ArrowDown") currentSection++;
+  else if (e.key === "ArrowUp") currentSection--;
+  currentSection = Math.max(0, Math.min(currentSection, sections.length - 1));
+  scrollToSection(currentSection);
+});
+
+// Touch swipe
+let touchStartY = 0;
+window.addEventListener("touchstart", e => touchStartY = e.changedTouches[0].screenY);
+window.addEventListener("touchend", e => {
+  if (isScrolling) return;
+  let touchEndY = e.changedTouches[0].screenY;
+  if (touchStartY - touchEndY > 50) currentSection++;
+  else if (touchEndY - touchStartY > 50) currentSection--;
+  currentSection = Math.max(0, Math.min(currentSection, sections.length - 1));
+  scrollToSection(currentSection);
+});
+
+// Reset currentSection if user resizes
+window.addEventListener("resize", () => {
+  sections[currentSection].scrollIntoView();
+});
+
+/* ================= NAVBAR SHOW/HIDE ON FIRST SCROLL ================= */
+
+const header = document.querySelector("header");
+
+window.addEventListener("scroll", () => {
+
+  const scrollPosition = window.scrollY;
+  const heroHeight = document.querySelector(".hero").offsetHeight;
+
+  if (scrollPosition > heroHeight - 100) {
+    header.classList.add("hide-navbar");   // Hide after hero
+  } else {
+    header.classList.remove("hide-navbar"); // Show at top
+  }
+
+});
+</script>
+
+
 </body>
 </html>
