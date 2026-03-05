@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LoopM Technologies</title>
@@ -37,6 +38,21 @@ font-family:'Poppins', sans-serif;
 body{
 background:#000;
 color:#fff;
+}
+/* Enable vertical snap scrolling */
+html, body {
+  scroll-behavior: smooth;       /* Smooth scroll */
+  height: 100%;
+  overflow-y: scroll;
+}
+
+body {
+  scroll-snap-type: y mandatory; /* Vertical snap */
+}
+
+section {
+  scroll-snap-align: start;      /* Each section snaps to top */
+  min-height: 100vh;             /* Full viewport height */
 }
 
 header {
@@ -358,18 +374,7 @@ padding-left:5px;
 /* =========================
    HERO (VIDEO)
 ========================= */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding-top: 0;
 
-  background:
-    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-    url("assets/images/Bg.png") no-repeat center center/cover;
-}
 
 
 .hero-overlay{
@@ -382,13 +387,7 @@ background:rgba(0,0,0,0.65);
 z-index:-1;
 }
 
-/* ================= HERO TEXT LEFT ALIGN (MORE LEFT) ================= */
-.hero-content {
-  text-align: left;       /* Align text to left */
-  max-width: 800px;       /* Keep width */
-  margin-left: 20px;      /* More left, closer to edge */
-  padding-left: 10px;  }   /* Optional extra spacing */
-/* Hero heading gradient in light mode */
+
 .hero h1 {
   font-size: 52px;
   font-weight: 800;
@@ -397,6 +396,42 @@ z-index:-1;
   background: none; /* remove gradient */
   -webkit-background-clip: unset;
   -webkit-text-fill-color: unset;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+
+  background:
+    linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+    url("assets/images/Bg.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
+
+#globe-container {
+  position: absolute;    /* inside hero section */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;            /* above bg, below content */
+  pointer-events: none;  /* allow clicks through */
+  overflow: visible;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
 }
 
 /* Dark mode heading */
@@ -528,64 +563,118 @@ font-weight:800;
 color:var(--primary);
 }
 
-
 /* =========================
-   SERVICES
+   SERVICES SCROLLABLE CAROUSEL
 ========================= */
-.service-card {
+/* =========================
+   SERVICES SCROLLABLE CAROUSEL
+/* =========================
+   SERVICES SCROLLABLE CAROUSEL (VERTICAL CARDS)
+========================= */
+
+/* Section */
+#services {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 60px 5%;
   position: relative;
-  flex: 0 0 300px;      /* Normal card width */
+
+  /* NEW: same background as hero */
+  background:
+    linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+    url("assets/images/service.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Title */
+.section-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 50px;
+  text-align: center;
+  color: var(--primary);
+}
+
+/* Scroll wrapper */
+.services-scroll {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;       /* horizontal scroll */
+  overflow-y: hidden;
+  width: 100%;
+  max-width: 1200px;
+  scroll-behavior: smooth;
+  padding: 40px 0;
+  scroll-snap-type: x mandatory; /* snap scroll */
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+}
+
+/* Hide scrollbar */
+.services-scroll::-webkit-scrollbar {
+  display: none;
+}
+.services-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Each service card */
+.service-card {
+  flex: 0 0 400px;   /* card **width** becomes what was height before */
+  height: 300px;     /* card **height** becomes what was width before */
   border-radius: 20px;
   overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  scroll-snap-align: center;
+  background: #111;
 }
 
-.service-card:hover {
-  transform: scale(1.05) translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-}
-
-/* Image contained inside card, height automatic */
+/* Image inside card */
 .service-card img {
   width: 100%;
-  flex: 0 0 300px;        /* Keeps normal size */
-  display: block;
-  object-fit: cover;    /* Fill width, maintain aspect ratio */
-  filter: brightness(0.6); /* dull effect */
-  transition: filter 0.3s ease;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.service-card:hover img {
-  filter: brightness(0.75);
-}
-
-/* Text overlay */
+/* Overlay */
 .service-card .overlay {
   position: absolute;
-  bottom: 15px;
-  left: 15px;
-  color: #fff;
-  font-family: 'Schabo', serif;
-  font-size: 18px;
-  font-weight: 700;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
-  z-index: 2;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  color: white;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+  transition: opacity 0.5s ease;
 }
 
-/* Gradient overlay behind text */
-.service-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0));
-  pointer-events: none;
-  z-index: 1;
+/* Hover effects */
+.service-card:hover img {
+  opacity: 0;
+  transform: scale(1.15);
+}
+.service-card:hover .overlay {
+  opacity: 1;
 }
 
+/* Center card grows */
+.service-card.center {
+  transform: scale(1.1);  /* bigger for middle */
+  z-index: 10;
+  
+}
 /* =========================
    STATS
 ========================= */
@@ -662,39 +751,87 @@ gap:30px;
 
 
 /* ================= BUSINESS FOOTER ================= */
-
+/* ================= BUSINESS FOOTER ================= */
 .business-footer {
-  height: 100vh;
+  background: #000;      /* Black background */
+  color: #fff;           /* White text */
+  padding: 80px 40px;    /* Space inside the footer */
+  margin-top: 100px;     /* Push footer away from previous section */
 }
 
-.footer-container{
-display:grid;
-grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
-gap:50px;
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto;       /* Center the content */
 }
 
-.footer-column h3{
-font-size:22px;
-margin-bottom:20px;
-color:#fff;
+.footer-column h3,
+.footer-column h4 {
+  color: #fff;           /* White headers */
 }
 
-.footer-column h4{
-font-size:18px;
-margin-bottom:15px;
-color:var(--accent);
+.footer-column h4 {
+  color: var(--accent);  /* Optional: keep red accent for subheadings */
 }
 
-.footer-column p{
-font-size:14px;
-line-height:1.8;
-margin-bottom:8px;
+.footer-column p {
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 8px;
+  color: #fff;           /* White paragraph text */
 }
+/* ================= 3D GLOBE BACKGROUND ================= */
+#globe-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.35; /* subtle */
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.35), #000 70%);
+}
+
+.fade-section {
+  opacity: 0;
+  transform: translateY(50px); /* slight slide up */
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero, #services {
+  position: relative;
+  z-index: 0;
+}
+
+.fade-section.visible {
+  z-index: 1;
+}
+
+.hero {
+  position: relative;
+  z-index: 0;
+  /* keep background fixed so fade looks smooth */
+  background-attachment: fixed;
+}
+
 
 </style>
 </head>
 
 <body>
+  <canvas id="globe-bg"></canvas>
 
 <header>
   <div class="logo">
@@ -755,68 +892,62 @@ margin-bottom:8px;
   </div>
 
 </header>
-<!-- HERO -->
-<section class="hero">
-<div class="hero-overlay"></div>
-<div class="hero-content">
-<h1>Building Scalable Digital Solutions</h1>
-<p>Enterprise-grade software engineering for modern businesses.</p>
-<button>Explore Services</button>
-</div>
+<section class="hero fade-section">
+  <div class="hero-overlay"></div>
+  <div id="globe-container"></div>
+  <div class="hero-content">
+    <h1>Building Scalable Digital Solutions</h1>
+    <p>Enterprise-grade software engineering for modern businesses.</p>
+    <button>Explore Services</button>
+  </div>
 </section>
 
-<!-- Add this in your HERO section -->
-
-
-
 <!-- SERVICES -->
-<section id="services">
-<h2 class="section-title">Our Services</h2>
+<section id="services" class="fade-section">
+  <h2 class="section-title">Our Services</h2>
+  <div class="services-scroll">
 
-<div class="services-grid">
+    <a href="#" class="service-card">
+      <img src="assets/images/web.png" alt="Web Development">
+      <div class="overlay">
+        <h3>Web Development</h3>
+        <p>Modern scalable web applications built for performance.</p>
+      </div>
+    </a>
 
-<a href="#" class="service-card">
-<img src="https://img.freepik.com/premium-vector/erp-enterprise-resource-planning-illustration-concept-productivity-company-enhancement-illustration_108061-564.jpg">
-<div class="overlay"><h3>Oracle Apex</h3></div>
-</a>
+    <a href="#" class="service-card">
+      <img src="assets/images/and.png" alt="Mobile Apps">
+      <div class="overlay">
+        <h3>Mobile Apps</h3>
+        <p>High performance Android & iOS applications.</p>
+      </div>
+    </a>
 
-<a href="#" class="service-card">
-<img src="https://img.freepik.com/premium-vector/business-process-automation-abstract-concept-vector-illustration-artificial-intelligence-business-workflow-organization-big-data-industry-it-technology-machine-learning-abstract-metaphor_107173-45905.jpg">
-<div class="overlay"><h3>Business Automation</h3></div>
-</a>
+    <a href="#" class="service-card">
+      <img src="assets/images/ai.png" alt="AI Services">
+      <div class="overlay">
+        <h3>AI Services</h3>
+        <p>Intelligent automation & AI-powered business solutions.</p>
+      </div>
+    </a>
 
-<a href="#" class="service-card">
-<img src="https://img.freepik.com/premium-vector/website-maintenance-abstract-concept-vector-illustration_107173-29901.jpg">
-<div class="overlay"><h3>Support & Maintainance</h3></div>
-</a>
+    <a href="#" class="service-card">
+      <img src="assets/images/cl.png" alt="Cloud Solutions">
+      <div class="overlay">
+        <h3>Cloud Solutions</h3>
+        <p>Secure & scalable cloud architecture.</p>
+      </div>
+    </a>
 
-<a href="#" class="service-card">
-<img src="https://img.freepik.com/premium-vector/native-mobile-app-abstract-concept-vector-illustration_107173-24939.jpg">
-<div class="overlay"><h3>Mobile Apps</h3></div>
-</a>
+    <a href="#" class="service-card">
+      <img src="assets/images/uiux.png" alt="UI/UX Design">
+      <div class="overlay">
+        <h3>UI / UX Design</h3>
+        <p>Beautiful user experiences & intuitive interfaces.</p>
+      </div>
+    </a>
 
-<a href="#" class="service-card">
-<img src="https://thumbs.dreamstime.com/b/devops-cloud-engineer-isolated-cartoon-vector-illustrations-specialist-develops-network-technology-datacenter-worker-edge-266154283.jpg">
-<div class="overlay"><h3>Cloud Solutions</h3></div>
-</a>
-
-<a href="#" class="service-card">
-<img src="https://thumbs.dreamstime.com/b/ai-engineer-abstract-concept-vector-illustration-professional-creating-robotic-models-using-machine-learning-algorithms-295098748.jpg">
-<div class="overlay"><h3>AI Services</h3></div>
-</a>
-
-<a href="#" class="service-card">
-<img src="https://c8.alamy.com/comp/2CG0A9M/ui-and-ux-design-abstract-concept-vector-illustration-2CG0A9M.jpg">
-<div class="overlay"><h3>Graphic Design</h3></div>
-</a>
-
-<a href="#" class="service-card">
-<img src="https://img.freepik.com/premium-vector/mobile-ui-ux-concept-illustration_114360-14906.jpg">
-<div class="overlay"><h3>UI / UX Design</h3></div>
-</a>
-
-
-
+  </div>
 </section>
 
 <section class="business-footer">
@@ -872,7 +1003,243 @@ window.addEventListener('scroll', () => {
 
 </script>
 <script>
+// Scene setup
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+camera.position.z = 10; // moved back for bigger globe
 
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.getElementById("globe-container").appendChild(renderer.domElement);
+
+// ---------------- BEADS GLOBE ---------------- //
+const radius = 10.0;      // 2x bigger globe
+const segments = 80;
+const positions = [];
+const sizes = [];
+const opacities = [];
+
+for (let i = 0; i <= segments; i++) {
+  const theta = i * Math.PI / segments;
+  for (let j = 0; j <= segments; j++) {
+    const phi = j * 2 * Math.PI / segments;
+
+    const x = radius * Math.sin(theta) * Math.cos(phi);
+    const y = radius * Math.cos(theta);
+    const z = radius * Math.sin(theta) * Math.sin(phi);
+
+    positions.push(x, y, z);
+
+    // Bead size: smaller on outer edges, bigger near equator
+    const distFromCenter = Math.abs(y) / radius; // 0 at equator, 1 at poles
+    sizes.push(0.02 + 0.06 * (1 - distFromCenter)); // slightly larger for bigger globe
+
+    // Opacity: subtle
+    opacities.push(0.15 + 0.3 * (1 - distFromCenter)); 
+  }
+}
+
+const geometry = new THREE.BufferGeometry();
+geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+geometry.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1));
+geometry.setAttribute('opacity', new THREE.Float32BufferAttribute(opacities, 1));
+
+// Shader material
+const material = new THREE.ShaderMaterial({
+  transparent: true,
+  vertexShader: `
+    attribute float size;
+    attribute float opacity;
+    varying float vOpacity;
+    void main() {
+      vOpacity = opacity;
+      vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+      gl_PointSize = size * (300.0 / -mvPosition.z);
+      gl_Position = projectionMatrix * mvPosition;
+    }
+  `,
+  fragmentShader: `
+    varying float vOpacity;
+    void main() {
+      float dist = distance(gl_PointCoord, vec2(0.5));
+      if(dist > 0.5) discard;
+      gl_FragColor = vec4(1.0, 1.0, 1.0, vOpacity);
+    }
+  `
+});
+
+const points = new THREE.Points(geometry, material);
+points.position.x = -1; // left shift
+scene.add(points);
+
+// ---------------- MOUSE INTERACTION ---------------- //
+let mouse = { x: 0, y: 0 };
+window.addEventListener("mousemove", (event) => {
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+});
+
+// ---------------- ANIMATION ---------------- //
+function animate() {
+  requestAnimationFrame(animate);
+
+  points.rotation.y += 0.002;
+  points.rotation.x += (mouse.y * 0.05 - points.rotation.x) * 0.05;
+  points.rotation.y += (mouse.x * 0.05 - points.rotation.y) * 0.05;
+
+  renderer.render(scene, camera);
+}
+animate();
+
+// ---------------- RESIZE ---------------- //
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+<script>
+  const scrollContainer = document.querySelector(".services-scroll");
+const cards = document.querySelectorAll(".service-card");
+
+function updateCenterCard() {
+  const containerCenter = scrollContainer.scrollLeft + scrollContainer.offsetWidth / 2;
+
+  cards.forEach(card => {
+    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+    if(Math.abs(containerCenter - cardCenter) < card.offsetWidth / 2) {
+      card.classList.add("center");
+    } else {
+      card.classList.remove("center");
+    }
+  });
+}
+
+// Initial update
+updateCenterCard();
+
+// Update on scroll
+scrollContainer.addEventListener("scroll", updateCenterCard);
+
+// Smooth drag scrolling
+let isDown = false;
+let startX, scrollLeft;
+
+scrollContainer.addEventListener('mousedown', (e) => {
+  isDown = true;
+  startX = e.pageX - scrollContainer.offsetLeft;
+  scrollLeft = scrollContainer.scrollLeft;
+});
+scrollContainer.addEventListener('mouseleave', () => isDown = false);
+scrollContainer.addEventListener('mouseup', () => isDown = false);
+scrollContainer.addEventListener('mousemove', (e) => {
+  if(!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - scrollContainer.offsetLeft;
+  const walk = (startX - x);
+  scrollContainer.scrollLeft = scrollLeft + walk;
+});
+</script>
+<script>
+const fadeSections = document.querySelectorAll('.fade-section');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    } else {
+      entry.target.classList.remove('visible');
+    }
+  });
+}, { threshold: 0.2 }); // trigger when 20% of section is visible
+
+fadeSections.forEach(section => observer.observe(section));
+</script>
+<script>
+  const hero = document.querySelector('.hero');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const heroHeight = hero.offsetHeight;
+
+  hero.style.opacity = Math.max(1 - scrollY / (heroHeight / 1.5), 0);
+});
+</script>
+<Script>
+  
+</Script>
+
+<script>
+const sections = document.querySelectorAll('section');
+const header = document.querySelector('header');
+let isScrolling = false;
+let currentSection = 0;
+
+// Scroll to section considering navbar height
+function scrollToSection(index) {
+  if (index < 0) index = 0;
+  if (index >= sections.length) index = sections.length - 1;
+  
+  const section = sections[index];
+  const navbarHeight = header.offsetHeight;
+  const top = section.offsetTop - navbarHeight;
+
+  isScrolling = true;
+  window.scrollTo({
+    top: top,
+    behavior: 'smooth'
+  });
+
+  // Unlock scrolling after animation
+  setTimeout(() => { isScrolling = false; }, 700);
+}
+
+// Update current section based on scroll position
+function updateCurrentSection() {
+  const scrollPos = window.scrollY + header.offsetHeight + 5; // +5 tolerance
+  sections.forEach((sec, i) => {
+    if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
+      currentSection = i;
+    }
+  });
+}
+
+// Wheel scroll
+window.addEventListener('wheel', (e) => {
+  if (isScrolling) return;
+
+  if (e.deltaY > 0) {
+    currentSection = Math.min(currentSection + 1, sections.length - 1);
+  } else {
+    currentSection = Math.max(currentSection - 1, 0);
+  }
+  scrollToSection(currentSection);
+});
+
+// Arrow keys
+window.addEventListener('keydown', (e) => {
+  if (isScrolling) return;
+  if (e.key === 'ArrowDown') {
+    currentSection = Math.min(currentSection + 1, sections.length - 1);
+    scrollToSection(currentSection);
+  } else if (e.key === 'ArrowUp') {
+    currentSection = Math.max(currentSection - 1, 0);
+    scrollToSection(currentSection);
+  }
+});
+
+// Update current section if user scrolls manually
+window.addEventListener('scroll', () => {
+  if (!isScrolling) updateCurrentSection();
+});
+
+// Snap to first section on load
+window.addEventListener('load', () => scrollToSection(0));
 </script>
 </body>
 </html>
