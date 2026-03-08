@@ -1,37 +1,41 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Team | LoopM Technologies</title>
 
-<link rel="icon" type="image/png" href="assets/images/fevicon.png">
+<link rel="icon" href="assets/images/fevicon.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-
-/* GOOGLE FONT */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
 
 :root{
 --primary:#224989;
 --accent:#C1141C;
 --dark:#0f1f3d;
---white:#fff;
 }
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins', sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
 body{
 background:#000;
 color:#fff;
+overflow-x:hidden;
 }
 
-/* ================= NAVBAR ================= */
+/* NAVBAR */
 
 header{
 position:fixed;
@@ -40,105 +44,105 @@ width:100%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:10px 40px;
-z-index:1000;
-}
-
-.logo{
-position:relative;
-height:70px;
-width:140px;
-display:flex;
-align-items:center;
-justify-content:center;
+padding:15px 60px;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(12px);
+z-index:999;
 }
 
 .logo img{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-transition:0.4s;
+height:45px;
 }
-
-.logo-icon{
-height:42px;
-}
-
-.logo-full{
-height:80px;
-opacity:0;
-}
-
-.logo:hover .logo-icon{opacity:0;}
-.logo:hover .logo-full{opacity:1;}
 
 .nav-menu{
 display:flex;
 gap:35px;
 list-style:none;
-align-items:center;
 }
 
 .nav-menu a{
 text-decoration:none;
-color:var(--primary);
-font-weight:600;
-transition:0.3s;
+color:#fff;
+font-weight:500;
+position:relative;
 }
 
-.nav-menu a:hover{
-color:var(--accent);
+.nav-menu a::after{
+content:"";
+position:absolute;
+left:0;
+bottom:-5px;
+height:2px;
+width:0%;
+background:var(--accent);
+transition:.4s;
 }
 
-/* CTA */
+.nav-menu a:hover::after{
+width:100%;
+}
 
 .cta-btn{
 background:linear-gradient(45deg,var(--accent),var(--primary));
 padding:10px 25px;
-border-radius:30px;
+border-radius:25px;
 text-decoration:none;
 color:#fff;
 font-weight:600;
+transition:.4s;
 }
 
-/* ================= HERO ================= */
+.cta-btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 20px var(--accent);
+}
+
+/* HERO */
 
 .hero{
 height:60vh;
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
 text-align:center;
 
 background:
-linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),
 url("assets/images/Bg.png") center/cover;
-
-margin-top:70px;
 }
 
 .hero h1{
-font-size:50px;
+font-size:60px;
 font-weight:800;
-background:linear-gradient(90deg,#C1141C,#224989);
+
+background:linear-gradient(90deg,#C1141C,#224989,#C1141C);
+background-size:200%;
+
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+
+animation:gradientMove 5s infinite linear;
 }
 
-/* ================= TEAM SECTION ================= */
+@keyframes gradientMove{
+0%{background-position:0%;}
+100%{background-position:200%;}
+}
+
+/* TEAM SECTION */
 
 .team-section{
-padding:110px 80px;
+padding:120px 10%;
 }
 
 .section-title{
 text-align:center;
-font-size:40px;
-font-weight:800;
-margin-bottom:70px;
-color:var(--primary);
+font-size:42px;
+margin-bottom:80px;
+font-weight:700;
 }
+
+/* GRID */
 
 .team-grid{
 display:grid;
@@ -146,27 +150,37 @@ grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:40px;
 }
 
+/* CARD */
+
 .team-card{
-background:#111;
-padding:35px;
-border-radius:18px;
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+padding:40px;
 text-align:center;
-transition:0.4s;
-border:1px solid rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.1);
+transition:.5s;
+position:relative;
+overflow:hidden;
 }
 
 .team-card:hover{
-transform:translateY(-10px);
-box-shadow:0 20px 40px rgba(0,0,0,0.4);
+transform:translateY(-12px) scale(1.03);
+box-shadow:0 20px 40px rgba(0,0,0,.6);
 }
 
 .team-card img{
 width:120px;
 height:120px;
 border-radius:50%;
-object-fit:cover;
-border:3px solid var(--primary);
+border:4px solid var(--primary);
 margin-bottom:20px;
+transition:.4s;
+}
+
+.team-card:hover img{
+transform:scale(1.1);
+border-color:var(--accent);
 }
 
 .team-card h3{
@@ -183,29 +197,49 @@ margin-bottom:10px;
 
 .team-card p{
 font-size:14px;
-color:#aaa;
+color:#ccc;
+margin-bottom:15px;
 }
 
-/* ================= FOOTER ================= */
+/* SOCIAL */
+
+.social{
+display:flex;
+justify-content:center;
+gap:15px;
+opacity:0;
+transform:translateY(10px);
+transition:.4s;
+}
+
+.team-card:hover .social{
+opacity:1;
+transform:translateY(0);
+}
+
+.social i{
+background:#111;
+padding:10px;
+border-radius:50%;
+transition:.3s;
+cursor:pointer;
+}
+
+.social i:hover{
+background:var(--accent);
+}
+
+/* FOOTER */
 
 .business-footer{
 background:var(--primary);
-padding:70px 80px;
+padding:80px 10%;
 }
 
 .footer-container{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:50px;
-}
-
-.footer-column h3{
-margin-bottom:20px;
-}
-
-.footer-column h4{
-margin-bottom:15px;
-color:var(--accent);
+gap:40px;
 }
 
 footer{
@@ -214,28 +248,28 @@ text-align:center;
 padding:20px;
 }
 
-/* ================= MOBILE ================= */
+/* PARTICLES */
 
-@media(max-width:768px){
-
-header{
-flex-wrap:wrap;
+#particles-js{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
 }
 
-.nav-menu{
-gap:15px;
-flex-wrap:wrap;
-justify-content:center;
+/* SCROLL ANIMATION */
+
+.reveal{
+opacity:0;
+transform:translateY(50px);
+transition:1s ease;
 }
 
-.team-section{
-padding:90px 30px;
-}
-
-.hero h1{
-font-size:36px;
-}
-
+.reveal.active{
+opacity:1;
+transform:translateY(0);
 }
 
 </style>
@@ -243,21 +277,20 @@ font-size:36px;
 
 <body>
 
+<div id="particles-js"></div>
+
 <header>
 
 <div class="logo">
-<a href="index.html">
-<img src="assets/images/fevicon.png" class="logo-icon">
-<img src="assets/images/logo.png" class="logo-full">
-</a>
+<img src="assets/images/logo.png">
 </div>
 
 <ul class="nav-menu">
-<li><a href="index.html">Home</a></li>
+<li><a href="#">Home</a></li>
 <li><a href="#">What We Do</a></li>
 <li><a href="#">Who We Help</a></li>
 <li><a href="#">Who We Are</a></li>
-<li><a href="team.html" style="color:#C1141C;">Team</a></li>
+<li><a href="#">Team</a></li>
 </ul>
 
 <a href="#" class="cta-btn">Let's Talk Business</a>
@@ -274,36 +307,56 @@ font-size:36px;
 
 <section class="team-section">
 
-<h2 class="section-title">Leadership & Experts</h2>
+<h2 class="section-title reveal">Leadership & Experts</h2>
 
 <div class="team-grid">
 
-<div class="team-card">
+<div class="team-card reveal">
 <img src="https://randomuser.me/api/portraits/men/32.jpg">
 <h3>Muhammad Ali</h3>
 <span>Founder & CEO</span>
-<p>Leading digital transformation strategies for startups and enterprises worldwide.</p>
+<p>Leading digital transformation strategies.</p>
+<div class="social">
+<i class="fab fa-linkedin"></i>
+<i class="fab fa-twitter"></i>
+<i class="fab fa-github"></i>
+</div>
 </div>
 
-<div class="team-card">
+<div class="team-card reveal">
 <img src="https://randomuser.me/api/portraits/women/44.jpg">
 <h3>Sarah Khan</h3>
 <span>Head of Development</span>
-<p>Expert in scalable web applications and enterprise architecture.</p>
+<p>Expert in scalable web applications.</p>
+<div class="social">
+<i class="fab fa-linkedin"></i>
+<i class="fab fa-twitter"></i>
+<i class="fab fa-github"></i>
+</div>
 </div>
 
-<div class="team-card">
+<div class="team-card reveal">
 <img src="https://randomuser.me/api/portraits/men/65.jpg">
 <h3>Ali Raza</h3>
 <span>AI & Automation Lead</span>
-<p>Building intelligent automation and AI-driven solutions.</p>
+<p>Building AI-driven solutions.</p>
+<div class="social">
+<i class="fab fa-linkedin"></i>
+<i class="fab fa-twitter"></i>
+<i class="fab fa-github"></i>
+</div>
 </div>
 
-<div class="team-card">
+<div class="team-card reveal">
 <img src="https://randomuser.me/api/portraits/women/68.jpg">
 <h3>Ayesha Malik</h3>
 <span>UI / UX Designer</span>
-<p>Crafting modern and user-centered digital experiences.</p>
+<p>Crafting user-centered experiences.</p>
+<div class="social">
+<i class="fab fa-linkedin"></i>
+<i class="fab fa-dribbble"></i>
+<i class="fab fa-behance"></i>
+</div>
 </div>
 
 </div>
@@ -316,28 +369,19 @@ font-size:36px;
 
 <div class="footer-container">
 
-<div class="footer-column">
+<div>
 <h3>LoopM Technologies</h3>
-<p>Building scalable digital solutions for startups and enterprises.</p>
+<p>Building scalable digital solutions.</p>
 </div>
 
-<div class="footer-column">
+<div>
 <h4>Head Office</h4>
-<p>Office #12, 3rd Floor<br>
-Business Hub Plaza<br>
-Rawalpindi, Pakistan</p>
+<p>Rawalpindi, Pakistan</p>
 </div>
 
-<div class="footer-column">
+<div>
 <h4>Contact</h4>
-<p>Phone: +92 300 1234567</p>
-<p>Email: info@loopmtech.com</p>
-</div>
-
-<div class="footer-column">
-<h4>Working Hours</h4>
-<p>Mon – Fri: 9AM – 6PM</p>
-<p>Saturday: 10AM – 3PM</p>
+<p>info@loopmtech.com</p>
 </div>
 
 </div>
@@ -345,8 +389,46 @@ Rawalpindi, Pakistan</p>
 </section>
 
 <footer>
-<p>© 2026 LoopM Technologies. All rights reserved.</p>
+<p>© 2026 LoopM Technologies</p>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+<script>
+
+particlesJS("particles-js",{
+particles:{
+number:{value:80},
+size:{value:3},
+move:{speed:2},
+line_linked:{enable:true}
+}
+});
+
+/* SCROLL REVEAL */
+
+function reveal(){
+
+let reveals=document.querySelectorAll(".reveal");
+
+for(let i=0;i<reveals.length;i++){
+
+let windowHeight=window.innerHeight;
+let elementTop=reveals[i].getBoundingClientRect().top;
+let elementVisible=100;
+
+if(elementTop < windowHeight - elementVisible){
+reveals[i].classList.add("active");
+}
+
+}
+
+}
+
+window.addEventListener("scroll", reveal);
+
+</script>
 
 </body>
 </html>
+```
