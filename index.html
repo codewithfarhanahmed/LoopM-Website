@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LoopM Technologies</title>
@@ -12,7 +13,15 @@
 /* =========================
    GOOGLE FONT
 ========================= */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+/* =========================
+   GOOGLE FONT
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@font-face {
+  font-family: "Madrhino";
+  src: url("assets/fonts/madrhino.ttf") format("truetype");
+}
 
 /* =========================
    BRAND COLOR VARIABLES
@@ -27,45 +36,95 @@
 
 /* RESET */
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins', sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Plus Jakarta Sans', sans-serif; /* new modern font */
+}
+.hero h1,
+.hero-text h1,
+.section-title,
+.services-title,
+.service-card h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;  /* bold for headings */
+  letter-spacing: 1px; /* slight spacing for elongated look */
+}
+
+body, 
+.hero p, 
+.service-card p,
+footer p,
+.footer-column p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400; /* slim, readable */
+  letter-spacing: 0.2px;
+}
+
+.hero h1, 
+.section-title {
+  font-stretch: 110%; /* slightly elongates letters */
 }
 
 body{
 background:#000;
 color:#fff;
 }
+/* Enable vertical snap scrolling */
+html, body {
+  scroll-behavior: smooth;       /* Smooth scroll */
+  height: 100%;
+  overflow-y: scroll;
+}
 
-/* =========================
-   NAVBAR
-========================= */
-/* ================= HEADER ================= */
-/* HEADER */
+body {
+  scroll-snap-type: y mandatory; /* Vertical snap */
+}
+
+section {
+  scroll-snap-align: start;      /* Each section snaps to top */
+  min-height: 100vh;             /* Full viewport height */
+}
+
+header{
+backdrop-filter: blur(12px);
+background: rgba(0,0,0,0.45);
+border-bottom: 1px solid rgba(255,255,255,0.05);
+}
 header {
   position: fixed;
   top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
-  background: transparent;
-  backdrop-filter: none;
-  box-shadow: none;
+  max-width: 1200px;
+  padding: 8px 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 40px;  /* reduced from 60px to 40px */
-  z-index: 1000;
-  transition: transform 0.4s ease;
+  background: rgba(0,0,0,0);
+  z-index: 999;
 }
+
+
 
 /* Navbar Menu */
-.nav-menu {
-  display: flex;
-  gap: 30px; /* reduced slightly from 40px */
-  list-style: none;
-  align-items: center;
+.nav-menu a{
+  text-decoration:none;
+  color:#000000; /* change to white */
+  font-weight:600;
+  padding:10px 5px;
+  transition:0.3s;
+  font-size:15px;
 }
 
+.nav-menu a{
+  color: #fff; /* white text */
+}
+
+.nav-menu a:hover{
+  color: var(--accent); /* red on hover */
+}
 /* Responsive Adjustments */
 @media(max-width: 1024px){
   .nav-menu { gap: 25px; }
@@ -109,12 +168,7 @@ header {
 .logo:hover .logo-full{opacity:1;}
 
 /* Navbar Menu */
-.nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-}
+
 .nav-menu{
   display:flex;
   gap:40px;
@@ -184,11 +238,14 @@ header {
   font-size: 16px;
   border-radius: 50px;
   text-decoration: none;
-  background: linear-gradient(135deg, #C1141C, #224989); /* logo gradient */
-  color: #fff;
+  background: linear-gradient(135deg, #C1141C, #224989); /* fixed red → blue gradient */
+  color: #fff; /* text color white */
   border: 2px solid transparent;
   box-shadow: 0 0 10px #C1141C, 0 0 20px #C1141C, 0 0 40px #224989, 0 0 60px #224989;
   transition: 0.3s ease-in-out;
+  display: inline-block;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* Hover Glow */
@@ -215,10 +272,10 @@ header {
 }
 
 @media(max-width:768px){
-  header{
-    padding:10px 20px;
-    flex-wrap:wrap;
-  }
+ header {
+  position: fixed;
+  top: 0;
+}
   .nav-menu{
     gap:15px;
     flex-wrap:wrap;
@@ -229,13 +286,22 @@ header {
     text-align:center;
   }
 }
+/* Navbar top-level links white */
+.nav-menu > li > a {
+  color: #fff !important; /* Force white */
+  transition: 0.3s;
+}
+
+.nav-menu > li > a:hover {
+  color: var(--accent); /* Keep red on hover */
+}
 
 /* DROPDOWN */
 .dropdown-menu{
 position:absolute;
 top:35px;
 left:0;
-background:#fff;
+background:#000000;
 min-width:180px;
 padding:15px 0;
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
@@ -253,7 +319,7 @@ padding:8px 20px;
 .dropdown-menu li a{
 font-size:14px;
 font-weight:500;
-color:#333;
+color:#fdfdfd;
 }
 
 .dropdown:hover .dropdown-menu{
@@ -262,25 +328,7 @@ visibility:visible;
 transform:translateY(0);
 }
 
-/* CTA BUTTON */
-.nav-btn{
-margin-left:20px;
-}
 
-.cta-btn{
-background:var(--accent);
-color:#fff;
-padding:10px 22px;
-border-radius:30px;
-text-decoration:none;
-font-weight:600;
-font-size:14px;
-transition:0.3s;
-}
-
-.cta-btn:hover{
-background:var(--primary);
-}
 /* MENU */
 .menu{
 display:flex;
@@ -360,18 +408,7 @@ padding-left:5px;
 /* =========================
    HERO (VIDEO)
 ========================= */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding-top: 0;
 
-  background:
-    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-    url("assets/images/Bg.png") no-repeat center center/cover;
-}
 
 
 .hero-overlay{
@@ -384,19 +421,51 @@ background:rgba(0,0,0,0.65);
 z-index:-1;
 }
 
-.hero-content{
-max-width:800px;
-}
 
-/* Hero heading gradient in light mode */
 .hero h1 {
   font-size: 52px;
   font-weight: 800;
   margin-bottom: 25px;
-  color: transparent; /* Needed for gradient text */
-  background: linear-gradient(90deg, #C1141C, #224989); /* Red to Blue */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #fff; /* plain white */
+  background: none; /* remove gradient */
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+
+  background:
+    linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+    url("assets/images/Bg.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
+
+#globe-container {
+  position: absolute;    /* inside hero section */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;            /* above bg, below content */
+  pointer-events: none;  /* allow clicks through */
+  overflow: visible;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
 }
 
 /* Dark mode heading */
@@ -407,6 +476,41 @@ font-size:18px;
 margin-bottom:30px;
 }
 
+.hero-split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 0 80px;
+  gap: 50px;
+  background: #000; /* Black background */
+  color: #fff;
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 600px;
+  text-align: left;
+}
+
+.hero-text h1 {
+  font-size: 50px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.hero-text p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.hero-3d {
+  flex: 1;
+  max-width: 600px;
+  height: 500px; /* adjust for desktop */
+}
 /* ---------------- HERO BUTTONS ---------------- */
 /* Explore Services Button - light mode (transparent border & text) */
 .hero button {
@@ -443,123 +547,248 @@ body.dark-mode .hero button:hover {
   text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
 }
 /* ---------------- DARK MODE NEON ---------------- */
-/* Light Mode Gradient Button */
-.nav-btn .cta-btn {
-  padding: 10px 25px;
-  background: linear-gradient(45deg, var(--accent), var(--primary)); /* logo gradient */
-  color: #fff;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 14px;
-  transition: 0.3s;
-  white-space: nowrap;
-  text-transform: uppercase;
-}
+
 
 .nav-btn .cta-btn:hover {
   filter: brightness(1.1);
 }
 
 /* Dark Mode - neon gradient */
-body.dark-mode .nav-btn .cta-btn {
-  background: linear-gradient(90deg, var(--accent), var(--primary));
+/* NAVBAR CTA BUTTON */
+.nav-btn .cta-btn {
+  padding: 6px 18px;               /* compact size */
+  font-size: 12px;                 /* smaller text */
+  border-radius: 25px;             /* rounded corners */
+  background: linear-gradient(45deg, var(--accent), var(--primary));
   color: #fff;
-  text-shadow: 0 0 10px var(--accent), 0 0 20px var(--primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
   border: none;
+  
+  /* Fix gradient edges */
+  background-clip: border-box;
+  -webkit-background-clip: padding-box;
+  -webkit-text-fill-color: white; /* ensures text color stays white */
+  
+  transition: 0.3s;
+  display: inline-block;
 }
 
-body.dark-mode .nav-btn .cta-btn:hover {
-  filter: brightness(1.2);
+.nav-btn .cta-btn:hover {
+  filter: brightness(1.1);
 }
+
+
+
+
 /* =========================
    SECTION
 ========================= */
-section{
-padding:110px 80px;
+section {
+  scroll-snap-align: start;
+  min-height: calc(100vh - 80px); /* subtract navbar height */
+  padding-top: 80px; /* push content below navbar */
 }
 
 .section-title{
 text-align:center;
+margin-top:0;
 margin-bottom:70px;
 font-size:40px;
 font-weight:800;
 color:var(--primary);
 }
-/* ================= FULL PAGE SCROLL SECTION FIX ================= */
-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  min-height: 100vh; /* Keep full height for other sections */
-  width: 100%;
-}
 
-/* Footer override: allow content height only */
-.business-footer{
-background:transparent;   /* Transparent */
-color:#fff;
-padding:70px 80px;
-}
-/* Navbar Hide Animation */
-header{
-  transition: transform 0.4s ease;
-}
-
-header.hide-navbar{
-  transform: translateY(-100%);
-}
 /* =========================
-   SERVICES
+   SERVICES SCROLLABLE CAROUSEL
 ========================= */
-.services-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:35px;
+/* =========================
+   SERVICES SCROLLABLE CAROUSEL
+/* =========================
+   SERVICES SCROLLABLE CAROUSEL (VERTICAL CARDS)
+========================= */
+
+/* Section */
+#services {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 60px 5%;
+  position: relative;
+
+  /* NEW: same background as hero */
+  background:
+    linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+    url("assets/images/service.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.service-card{
-position:relative;
-display:block;
-border-radius:18px;
-overflow:hidden;
-transition:0.4s ease;
-box-shadow:0 10px 30px rgba(255, 254, 254, 0);
+/* Title */
+.section-title{
+  position:relative;
+  z-index:2;
+  font-size:50px;
+  font-weight:800;
+  text-align:center;
+  margin-top:60px;   /* pushes title down */
+  margin-bottom:70px;
+  color:white;
+  letter-spacing:2px;
 }
 
-.service-card img{
-width:100%;
-height:320px;
-object-fit:cover;
-transition:0.5s ease;
+/* Scroll wrapper */
+/* SERVICES HEADING */
+/* ===============================
+   SERVICES TITLE
+================================ */
+#services {
+  padding-top: 140px; /* space from navbar */
+}
+.services-title {
+  text-align: center;
+  font-size: 60px;
+  font-weight: 400;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  margin-top: 200px;   /* pushes heading down from navbar */
+  margin-bottom: 1;
+  letter-spacing: 2px;
 }
 
-.service-card .overlay{
-position:absolute;
-bottom:0;
-left:0;
-width:100%;
-height:100%;
-background:linear-gradient(to top,rgba(0,0,0,0.8),rgba(0,0,0,0.5),transparent);
-display:flex;
-align-items:flex-end;
-justify-content:center;
-padding:30px;
+/* ===============================
+   SCROLL CONTAINER
+================================ */
+.services-scroll {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  scroll-behavior: smooth;
+  padding: 40px 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
 }
 
-.service-card h3{
-color:#fff;
-font-size:22px;
-font-weight:700;
+/* Hide scrollbar */
+.services-scroll::-webkit-scrollbar {
+  display: none;
 }
 
-.service-card:hover{
-transform:translateY(-8px);
-box-shadow:0 18px 40px rgba(0,0,0,0.15);
+.services-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.service-card:hover img{
-transform:scale(1.1);
+
+/* ===============================
+   SERVICE CARD
+================================ */
+.service-card {
+  flex: 0 0 300px;   /* 25% smaller width */
+  height: 225px;     /* 25% smaller height */
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  background: #111;
+  scroll-snap-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
+/* ===============================
+   CARD IMAGE
+================================ */
+
+
+
+/* ===============================
+   CARD OVERLAY
+================================ */
+.service-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  color: white;
+  opacity: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 35px;
+
+  transition: opacity 0.4s ease;
+}
+
+
+/* ===============================
+   CARD HEADING
+================================ */
+.service-card h3 {
+  font-family: "Madrhino", sans-serif;
+  font-size: 28px;
+  color: white;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+
+/* ===============================
+   CARD TEXT
+================================ */
+.service-card p {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  color: #d1d1d1;
+  line-height: 1.4;
+  text-align: left;
+}
+
+
+/* ===============================
+   HOVER EFFECT
+================================ */
+/* ===============================
+   CARD IMAGE - slightly blurred by default
+================================ */
+/* ===============================
+   CARD IMAGE - normal by default
+================================ */
+.service-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+  filter: brightness(100%) blur(0px); /* normal */
+}
+
+/* ===============================
+   HOVER EFFECT - slightly dull + blur + zoom
+================================ */
+.service-card:hover img {
+  filter: brightness(60%) grayscale(20%) blur(2px); /* dull & blurred */
+  transform: scale(1.05); /* slight zoom */
+}
+
+.service-card:hover .overlay {
+  opacity: 1;
+}
+/* ===============================
+   CENTER CARD SCALE
+================================ */
+.service-card.center {
+  transform: scale(1.1);
+  z-index: 10;
+}
 /* =========================
    STATS
 ========================= */
@@ -582,6 +811,11 @@ color:var(--accent);
 margin-bottom:4px;
 }
 
+.section-title,
+.typing-title{
+  opacity: 1;
+  transform: none;
+}
 /* =========================
    FOOTER
 ========================= */
@@ -613,6 +847,16 @@ box-shadow:0 15px 30px rgba(0,0,0,0.05);
 display:flex;
 }
 
+.scroll-bar{
+position:fixed;
+top:0;
+left:0;
+height:3px;
+background:linear-gradient(90deg,#C1141C,#224989);
+width:0%;
+z-index:2000;
+}
+
 .mega-menu{
 position:static;
 width:100%;
@@ -626,10 +870,6 @@ display:none;
 flex-direction:column;
 }
 
-.dropdown.active .mega-menu{
-display:flex;
-}
-
 .stats{
 flex-direction:column;
 gap:30px;
@@ -639,101 +879,295 @@ gap:30px;
 
 
 
-
-
-
-/* ================= SERVICES TOGGLE ================= */
-
-.service-card.hidden-card{
-display:none;
-}
-
-.services-toggle{
-text-align:center;
-margin-top:40px;
-}
-
-.services-toggle button{
-background:transparent;
-border:2px solid var(--accent);
-color:var(--accent);
-padding:12px 30px;
-font-weight:600;
-cursor:pointer;
-transition:0.3s;
-}
-
-.services-toggle button:hover{
-background:var(--accent);
-color:#fff;
-}
 /* ================= BUSINESS FOOTER ================= */
-
-.business-footer{
-background:var(--primary);
-color:#fff;
-padding:70px 80px;
-}
-
-.footer-container{
-display:grid;
-grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
-gap:50px;
-}
-
-.footer-column h3{
-font-size:22px;
-margin-bottom:20px;
-color:#fff;
-}
-
-.footer-column h4{
-font-size:18px;
-margin-bottom:15px;
-color:var(--accent);
-}
-
-.footer-column p{
-font-size:14px;
-line-height:1.8;
-margin-bottom:8px;
-}
-
-
-
-/* ================= STEP SCROLL EFFECT ================= */
-
-/* ================= FULL PAGE SNAP SCROLL ================= */
-
-html, body {
-  height: 100%;
-  margin: 0;
-  overflow-y: scroll;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
-}
-
-body > section {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  min-height: 100vh;
-  width: 100%;
-}
-
-/* 🚀 Remove full height from footer section */
+/* ================= BUSINESS FOOTER ================= */
 .business-footer {
-  min-height: auto !important;
-  height: auto !important;
-  padding: 60px 80px 40px 80px; /* reduced bottom padding */
+  background: #000;      /* Black background */
+  color: #fff;           /* White text */
+  padding: 80px 40px;    /* Space inside the footer */
+  margin-top: 100px;     /* Push footer away from previous section */
 }
 
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto;       /* Center the content */
+}
+
+.footer-column h3,
+.footer-column h4 {
+  color: #fff;           /* White headers */
+}
+
+.footer-column h4 {
+  color: var(--accent);  /* Optional: keep red accent for subheadings */
+}
+
+.footer-column p {
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 8px;
+  color: #fff;           /* White paragraph text */
+}
+/* ================= 3D GLOBE BACKGROUND ================= */
+#globe-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.35; /* subtle */
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.35), #000 70%);
+}
+
+.fade-section {
+  opacity: 0;
+  transform: translateY(50px); /* slight slide up */
+  transition: opacity 3s ease, transform 1s ease;
+}
+
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero, #services {
+  position: relative;
+  z-index: 0;
+}
+
+.fade-section.visible {
+  z-index: 1;
+}
+
+.hero {
+  position: relative;
+  z-index: 0;
+  /* keep background fixed so fade looks smooth */
+  background-attachment: fixed;
+}
+
+
+#text-section {
+  background: url('assets/images/Bg.png') no-repeat center center / cover;
+  position: relative;
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  flex-direction: column;
+  min-height: 100vh; /* full viewport height */
+  padding: 80px 20px; /* space inside */
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  overflow: hidden;
+}
+#text-section .section-title{
+  margin-bottom: 40px;
+  margin-top: 0;
+  text-align:center;
+  color:white;
+}
+/* Optional: overlay to darken background */
+#text-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5); /* subtle dark overlay */
+  z-index: 1;
+}
+
+.text-container {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 40px;
+}
+.text-block {
+  background-color: rgb(0, 0, 0);
+  border-radius: 20px;
+  flex: 1 1 250px;
+  min-width: 250px;
+  max-width: 300px;
+  height: 350px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.text-block:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 15px 30px rgb(0, 0, 0);
+}
+
+.text-block h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #ce1922, #442c6b, #5208a7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.text-block:hover h2 {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 15px rgba(255,255,255,0.5));
+}
+
+.text-block p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+  transition: transform 0.3s ease;
+}
+
+.text-block:hover p {
+  transform: translateY(-3px);
+}
+
+
+/* =========================
+   SLICK LOOP TITLE ANIMATION
+========================= */
+
+.section-title,
+.hero h1{
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+/* Gradient moving text */
+.hero h1,
+.section-title{
+  background: linear-gradient(
+    90deg,
+    #C1141C,
+    #C1141C,
+    #224989,
+    #C1141C
+  );
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: gradientFlow 6s linear infinite;
+}
+.hero h1::before{
+content:"";
+position:absolute;
+inset:-30px;
+background:radial-gradient(circle, rgba(0, 0, 0, 0.25), transparent 70%);
+z-index:-1;
+}
+
+#text-section{
+  padding-top:140px;
+}
+
+#text-section .section-title{
+  margin-top:60px;
+  margin-bottom:40px;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size:60px 60px;
+  z-index:-3;
+}
+
+.hero h1{
+  animation:
+    gradientFlow 6s linear infinite,
+    titleFloat 4s ease-in-out infinite;
+}
+
+@keyframes titleFloat{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+  100%{transform:translateY(0)}
+}
+
+/* Smooth gradient animation */
+@keyframes gradientFlow{
+  0%{background-position:0%}
+  100%{background-position:300%}
+}
+
+/* Animated underline sweep */
+.section-title::after,
+.hero h1::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-8px;
+  width:100%;
+  height:3px;
+  background:linear-gradient(90deg,#C1141C,#224989);
+  transform:translateX(-100%);
+  animation:underlineSlide 4s ease-in-out infinite;
+}
+
+@keyframes underlineSlide{
+  0%{transform:translateX(-100%)}
+  50%{transform:translateX(0%)}
+  100%{transform:translateX(100%)}
+}
+
+/* Blinking cursor */
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #fff; }
+}
+
+/* Blinking caret */
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #fff; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .text-block {
+    max-width: 45%;
+    height: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .text-block {
+    max-width: 100%;
+  }
+}
 </style>
 </head>
 
 <body>
+  <canvas id="globe-bg"></canvas>
 
 <header>
   <div class="logo">
@@ -793,71 +1227,96 @@ body > section {
     <a href="#contact" class="cta-btn">Let's Talk Business</a>
   </div>
 
- 
-
-
 </header>
-<!-- HERO -->
-<div class="hero">
-<div class="hero-overlay"></div>
-<div class="hero-content">
-<h1>Building Scalable Digital Solutions</h1>
-<p>Enterprise-grade software engineering for modern businesses.</p>
-<button>Explore Services</button>
-</div>
-</div>
+<section class="hero fade-section">
+  <div class="hero-overlay"></div>
+  <div id="globe-container"></div>
+  <div class="hero-content">
+    <h1>LOOPM TECHNOLOGIES</h1>
+    <p>Enterprise-grade software engineering for modern businesses.</p>
+    <button>Explore Services</button>
+  </div>
+</section>
 
 <!-- SERVICES -->
-<section id="services">
-<h2 class="section-title">Our Services</h2>
+<section id="services" class="fade-section">
+  <h2 class="section-title">Our Services</h2>
+  <div class="services-scroll">
 
-<div class="services-grid">
+    <a href="#" class="service-card">
+      <img src="assets/images/web.png" alt="Web Development">
+      <div class="overlay">
+        <h3>Web Development</h3>
+        <p>Modern scalable web applications built for performance.</p>
+      </div>
+    </a>
 
-<a href="#" class="service-card">
-<img src="https://img.freepik.com/premium-vector/erp-enterprise-resource-planning-illustration-concept-productivity-company-enhancement-illustration_108061-564.jpg">
-<div class="overlay"><h3>Oracle Apex</h3></div>
-</a>
+    <a href="#" class="service-card">
+      <img src="assets/images/and.png" alt="Mobile Apps">
+      <div class="overlay">
+        <h3>Mobile Apps</h3>
+        <p>High performance Android & iOS applications.</p>
+      </div>
+    </a>
 
-<a href="#" class="service-card">
-<img src="https://img.freepik.com/premium-vector/business-process-automation-abstract-concept-vector-illustration-artificial-intelligence-business-workflow-organization-big-data-industry-it-technology-machine-learning-abstract-metaphor_107173-45905.jpg">
-<div class="overlay"><h3>Business Automation</h3></div>
-</a>
+    <a href="#" class="service-card">
+      <img src="assets/images/ai.png" alt="AI Services">
+      <div class="overlay">
+        <h3>AI Services</h3>
+        <p>Intelligent automation & AI-powered business solutions.</p>
+      </div>
+    </a>
 
-<a href="#" class="service-card">
-<img src="https://img.freepik.com/premium-vector/website-maintenance-abstract-concept-vector-illustration_107173-29901.jpg">
-<div class="overlay"><h3>Support & Maintainance</h3></div>
-</a>
+    <a href="#" class="service-card">
+      <img src="assets/images/cl.png" alt="Cloud Solutions">
+      <div class="overlay">
+        <h3>Cloud Solutions</h3>
+        <p>Secure & scalable cloud architecture.</p>
+      </div>
+    </a>
 
-<a href="#" class="service-card">
-<img src="https://img.freepik.com/premium-vector/native-mobile-app-abstract-concept-vector-illustration_107173-24939.jpg">
-<div class="overlay"><h3>Mobile Apps</h3></div>
-</a>
+    <a href="#" class="service-card">
+      <img src="assets/images/uiux.png" alt="UI/UX Design">
+      <div class="overlay">
+        <h3>UI / UX Design</h3>
+        <p>Beautiful user experiences & intuitive interfaces.</p>
+      </div>
+    </a>
 
-<a href="#" class="service-card">
-<img src="https://thumbs.dreamstime.com/b/devops-cloud-engineer-isolated-cartoon-vector-illustrations-specialist-develops-network-technology-datacenter-worker-edge-266154283.jpg">
-<div class="overlay"><h3>Cloud Solutions</h3></div>
-</a>
+  </div>
+</section>
 
-<a href="#" class="service-card">
-<img src="https://thumbs.dreamstime.com/b/ai-engineer-abstract-concept-vector-illustration-professional-creating-robotic-models-using-machine-learning-algorithms-295098748.jpg">
-<div class="overlay"><h3>AI Services</h3></div>
-</a>
+<section id="text-section" class="fade-section">
 
-<a href="#" class="service-card">
-<img src="https://c8.alamy.com/comp/2CG0A9M/ui-and-ux-design-abstract-concept-vector-illustration-2CG0A9M.jpg">
-<div class="overlay"><h3>Graphic Design</h3></div>
-</a>
+<h1 class="section-title">What We Provide</h1>
 
-<a href="#" class="service-card">
-<img src="https://img.freepik.com/premium-vector/mobile-ui-ux-concept-illustration_114360-14906.jpg">
-<div class="overlay"><h3>UI / UX Design</h3></div>
-</a>
+<div class="text-container">
 
-</div>
-<div class="services-toggle">
-  <button id="servicesToggle">Show More ↓</button>
+  <div class="text-block">
+    <h2>Innovation</h2>
+    <p>We harness cutting-edge technologies to build scalable, future-ready solutions that drive efficiency, growth, and digital transformation for modern businesses.</p>
+  </div>
+
+  <div class="text-block">
+    <h2>Design</h2>
+    <p>Our design philosophy combines aesthetics with usability, crafting interfaces and experiences that captivate users while maintaining seamless functionality.</p>
+  </div>
+
+  <div class="text-block">
+    <h2>Performance</h2>
+    <p>Optimized for speed and reliability, our solutions ensure smooth operations, low latency, and robust performance across all platforms and devices.</p>
+  </div>
+
+  <div class="text-block">
+    <h2>Security</h2>
+    <p>We prioritize data integrity and security, implementing best-in-class measures to protect your assets and maintain trust with your customers.</p>
+  </div>
+
 </div>
 </section>
+
+
+
 
 <section class="business-footer">
   <div class="footer-container">
@@ -889,134 +1348,208 @@ body > section {
     </div>
 
   </div>
+  <div class="scroll-bar"></div>
 </section>
 
 <footer>
 <p>© 2026 LoopM Technologies. All rights reserved.</p>
 </footer>
 
+
+
 <script>
-document.querySelectorAll(".dropdown > a").forEach(item=>{
-item.addEventListener("click",function(e){
-if(window.innerWidth<992){
-e.preventDefault();
-this.parentElement.classList.toggle("active");
-}
-});
-});
-
-/* Load Saved Theme */
-if(localStorage.getItem("theme")==="dark"){
-document.body.classList.add("dark-mode");
-toggleBtn.checked = true;
-}
-
-/* SERVICES SHOW MORE */
-
-const serviceCards = document.querySelectorAll(".services-grid .service-card");
-const servicesToggle = document.getElementById("servicesToggle");
-
-/* Hide cards after first 3 */
-serviceCards.forEach((card, index) => {
-if(index >= 3){
-card.classList.add("hidden-card");
-}
-});
-
-servicesToggle.addEventListener("click", () => {
-
-const hiddenCards = document.querySelectorAll(".hidden-card");
-
-if(hiddenCards.length > 0){
-hiddenCards.forEach(card => card.classList.remove("hidden-card"));
-servicesToggle.textContent = "Show Less ↑";
-}else{
-serviceCards.forEach((card, index) => {
-if(index >= 3){
-card.classList.add("hidden-card");
-}
-});
-servicesToggle.textContent = "Show More ↓";
-}
-
-});
-
-
-
-</script>
-<script>
-/* ================= FULL PAGE STEP SCROLL ================= */
-const sections = document.querySelectorAll("section");
-let currentSection = 0;
-let isScrolling = false;
-
-function scrollToSection(index) {
-  if (index < 0 || index >= sections.length) return;
-  isScrolling = true;
-
-  const headerOffset = document.querySelector("header").offsetHeight;
-  const sectionTop = sections[index].offsetTop - headerOffset;
-
-  window.scrollTo({
-    top: sectionTop,
-    behavior: "smooth"
-  });
-
-  setTimeout(() => { isScrolling = false; }, 800); // lock scroll
-}
-
-// Mouse wheel
-window.addEventListener("wheel", (e) => {
-  if (isScrolling) return;
-  if (e.deltaY > 0) currentSection++;
-  else currentSection--;
-  currentSection = Math.max(0, Math.min(currentSection, sections.length - 1));
-  scrollToSection(currentSection);
-});
-
-// Keyboard
-window.addEventListener("keydown", (e) => {
-  if (isScrolling) return;
-  if (e.key === "ArrowDown") currentSection++;
-  else if (e.key === "ArrowUp") currentSection--;
-  currentSection = Math.max(0, Math.min(currentSection, sections.length - 1));
-  scrollToSection(currentSection);
-});
-
-// Touch swipe
-let touchStartY = 0;
-window.addEventListener("touchstart", e => touchStartY = e.changedTouches[0].screenY);
-window.addEventListener("touchend", e => {
-  if (isScrolling) return;
-  let touchEndY = e.changedTouches[0].screenY;
-  if (touchStartY - touchEndY > 50) currentSection++;
-  else if (touchEndY - touchStartY > 50) currentSection--;
-  currentSection = Math.max(0, Math.min(currentSection, sections.length - 1));
-  scrollToSection(currentSection);
-});
-
-// Reset currentSection if user resizes
-window.addEventListener("resize", () => {
-  sections[currentSection].scrollIntoView();
-});
-
-/* ================= NAVBAR SHOW/HIDE ON FIRST SCROLL ================= */
-
-const header = document.querySelector("header");
-
-window.addEventListener("scroll", () => {
-
-  const scrollPosition = window.scrollY;
-  const heroHeight = document.querySelector(".hero").offsetHeight;
-
-  if (scrollPosition > heroHeight - 100) {
-    header.classList.add("hide-navbar");   // Hide after hero
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('header');
+  if(window.scrollY > 50){
+    header.style.background = 'rgba(0,0,0,0.5)';
+    header.style.padding = '6px 20px';
   } else {
-    header.classList.remove("hide-navbar"); // Show at top
+    header.style.background = 'rgba(0,0,0,0.2)';
+    header.style.padding = '8px 20px';
   }
+});
 
+
+</script>
+<script>
+// Scene setup
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+camera.position.z = 10; // moved back for bigger globe
+
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.getElementById("globe-container").appendChild(renderer.domElement);
+
+// ---------------- BEADS GLOBE ---------------- //
+const radius = 10.0;      // 2x bigger globe
+const segments = 80;
+const positions = [];
+const sizes = [];
+const opacities = [];
+
+for (let i = 0; i <= segments; i++) {
+  const theta = i * Math.PI / segments;
+  for (let j = 0; j <= segments; j++) {
+    const phi = j * 2 * Math.PI / segments;
+
+    const x = radius * Math.sin(theta) * Math.cos(phi);
+    const y = radius * Math.cos(theta);
+    const z = radius * Math.sin(theta) * Math.sin(phi);
+
+    positions.push(x, y, z);
+
+    // Bead size: smaller on outer edges, bigger near equator
+    const distFromCenter = Math.abs(y) / radius; // 0 at equator, 1 at poles
+    sizes.push(0.02 + 0.06 * (1 - distFromCenter)); // slightly larger for bigger globe
+
+    // Opacity: subtle
+    opacities.push(0.15 + 0.3 * (1 - distFromCenter)); 
+  }
+}
+
+const geometry = new THREE.BufferGeometry();
+geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+geometry.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1));
+geometry.setAttribute('opacity', new THREE.Float32BufferAttribute(opacities, 1));
+
+// Shader material
+const material = new THREE.ShaderMaterial({
+  transparent: true,
+  vertexShader: `
+    attribute float size;
+    attribute float opacity;
+    varying float vOpacity;
+    void main() {
+      vOpacity = opacity;
+      vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+      gl_PointSize = size * (300.0 / -mvPosition.z);
+      gl_Position = projectionMatrix * mvPosition;
+    }
+  `,
+  fragmentShader: `
+    varying float vOpacity;
+    void main() {
+      float dist = distance(gl_PointCoord, vec2(0.5));
+      if(dist > 0.5) discard;
+      gl_FragColor = vec4(1.0, 1.0, 1.0, vOpacity);
+    }
+  `
+});
+
+const points = new THREE.Points(geometry, material);
+points.position.x = -1; // left shift
+scene.add(points);
+
+// ---------------- MOUSE INTERACTION ---------------- //
+let mouse = { x: 0, y: 0 };
+window.addEventListener("mousemove", (event) => {
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+});
+
+// ---------------- ANIMATION ---------------- //
+function animate() {
+  requestAnimationFrame(animate);
+
+  points.rotation.y += 0.002;
+  points.rotation.x += (mouse.y * 0.05 - points.rotation.x) * 0.05;
+  points.rotation.y += (mouse.x * 0.05 - points.rotation.y) * 0.05;
+
+  renderer.render(scene, camera);
+}
+animate();
+
+// ---------------- RESIZE ---------------- //
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
 });
 </script>
+<script>
+  const scrollContainer = document.querySelector(".services-scroll");
+const cards = document.querySelectorAll(".service-card");
+
+function updateCenterCard() {
+  const containerCenter = scrollContainer.scrollLeft + scrollContainer.offsetWidth / 2;
+
+  cards.forEach(card => {
+    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+    if(Math.abs(containerCenter - cardCenter) < card.offsetWidth / 2) {
+      card.classList.add("center");
+    } else {
+      card.classList.remove("center");
+    }
+  });
+}
+
+// Initial update
+updateCenterCard();
+
+// Update on scroll
+scrollContainer.addEventListener("scroll", updateCenterCard);
+
+// Smooth drag scrolling
+let isDown = false;
+let startX, scrollLeft;
+
+scrollContainer.addEventListener('mousedown', (e) => {
+  isDown = true;
+  startX = e.pageX - scrollContainer.offsetLeft;
+  scrollLeft = scrollContainer.scrollLeft;
+});
+scrollContainer.addEventListener('mouseleave', () => isDown = false);
+scrollContainer.addEventListener('mouseup', () => isDown = false);
+scrollContainer.addEventListener('mousemove', (e) => {
+  if(!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - scrollContainer.offsetLeft;
+  const walk = (startX - x);
+  scrollContainer.scrollLeft = scrollLeft + walk;
+});
+</script>
+<script>
+const fadeSections = document.querySelectorAll('.fade-section');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    } else {
+      entry.target.classList.remove('visible');
+    }
+  });
+}, { threshold: 0.2 }); // trigger when 20% of section is visible
+
+fadeSections.forEach(section => observer.observe(section));
+</script>
+<script>
+  const hero = document.querySelector('.hero');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const heroHeight = hero.offsetHeight;
+
+  hero.style.opacity = Math.max(1 - scrollY / (heroHeight / 1.5), 0);
+});
+</script>
+
+<script>
+  window.addEventListener("scroll",()=>{
+const scrollTop = document.documentElement.scrollTop;
+const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+const progress = (scrollTop / height) * 100;
+document.querySelector(".scroll-bar").style.width = progress + "%";
+});
+</script>
+
+
 
 
 </body>
