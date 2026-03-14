@@ -60,6 +60,146 @@ footer p,
   font-weight: 400; /* slim, readable */
   letter-spacing: 0.2px;
 }
+/* HERO BASE */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* ensures full-screen on all devices */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+.hero h1 {
+  font-size: clamp(2rem, 6vw, 6rem); /* min 2rem, max 6rem */
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: clamp(1rem, 2.5vw, 2rem);
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+.hero .cta-btn {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  padding: 12px 30px;
+  border-radius: 10px;
+}
+
+
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4); /* optional overlay */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+}
+
+/* HERO TEXT */
+.hero h1 {
+  font-size: 6vw; /* scales with viewport width */
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.5vw; /* scales with viewport */
+  max-width: 600px;
+  margin: 0 auto 30px;
+}
+
+/* HERO BUTTON */
+.hero .cta-btn {
+  padding: 15px 35px;
+  font-size: 1.2vw;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  background-color: #ff6b6b;
+  color: #fff;
+  transition: transform 0.3s;
+}
+
+.hero .cta-btn:hover {
+  transform: scale(1.05);
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+
+/* Large tablets / small desktops */
+@media (max-width: 1200px) {
+  .hero h1 {
+    font-size: 7vw;
+  }
+  .hero p {
+    font-size: 2vw;
+  }
+  .hero .cta-btn {
+    font-size: 2vw;
+    padding: 12px 30px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+  .hero {
+    padding: 0 30px;
+  }
+  .hero h1 {
+    font-size: 8vw;
+  }
+  .hero p {
+    font-size: 2.5vw;
+  }
+  .hero .cta-btn {
+    font-size: 2.5vw;
+    padding: 10px 25px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero {
+    padding: 0 20px;
+    height: auto;
+    min-height: 80vh;
+  }
+  .hero h1 {
+    font-size: 9vw;
+  }
+  .hero p {
+    font-size: 3.5vw;
+  }
+  .hero .cta-btn {
+    width: 100%;
+    font-size: 4vw;
+    padding: 12px 0;
+  }
+}
+
+/* Extra small mobile */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 10vw;
+  }
+  .hero p {
+    font-size: 4vw;
+  }
+  .hero .cta-btn {
+    font-size: 4.5vw;
+  }
+}
 
 .hero h1, 
 .section-title {
@@ -1161,6 +1301,62 @@ body::before{
     max-width: 100%;
   }
 }
+/* Hamburger Icon */
+.hamburger {
+  display: none;              /* hidden on desktop */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #fff;     /* white lines */
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Toggle menu animation */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    top: 70px;              /* below header */
+    right: -100%;            /* hide offscreen initially */
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: rgba(0,0,0,0.95);
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    transition: right 0.3s ease;
+  }
+
+  .nav-menu.active {
+    right: 0;               /* slide in */
+  }
+
+  /* Show hamburger on mobile */
+  .hamburger {
+    display: flex;
+  }
+}
+
 
 
 </style>
@@ -1176,6 +1372,13 @@ body::before{
       <img src="assets/images/logo.png" class="logo-full" alt="Full Logo">
     </a>
   </div>
+  <!-- Hamburger button -->
+<div class="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
 
   <nav>
     <ul class="nav-menu">
@@ -1549,6 +1752,31 @@ document.querySelector(".scroll-bar").style.width = progress + "%";
 });
 </script>
 
+<script>const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active'); // animate hamburger
+  navMenu.classList.toggle('active');   // show/hide menu
+});
+
+// Optional: close menu when clicking a link
+document.querySelectorAll('.nav-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    if(navMenu.classList.contains('active')){
+      navMenu.classList.remove('active');
+      hamburger.classList.remove('active');
+    }
+  });
+});
+</script>
+<script>// Make globe responsive
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
 
 
 
