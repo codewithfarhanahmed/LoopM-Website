@@ -86,26 +86,24 @@ section {
   min-height: 100vh;             /* Full viewport height */
 }
 
+
 header{
-backdrop-filter: blur(12px);
-background: rgba(0,0,0,0.45);
-border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-header {
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   width: 100%;
-  max-width: 1200px;
-  padding: 8px 10px;
+  padding: 8px 40px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(0,0,0,0);
+
+  backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.45);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+
   z-index: 999;
 }
-
 
 
 /* Navbar Menu */
@@ -156,7 +154,6 @@ header {
 .logo-icon{
   height:42px;
   opacity:1;
-  animation:wiggle 5s infinite;
 }
 
 .logo-full{
@@ -438,7 +435,7 @@ z-index:-1;
 
   background:
     linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-    url("assets/images/Bg.png");
+    url("assets/images/nbg.png");
 
   background-size: cover;
   background-position: center;
@@ -622,7 +619,7 @@ color:var(--primary);
   /* NEW: same background as hero */
   background:
     linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-    url("assets/images/service.png");
+    url("assets/images/nbg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -735,10 +732,11 @@ color:var(--primary);
 .service-card h3 {
   font-family: "Madrhino", sans-serif;
   font-size: 28px;
-  color: white;
+  color: #ffffff !important;
   margin-bottom: 10px;
   text-align: left;
 }
+
 
 
 /* ===============================
@@ -957,7 +955,7 @@ body::after {
 
 
 #text-section {
-  background: url('assets/images/Bg.png') no-repeat center center / cover;
+  background: url('assets/images/nbg.png') no-repeat center center / cover;
   position: relative;
    display: flex;
   justify-content: center;
@@ -999,7 +997,7 @@ body::after {
   margin-top: 40px;
 }
 .text-block {
-  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.315);
   border-radius: 20px;
   flex: 1 1 250px;
   min-width: 250px;
@@ -1022,7 +1020,7 @@ body::after {
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 20px;
-  background: linear-gradient(90deg, #ce1922, #442c6b, #5208a7);
+  background: linear-gradient(90deg, #ffffff, #ffffff, #5208a7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: transform 0.3s ease, filter 0.3s ease;
@@ -1061,10 +1059,10 @@ body::after {
 .section-title{
   background: linear-gradient(
     90deg,
-    #C1141C,
-    #C1141C,
-    #224989,
-    #C1141C
+    #cccccc,
+    #ffffff,
+    #ffffff,
+    #cccccc
   );
   background-size: 300%;
   -webkit-background-clip: text;
@@ -1163,6 +1161,8 @@ body::before{
     max-width: 100%;
   }
 }
+
+
 </style>
 </head>
 
@@ -1236,14 +1236,12 @@ body::before{
     <p>Enterprise-grade software engineering for modern businesses.</p>
     <button>Explore Services</button>
   </div>
-</section>
-
 <!-- SERVICES -->
 <section id="services" class="fade-section">
   <h2 class="section-title">Our Services</h2>
   <div class="services-scroll">
 
-    <a href="#" class="service-card">
+    <a href="web.html" class="service-card">
       <img src="assets/images/web.png" alt="Web Development">
       <div class="overlay">
         <h3>Web Development</h3>
@@ -1251,7 +1249,7 @@ body::before{
       </div>
     </a>
 
-    <a href="#" class="service-card">
+    <a href="mobile.html" class="service-card">
       <img src="assets/images/and.png" alt="Mobile Apps">
       <div class="overlay">
         <h3>Mobile Apps</h3>
@@ -1259,7 +1257,7 @@ body::before{
       </div>
     </a>
 
-    <a href="#" class="service-card">
+    <a href="ai.html" class="service-card">
       <img src="assets/images/ai.png" alt="AI Services">
       <div class="overlay">
         <h3>AI Services</h3>
@@ -1267,7 +1265,7 @@ body::before{
       </div>
     </a>
 
-    <a href="#" class="service-card">
+    <a href="cloud.html" class="service-card">
       <img src="assets/images/cl.png" alt="Cloud Solutions">
       <div class="overlay">
         <h3>Cloud Solutions</h3>
@@ -1275,7 +1273,7 @@ body::before{
       </div>
     </a>
 
-    <a href="#" class="service-card">
+    <a href="uiux.html" class="service-card">
       <img src="assets/images/uiux.png" alt="UI/UX Design">
       <div class="overlay">
         <h3>UI / UX Design</h3>
@@ -1285,6 +1283,7 @@ body::before{
 
   </div>
 </section>
+
 
 <section id="text-section" class="fade-section">
 

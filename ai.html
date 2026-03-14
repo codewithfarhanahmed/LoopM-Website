@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Services | LoopM Technologies</title>
+
+<link rel="icon" type="image/png" href="assets/images/fevicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ========== Reset & Fonts ========== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans', sans-serif;}
+body{background:#000;color:#fff;scroll-behavior:smooth;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+
+/* ========== Header / Navbar ========== */
+header{
+  position:fixed;top:0;left:0;width:100%;padding:10px 40px;display:flex;align-items:center;justify-content:space-between;
+  backdrop-filter:blur(12px);background:rgba(0,0,0,0.45);z-index:999;
+}
+.logo img{height:50px;transition:0.3s;}
+
+/* Dropdown Navbar */
+nav{display:flex;align-items:center;gap:30px;}
+.nav-menu{
+  display:flex;
+  list-style:none;
+  gap:20px;
+  align-items:center;
+}
+.nav-menu li{position:relative;}
+.nav-menu li a{color:#fff;font-weight:600;padding:8px 12px;display:block;transition:0.3s;}
+.nav-menu li a:hover{color:#C1141C;}
+.dropdown-menu{
+  position:absolute;
+  top:100%;
+  left:0;
+  background:rgba(0,0,0,0.95);
+  list-style:none;
+  padding:10px 0;
+  display:none;
+  min-width:180px;
+  border-radius:8px;
+  z-index:998;
+}
+.dropdown-menu li a{padding:8px 15px;}
+.dropdown:hover .dropdown-menu{display:block;}
+
+/* CTA Button */
+.nav-btn .cta-btn{
+  padding:8px 20px;background:linear-gradient(45deg,#C1141C,#224989);color:#fff;border-radius:25px;font-weight:600;transition:0.3s;
+}
+.nav-btn .cta-btn:hover{filter:brightness(1.1);}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 18px;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ========== Hero Section ========== */
+.hero{
+  position:relative;height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("assets/images/ai-bg.jpg") center/cover no-repeat;
+  text-align:center;overflow:hidden;
+}
+.hero h1{font-size:48px;font-weight:800;margin-bottom:20px;color:#fff;}
+.hero p{font-size:20px;color:#ddd;margin-bottom:30px;}
+.hero button{padding:12px 28px;border:2px solid #C1141C;color:#C1141C;background:transparent;font-weight:600;cursor:pointer;}
+.hero button:hover{background:#C1141C;color:#fff;}
+
+/* ========== Service Detail Section ========== */
+#service-detail{
+  padding:120px 40px 80px 40px;
+  max-width:1200px;margin:0 auto;
+}
+#service-detail h2{font-size:40px;font-weight:800;margin-bottom:30px;color:#C1141C;text-align:center;}
+#service-detail p{font-size:18px;line-height:1.6;margin-bottom:20px;color:#ddd;}
+.detail-image{width:100%;max-width:800px;margin:30px auto;display:block;border-radius:20px;}
+
+/* ========== Footer ========== */
+footer{
+  background:#111;color:#fff;padding:40px;text-align:center;
+}
+footer p{margin:0;font-size:14px;color:#ccc;}
+
+/* ========== Mobile Responsiveness ========== */
+@media (max-width: 768px) {
+  header{padding:10px 20px;flex-wrap:wrap;}
+  nav{width:100%;order:2;}
+  .nav-menu{
+    flex-direction: column;
+    gap:15px;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.3s ease;
+    width:100%;
+  }
+  .nav-menu.show{max-height:600px;}
+  .dropdown-menu{position:static;background:rgba(0,0,0,0.9);border-radius:0;display:none;}
+  .nav-menu li.active .dropdown-menu{display:block;}
+  .hamburger{display:flex;order:1;}
+  .nav-btn{width:100%;text-align:center;margin-top:10px;}
+  .nav-btn .cta-btn{display:inline-block;margin-bottom:10px;}
+  .hero h1{font-size:32px;}
+  .hero p{font-size:16px;}
+  #service-detail{padding:100px 20px 60px 20px;}
+  #service-detail h2{font-size:32px;}
+  #service-detail p{font-size:16px;}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="logo"><a href="index.html"><img src="assets/images/logo.png" alt="LoopM Logo"></a></div>
+
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav>
+    <ul class="nav-menu" id="nav-menu">
+      <li class="dropdown">
+        <a href="#">What We Do</a>
+        <ul class="dropdown-menu">
+          <li><a href="web.html">Web Development</a></li>
+          <li><a href="mobile.html">Mobile Apps</a></li>
+          <li><a href="ai.html">AI Services</a></li>
+          <li><a href="cloud.html">Cloud Solutions</a></li>
+          <li><a href="graphic.html">Graphic Design</a></li>
+          <li><a href="uiux.html">UI/UX Design</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a href="#">Who We Help</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Startups</a></li>
+          <li><a href="#">Enterprises</a></li>
+          <li><a href="#">Agencies</a></li>
+          <li><a href="#">NGOs</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a href="#">Who We Are</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">About Us</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="#">Culture</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a href="#">How We Deliver</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Process</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Testimonials</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#">Join LoopM</a></li>
+    </ul>
+  </nav>
+
+  <div class="nav-btn">
+    <a href="#contact" class="cta-btn">Let's Talk Business</a>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>AI Services</h1>
+  <p>Cutting-edge artificial intelligence solutions to transform your business.</p>
+  <button>Explore More</button>
+</section>
+
+<section id="service-detail">
+  <h2>About Our AI Services</h2>
+  <p>We develop AI solutions that drive automation, insights, and innovation for your business. From predictive analytics to intelligent chatbots, our AI models are tailored to your industry needs.</p>
+
+  <p>Our technologies include machine learning, natural language processing, computer vision, and deep learning frameworks to deliver efficient and scalable solutions.</p>
+
+  <p>We help businesses improve decision-making, optimize operations, and enhance user experiences with smart, AI-driven applications.</p>
+
+  <img src="assets/images/ai.png" alt="AI Services" class="detail-image">
+</section>
+
+<footer>
+  <p>© 2026 LoopM Technologies. All rights reserved.</p>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+const dropdowns = document.querySelectorAll('.nav-menu .dropdown');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('show');
+  hamburger.classList.toggle('active');
+});
+
+// Mobile dropdown toggle
+dropdowns.forEach(drop => {
+  drop.addEventListener('click', () => {
+    if(window.innerWidth <= 768){
+      drop.classList.toggle('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
