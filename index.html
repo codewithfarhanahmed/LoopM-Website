@@ -13,9 +13,6 @@
 /* =========================
    GOOGLE FONT
 ========================= */
-/* =========================
-   GOOGLE FONT
-========================= */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 @font-face {
@@ -30,8 +27,8 @@
 --primary:#224989;
 --accent:#C1141C;
 --dark:#0f1f3d;
---light:#000000;
---white:#000000;
+--light:#ffffff;
+--white:#ffffff;
 }
 
 /* RESET */
@@ -41,238 +38,577 @@
   box-sizing:border-box;
   font-family: 'Plus Jakarta Sans', sans-serif; /* new modern font */
 }
-.hero h1,
-.hero-text h1,
-.section-title,
-.services-title,
-.service-card h3 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 700;  /* bold for headings */
-  letter-spacing: 1px; /* slight spacing for elongated look */
-}
+/* =========================
+   HERO SECTION - COMPLETELY OPTIMIZED
+========================= */
 
-body, 
-.hero p, 
-.service-card p,
-footer p,
-.footer-column p {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 400; /* slim, readable */
-  letter-spacing: 0.2px;
-}
-/* HERO BASE */
+/* HERO BASE - Clean & Responsive */
 .hero {
   position: relative;
   width: 100%;
-  min-height: 100vh; /* ensures full-screen on all devices */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 0 20px;
+  padding: 140px 24px 80px; /* Fixed padding with header space */
   box-sizing: border-box;
-}
-.hero h1 {
-  font-size: clamp(2rem, 6vw, 6rem); /* min 2rem, max 6rem */
-  line-height: 1.2;
-  margin-bottom: 20px;
+  overflow: hidden;
 }
 
-.hero p {
-  font-size: clamp(1rem, 2.5vw, 2rem);
-  max-width: 600px;
-  margin-bottom: 30px;
-}
-
-.hero .cta-btn {
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  padding: 12px 30px;
-  border-radius: 10px;
-}
-
-
-.hero-overlay {
+.hero::before {
+  content: '';
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.4); /* optional overlay */
-  z-index: 1;
+  inset: 0;
+
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+    url("assets/images/nbg.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* ❌ REMOVE THIS LINE */
+  /* background-attachment: fixed; */
+
+  z-index: -1;
 }
 
+
+/* Hero Content Container */
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 1200px;
+  max-width: 1100px;
+  width: 100%;
+  padding: 0 20px;
 }
 
-/* HERO TEXT */
+/* HERO HEADLINE - Perfect Responsive Scaling */
+/* =========================
+   HERO TITLE - BULLETPROOF RESPONSIVE
+========================= */
+
+/* BASE H1 STYLES */
 .hero h1 {
-  font-size: 6vw; /* scales with viewport width */
-  line-height: 1.2;
-  margin-bottom: 20px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-stretch: 105%;
+  letter-spacing: -0.02em; /* Modern tight spacing */
+  
+  /* ULTRA-PRECISE RESPONSIVE SCALING */
+  font-size: clamp(2.25rem, 6.5vw, 5rem);
+  line-height: 1.12;
+  margin-bottom: 1.8rem;
+  
+  /* Animated gradient */
+  background: linear-gradient(
+    85deg,
+    #ffffff 0%,
+    #f8f8f8 30%,
+    #ffffff 60%,
+    #e8e8e8 100%
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  
+  /* Smooth animations */
+  animation: 
+    gradientFlow 7s ease-in-out infinite,
+    titleFloat 5s ease-in-out infinite;
+  
+  /* Text overflow protection */
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
-.hero p {
-  font-size: 1.5vw; /* scales with viewport */
-  max-width: 600px;
-  margin: 0 auto 30px;
-}
+/* =========================
+   BREAKPOINT PERFECTION
+========================= */
 
-/* HERO BUTTON */
-.hero .cta-btn {
-  padding: 15px 35px;
-  font-size: 1.2vw;
-  cursor: pointer;
-  border: none;
-  border-radius: 10px;
-  background-color: #ff6b6b;
-  color: #fff;
-  transition: transform 0.3s;
-}
-
-.hero .cta-btn:hover {
-  transform: scale(1.05);
-}
-
-/* RESPONSIVE ADJUSTMENTS */
-
-/* Large tablets / small desktops */
-@media (max-width: 1200px) {
+/* 4K & Large Desktop */
+@media (min-width: 1920px) {
   .hero h1 {
-    font-size: 7vw;
-  }
-  .hero p {
-    font-size: 2vw;
-  }
-  .hero .cta-btn {
-    font-size: 2vw;
-    padding: 12px 30px;
+    font-size: 5.5rem;
   }
 }
 
-/* Tablets */
-@media (max-width: 992px) {
-  .hero {
-    padding: 0 30px;
-  }
+/* Desktop */
+@media (max-width: 1440px) {
   .hero h1 {
-    font-size: 8vw;
-  }
-  .hero p {
-    font-size: 2.5vw;
-  }
-  .hero .cta-btn {
-    font-size: 2.5vw;
-    padding: 10px 25px;
+    font-size: clamp(3rem, 6vw, 4.5rem);
   }
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .hero {
-    padding: 0 20px;
-    height: auto;
-    min-height: 80vh;
-  }
+/* Large Tablet */
+@media (max-width: 1024px) {
   .hero h1 {
-    font-size: 9vw;
-  }
-  .hero p {
-    font-size: 3.5vw;
-  }
-  .hero .cta-btn {
-    width: 100%;
-    font-size: 4vw;
-    padding: 12px 0;
+    font-size: clamp(2.75rem, 7.5vw, 4rem);
+    margin-bottom: 1.5rem;
   }
 }
 
-/* Extra small mobile */
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto; /* pushes to right */
+}
+
+
+.nav-btn {
+  order: 1;
+}
+
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Mobile Large */
 @media (max-width: 480px) {
   .hero h1 {
-    font-size: 10vw;
+    font-size: clamp(2.25rem, 10.5vw, 3rem);
+    line-height: 1.05;
+    margin-bottom: 1.2rem;
   }
-  .hero p {
-    font-size: 4vw;
+}
+
+/* Mobile Small */
+@media (max-width: 375px) {
+  .hero h1 {
+    font-size: clamp(2rem, 12vw, 2.75rem);
   }
-  .hero .cta-btn {
+}
+
+/* Extra Small */
+@media (max-width: 320px) {
+  .hero h1 {
+    font-size: clamp(1.875rem, 13vw, 2.5rem);
+  }
+}
+
+/* =========================
+   MOBILE TEXT WRAPPING FIX
+========================= */
+@media (max-width: 768px) {
+  .hero h1 {
+    /* Force proper line breaking */
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    hyphens: manual;
+    
+    /* Reduce letter-spacing on small screens */
+    letter-spacing: -0.015em;
+  }
+}
+
+/* =========================
+   ANIMATIONS (Optimized)
+========================= */
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 200% 50%; }
+  75% { background-position: 100% 50%; }
+}
+
+@keyframes titleFloat {
+  0%, 100% { 
+    transform: translateY(0) scale(1);
+  }
+  50% { 
+    transform: translateY(-4px) scale(1.015);
+  }
+}
+
+/* =========================
+   VIEWPORT UNIT FALLBACKS
+========================= */
+/* Legacy browser support */
+@supports not (font-size: clamp(1rem, 1vw, 2rem)) {
+  .hero h1 {
     font-size: 4.5vw;
   }
+  
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 8.5vw;
+    }
+  }
+}
+/* HERO SUBTEXT */
+.hero p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  
+  /* Perfect responsive scaling */
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  max-width: 620px;
+  margin: 0 auto 36px;
+  opacity: 0.95;
+  line-height: 1.6;
 }
 
-.hero h1, 
-.section-title {
-  font-stretch: 110%; /* slightly elongates letters */
+/* HERO BUTTON - Modern Design */
+.hero button {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  
+  /* Responsive sizing */
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  padding: 18px 42px;
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  cursor: pointer;
+  border-radius: 2px; /* Sharp modern corners */
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  max-width: 300px;
+  width: 100%;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
 }
 
-body{
-background:#000;
-color:#fff;
-}
-/* Enable vertical snap scrolling */
-html, body {
-  scroll-behavior: smooth;       /* Smooth scroll */
+/* Button shine effect */
+.hero button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
   height: 100%;
-  overflow-y: scroll;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.3),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.hero button:hover::before {
+  left: 100%;
+}
+
+.hero button:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-4px);
+  box-shadow: 
+    0 12px 32px rgba(193, 20, 28, 0.4),
+    0 0 0 1px rgba(255,255,255,0.2);
+}
+
+/* =========================
+   RESPONSIVE BREAKPOINTS
+========================= */
+
+/* Large Desktop */
+@media (min-width: 1400px) {
+  .hero h1 {
+    font-size: 5.5rem;
+  }
+  .hero p {
+    font-size: 1.4rem;
+  }
+}
+
+/* Desktop */
+@media (max-width: 1200px) {
+  .hero {
+    padding: 130px 32px 80px;
+  }
+  .hero-content {
+    padding: 0 24px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .hero {
+    padding: 120px 28px 70px;
+    min-height: 90vh;
+  }
+  
+  .hero h1 {
+    margin-bottom: 24px;
+    font-size: clamp(2.5rem, 8vw, 4.2rem);
+  }
+  
+  .hero p {
+    font-size: clamp(1rem, 3.5vw, 1.3rem);
+    margin-bottom: 32px;
+  }
+  
+  .hero button {
+    padding: 16px 36px;
+    max-width: 280px;
+  }
+}
+
+/* Mobile Large */
+@media (max-width: 768px) {
+  .hero {
+    padding: 110px 20px 60px;
+    min-height: 85vh;
+    justify-content: center;
+  }
+  
+  .hero h1 {
+    font-size: clamp(2.2rem, 9vw, 3.8rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+    margin-bottom: 28px;
+    padding: 0 8px;
+  }
+  
+  .hero button {
+    padding: 16px 32px;
+    font-size: clamp(1rem, 4vw, 1.15rem);
+    max-width: 100%;
+  }
+  
+  .hero-content {
+    padding: 0 16px;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  .hero {
+    padding: 100px 16px 50px;
+    min-height: 80vh;
+  }
+  
+  .hero h1 {
+    font-size: clamp(2rem, 10vw, 3.2rem);
+    margin-bottom: 18px;
+  }
+  
+  .hero p {
+    font-size: clamp(0.95rem, 5vw, 1.15rem);
+    margin-bottom: 24px;
+  }
+  
+  .hero button {
+    padding: 15px 28px;
+    font-size: clamp(0.95rem, 4.5vw, 1.1rem);
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+  .hero {
+    padding: 90px 12px 40px;
+  }
+  
+  .hero-content {
+    padding: 0 12px;
+  }
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+/* =========================
+   GLOBE CONTAINER INTEGRATION
+========================= */
+#globe-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* =========================
+   PERFORMANCE OPTIMIZATIONS
+========================= */
+.hero {
+  will-change: transform;
+  contain: layout style paint;
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero::before {
+    background-attachment: scroll; /* Better performance */
+  }
 }
 
 body {
-  scroll-snap-type: y mandatory; /* Vertical snap */
+  background: #000;
+  color: #fff;
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+  position: relative;
+  min-height: 100vh;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+}
+
+body::before {
+  background: radial-gradient(circle at center, rgba(0,0,0,0.35), #000 70%);
+}
+
+body::after {
+  background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.95));
+}
+
+/* Enable vertical snap scrolling */
+html, body {
+  scroll-behavior: smooth;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-padding-top: 80px; /* keep fixed header from covering snap targets */
 }
 
 section {
   scroll-snap-align: start;      /* Each section snaps to top */
-  min-height: 100vh;             /* Full viewport height */
+  min-height: calc(100vh - 80px); /* Avoid overlap behind fixed header */
 }
 
-
-header{
+header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 8px 40px;
-
+  padding: 16px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  backdrop-filter: blur(12px);
-  background: rgba(0,0,0,0.45);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-
-  z-index: 999;
+  backdrop-filter: blur(20px);
+  background: rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 
-/* Navbar Menu */
-.nav-menu a{
-  text-decoration:none;
-  color:#000000; /* change to white */
-  font-weight:600;
-  padding:10px 5px;
-  transition:0.3s;
-  font-size:15px;
+header.scrolled {
+  padding: 12px 24px;
+  background: rgba(0,0,0,0.95);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
 }
 
-.nav-menu a{
-  color: #fff; /* white text */
+/* Logo */
+.logo {
+  height: 50px;
+  flex-shrink: 0;
 }
 
-.nav-menu a:hover{
-  color: var(--accent); /* red on hover */
-}
-/* Responsive Adjustments */
-@media(max-width: 1024px){
-  .nav-menu { gap: 25px; }
+.logo img {
+  height: 42px;
+  transition: all 0.3s ease;
 }
 
-@media(max-width: 768px){
-  header { padding: 10px 20px; }
-  .nav-menu { gap: 15px; flex-wrap: wrap; }
+
+/* Desktop Navigation */
+.nav-desktop {
+  display: flex;
 }
 
+.nav-menu {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+  margin: 0;
+}
+
+
+/* Mobile Fullscreen Menu */
+@media (max-width: 1024px) {
+  body.menu-open {
+    overflow: hidden;
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.98);
+    backdrop-filter: blur(30px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* push menu items toward left */
+    gap: 40px;
+    padding: 60px 30px 60px 24px; /* more left breathing room */
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 999;
+  }
+  
+  body.menu-open .nav-menu {
+    transform: translateX(0);
+  }
+  
+  .nav-menu li {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: slideInMenu 0.4s ease forwards;
+  }
+  
+  @keyframes slideInMenu {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+/* =========================
+   RESPONSIVE BREAKPOINTS
+========================= */
+
+
+
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .header-right {
+    gap: 8px;
+  }
+  
+  .cta-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+    border-radius: 20px;
+  }
+}
 /* Logo Area */
 .logo{
   position:relative;
@@ -304,93 +640,6 @@ header{
 .logo:hover .logo-icon{opacity:0;}
 .logo:hover .logo-full{opacity:1;}
 
-/* Navbar Menu */
-
-.nav-menu{
-  display:flex;
-  gap:40px;
-  list-style:none;
-  align-items:center;
-}
-
-.nav-menu li{
-  position:relative;
-}
-
-.nav-menu a{
-  text-decoration:none;
-  color:var(--primary);
-  font-weight:600;
-  padding:10px 5px;
-  transition:0.3s;
-  font-size:15px;
-}
-
-.nav-menu a:hover{
-  color:var(--accent);
-}
-
-/* Dropdown Menu */
-.dropdown-menu{
-  position:absolute;
-  top:100%;
-  left:0;
-  background:#000000;
-  box-shadow:0 6px 20px rgba(0,0,0,0.08);
-  border-radius:8px;
-  padding:10px 0;
-  display:none;
-  min-width:200px;
-  z-index:500;
-}
-
-.dropdown-menu li{
-  width:100%;
-}
-
-.dropdown-menu a{
-  display:block;
-  padding:10px 20px;
-  color:#224989;
-  font-weight:500;
-  transition:0.3s;
-}
-
-.dropdown-menu a:hover{
-  background:var(--light);
-  color:var(--accent);
-  border-radius:6px;
-}
-
-/* Show dropdown on hover */
-.dropdown:hover .dropdown-menu{
-  display:block;
-}
-
-/* CTA Button */
-/* Neon Gradient Button */
-.cta-btn {
-  padding: 12px 28px;
-  font-weight: 700;
-  font-size: 16px;
-  border-radius: 50px;
-  text-decoration: none;
-  background: linear-gradient(135deg, #C1141C, #224989); /* fixed red → blue gradient */
-  color: #fff; /* text color white */
-  border: 2px solid transparent;
-  box-shadow: 0 0 10px #C1141C, 0 0 20px #C1141C, 0 0 40px #224989, 0 0 60px #224989;
-  transition: 0.3s ease-in-out;
-  display: inline-block;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-/* Hover Glow */
-.cta-btn:hover {
-  box-shadow: 0 0 20px #C1141C, 0 0 40px #C1141C, 0 0 80px #224989, 0 0 100px #224989;
-  transform: translateY(-2px);
-}
-
 /* ================= WIGGLE ANIMATION ================= */
 @keyframes wiggle{
   0% {transform:translate(-50%,-50%) rotate(0deg);}
@@ -408,30 +657,38 @@ header{
   .nav-menu{gap:25px;}
 }
 
-@media(max-width:768px){
- header {
-  position: fixed;
-  top: 0;
-}
-  .nav-menu{
-    gap:15px;
-    flex-wrap:wrap;
+@media (max-width: 768px) {
+  header {
+    position: fixed;
+    top: 0;
   }
-  .nav-btn{
-    margin-top:10px;
-    width:100%;
-    text-align:center;
+  
+  .nav-btn {
+    order: 1;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
   }
-}
-/* Navbar top-level links white */
-.nav-menu > li > a {
-  color: #fff !important; /* Force white */
-  transition: 0.3s;
+
+  .nav-btn .cta-btn {
+    padding: 8px 14px !important;
+    font-size: 13px !important;
+  }
+  
+  .header-right {
+    flex-direction: row;
+    gap: 8px;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .hamburger {
+    order: 2;
+    flex-shrink: 0;
+  }
 }
 
-.nav-menu > li > a:hover {
-  color: var(--accent); /* Keep red on hover */
-}
 
 /* DROPDOWN */
 .dropdown-menu{
@@ -466,81 +723,7 @@ transform:translateY(0);
 }
 
 
-/* MENU */
-.menu{
-display:flex;
-gap:35px;
-list-style:none;
-}
 
-.menu > li{
-position:relative;
-}
-
-.menu > li > a{
-text-decoration:none;
-color:var(--primary);
-font-weight:600;
-font-size:15px;
-padding:10px 0;
-display:block;
-transition:0.3s;
-}
-
-.menu > li > a:hover{
-color:var(--accent);
-}
-
-/* MEGA MENU */
-.mega-menu{
-position:absolute;
-top:100%;
-left:0;
-width:650px;
-background:#fff;
-display:flex;
-gap:60px;
-padding:30px 40px;
-border-radius:12px;
-box-shadow:0 20px 50px rgba(0,0,0,0.08);
-opacity:0;
-visibility:hidden;
-transform:translateY(15px);
-transition:all 0.3s ease;
-z-index:999;
-}
-
-.dropdown:hover .mega-menu{
-opacity:1;
-visibility:visible;
-transform:translateY(0);
-}
-
-.mega-column{
-display:flex;
-flex-direction:column;
-min-width:200px;
-}
-
-.mega-column h4{
-font-size:16px;
-margin-bottom:15px;
-color:var(--primary);
-font-weight:700;
-}
-
-.mega-column a{
-text-decoration:none;
-color:#555;
-font-size:14px;
-margin-bottom:10px;
-transition:0.3s;
-}
-
-.mega-column a:hover{
-color:var(--accent);
-padding-left:5px;
-}
 
 /* =========================
    HERO (VIDEO)
@@ -557,36 +740,8 @@ height:100%;
 background:rgba(0,0,0,0.65);
 z-index:-1;
 }
-
-
-.hero h1 {
-  font-size: 52px;
-  font-weight: 800;
-  margin-bottom: 25px;
-  color: #fff; /* plain white */
-  background: none; /* remove gradient */
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: unset;
-}
-
-.hero {
-  position: relative;
-  height: 100vh;
-
-  background:
-    linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-    url("assets/images/nbg.png");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
+  
+  
 
 
 #globe-container {
@@ -738,13 +893,180 @@ color:var(--primary);
 }
 
 /* =========================
-   SERVICES SCROLLABLE CAROUSEL
+   COMPLETE MENU FIX - ADD THIS
 ========================= */
-/* =========================
-   SERVICES SCROLLABLE CAROUSEL
-/* =========================
-   SERVICES SCROLLABLE CAROUSEL (VERTICAL CARDS)
-========================= */
+
+/* 1. Fix Desktop Nav Visibility */
+.nav-desktop {
+  display: flex !important;
+}
+
+/* 2. Fix Nav Menu Links Color */
+.nav-menu > li > a {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-menu > li > a:hover {
+  color: var(--accent) !important;
+}
+
+/* 3. Fix Dropdowns */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(0,0,0,0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 16px 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+.dropdown-menu a {
+  color: #fff !important;
+  padding: 12px 24px;
+  font-weight: 500;
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* 4. PERFECT MOBILE MENU */
+@media (max-width: 1024px) {
+  /* Show hamburger on mobile */
+  .hamburger {
+    display: flex !important;
+  }
+
+  /* Keep nav container present for mobile collapsing menu */
+  .nav-desktop {
+    display: block !important;
+    width: 100%;
+  }
+
+  /* Keep header items on one line */
+  header {
+    flex-wrap: nowrap;
+  }
+
+  /* Place the mobile nav overlay below the header */
+  nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+  }
+  
+  /* Mobile collapsible menu (like the mobile.html behavior) */
+  body.menu-open {
+    overflow: hidden;
+  }
+  
+  .nav-menu {
+    position: relative;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 1.5rem;
+    background: rgba(0,0,0,0.95);
+    transition: max-height 0.3s ease;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  /* open */
+  .nav-menu.show {
+    max-height: 600px;
+  }
+
+  /* Prevent submenu links from sliding behind the container */
+  .nav-menu li {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  /* Mobile dropdown behavior */
+  .dropdown-menu {
+    position: static;
+    background: rgba(0,0,0,0.9);
+    border-radius: 0;
+    display: none;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .nav-menu li.active .dropdown-menu {
+    display: block;
+  }
+}
+
+/* 5. Fix CTA Button */
+.nav-btn {
+  display: flex;
+  align-items: center;
+}
+
+.cta-btn {
+  padding: 12px 28px !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  border-radius: 50px !important;
+  background: linear-gradient(135deg, var(--accent), var(--primary)) !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  text-transform: uppercase !important;
+  transition: all 0.3s ease !important;
+  white-space: nowrap !important;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(193,20,28,0.4) !important;
+}
+
+/* 6. Header Right Container */
+.header-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+}
+
+/* 7. Logo Fix */
+.logo {
+  height: 50px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.logo img {
+  height: 42px !important;
+  max-width: 140px !important;
+}
 
 /* Section */
 #services {
@@ -757,9 +1079,7 @@ color:var(--primary);
   position: relative;
 
   /* NEW: same background as hero */
-  background:
-    linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-    url("assets/images/nbg.png");
+ 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1049,14 +1369,7 @@ gap:30px;
   margin-bottom: 8px;
   color: #fff;           /* White paragraph text */
 }
-/* ================= 3D GLOBE BACKGROUND ================= */
-#globe-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-  opacity: 0.35; /* subtle */
-}
+
 
 body::after {
   content: "";
@@ -1068,22 +1381,22 @@ body::after {
 
 .fade-section {
   opacity: 0;
-  transform: translateY(50px); /* slight slide up */
-  transition: opacity 3s ease, transform 1s ease;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
 }
 
 .fade-section.visible {
   opacity: 1;
   transform: translateY(0);
 }
-
+section {
+  position: relative;
+  z-index: 2;
+}
 .hero, #services {
   position: relative;
   z-index: 0;
-}
-
-.fade-section.visible {
-  z-index: 1;
 }
 
 .hero {
@@ -1250,12 +1563,6 @@ body::before{
   100%{transform:translateY(0)}
 }
 
-/* Smooth gradient animation */
-@keyframes gradientFlow{
-  0%{background-position:0%}
-  100%{background-position:300%}
-}
-
 /* Animated underline sweep */
 .section-title::after,
 .hero h1::after{
@@ -1282,12 +1589,6 @@ body::before{
   50% { border-color: #fff; }
 }
 
-/* Blinking caret */
-@keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: #fff; }
-}
-
 /* Responsive adjustments */
 @media (max-width: 900px) {
   .text-block {
@@ -1301,27 +1602,76 @@ body::before{
     max-width: 100%;
   }
 }
-/* Hamburger Icon */
-.hamburger {
-  display: none;              /* hidden on desktop */
-  flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 22px;
-  cursor: pointer;
-  z-index: 1000;
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    top: 70px;              /* below header */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: rgba(0,0,0,0.95);
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-menu.active {
+    transform: translateX(0);
+  }
+
+  
 }
 
+
+
+.hero h1 {
+  font-size: clamp(20px, 8vw, 42px);
+  max-width: 100%;
+  word-break: keep-all;
+}
+
+
+
+
+
+.header {
+  position: relative;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 18px;
+  cursor: pointer;
+}
 .hamburger span {
   display: block;
   height: 3px;
   width: 100%;
-  background-color: #fff;     /* white lines */
+  background: #fff;
   border-radius: 2px;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
-
-/* Toggle menu animation */
 .hamburger.active span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -1332,38 +1682,11 @@ body::before{
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .nav-menu {
-    position: fixed;
-    top: 70px;              /* below header */
-    right: -100%;            /* hide offscreen initially */
-    width: 100%;
-    height: calc(100vh - 70px);
-    background: rgba(0,0,0,0.95);
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    transition: right 0.3s ease;
-  }
-
-  .nav-menu.active {
-    right: 0;               /* slide in */
-  }
-
-  /* Show hamburger on mobile */
-  .hamburger {
-    display: flex;
-  }
-}
-
-
 
 </style>
 </head>
 
 <body>
-  <canvas id="globe-bg"></canvas>
 
 <header>
   <div class="logo">
@@ -1372,16 +1695,10 @@ body::before{
       <img src="assets/images/logo.png" class="logo-full" alt="Full Logo">
     </a>
   </div>
-  <!-- Hamburger button -->
-<div class="hamburger">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
 
-
-  <nav>
-    <ul class="nav-menu">
+  <!-- Navigation (Desktop Only) -->
+  <nav class="nav-desktop">
+    <ul class="nav-menu" id="nav-menu">
       <li class="dropdown">
         <a href="#">What We Do</a>
         <ul class="dropdown-menu">
@@ -1393,7 +1710,6 @@ body::before{
           <li><a href="uiux.html">UI/UX Design</a></li>
         </ul>
       </li>
-
       <li class="dropdown">
         <a href="#">Who We Help</a>
         <ul class="dropdown-menu">
@@ -1403,7 +1719,6 @@ body::before{
           <li><a href="#">NGOs</a></li>
         </ul>
       </li>
-
       <li class="dropdown">
         <a href="#">Who We Are</a>
         <ul class="dropdown-menu">
@@ -1412,7 +1727,6 @@ body::before{
           <li><a href="#">Culture</a></li>
         </ul>
       </li>
-
       <li class="dropdown">
         <a href="#">How We Deliver</a>
         <ul class="dropdown-menu">
@@ -1421,16 +1735,26 @@ body::before{
           <li><a href="#">Testimonials</a></li>
         </ul>
       </li>
-
       <li><a href="#">Join LoopM</a></li>
     </ul>
   </nav>
 
-  <div class="nav-btn">
-    <a href="#contact" class="cta-btn">Let's Talk Business</a>
+  <!-- Right Side Container: CTA + Hamburger -->
+  <div class="header-right">
+    <!-- CTA Button (Desktop) -->
+    <div class="nav-btn">
+      <a href="#contact" class="cta-btn">Let's Talk Business</a>
+    </div>
+    
+    <!-- Hamburger (Mobile Only) -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
-
 </header>
+
 <section class="hero fade-section">
   <div class="hero-overlay"></div>
   <div id="globe-container"></div>
@@ -1722,10 +2046,10 @@ const fadeSections = document.querySelectorAll('.fade-section');
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if(entry.isIntersecting){
+    if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-    } else {
-      entry.target.classList.remove('visible');
+      // Stop observing once visible to prevent flicker when scrolling back.
+      observer.unobserve(entry.target);
     }
   });
 }, { threshold: 0.2 }); // trigger when 20% of section is visible
@@ -1733,48 +2057,62 @@ const observer = new IntersectionObserver((entries) => {
 fadeSections.forEach(section => observer.observe(section));
 </script>
 <script>
-  const hero = document.querySelector('.hero');
+  // PERFECT HAMBURGER MENU - Replace existing script
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+  const body = document.body;
+  const dropdowns = document.querySelectorAll('.nav-menu .dropdown');
 
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  const heroHeight = hero.offsetHeight;
+  // Toggle menu
+  hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('show');
+    hamburger.classList.toggle('active');
+    body.classList.toggle('menu-open');
+  });
 
-  hero.style.opacity = Math.max(1 - scrollY / (heroHeight / 1.5), 0);
-});
-</script>
-
-<script>
-  window.addEventListener("scroll",()=>{
-const scrollTop = document.documentElement.scrollTop;
-const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-const progress = (scrollTop / height) * 100;
-document.querySelector(".scroll-bar").style.width = progress + "%";
-});
-</script>
-
-<script>const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active'); // animate hamburger
-  navMenu.classList.toggle('active');   // show/hide menu
-});
-
-// Optional: close menu when clicking a link
-document.querySelectorAll('.nav-menu a').forEach(link => {
-  link.addEventListener('click', () => {
-    if(navMenu.classList.contains('active')){
-      navMenu.classList.remove('active');
+  // Close on outside click (not inside menu or hamburger)
+  document.addEventListener('click', (e) => {
+    if (
+      hamburger.classList.contains('active') &&
+      !e.target.closest('.nav-menu') &&
+      !e.target.closest('#hamburger')
+    ) {
+      navMenu.classList.remove('show');
       hamburger.classList.remove('active');
+      body.classList.remove('menu-open');
     }
   });
-});
-</script>
-<script>// Make globe responsive
-window.addEventListener("resize", () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  // Close on link click
+  document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('show');
+      hamburger.classList.remove('active');
+      body.classList.remove('menu-open');
+    });
+  });
+
+  // Mobile dropdown toggle
+  dropdowns.forEach(drop => {
+    drop.addEventListener('click', () => {
+      // match mobile menu breakpoint (same as CSS)
+      if(window.innerWidth <= 1024){
+        drop.classList.toggle('active');
+      }
+    });
+  });
+
+  // Header scroll effect
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
 });
 </script>
 
@@ -1782,3 +2120,4 @@ window.addEventListener("resize", () => {
 
 </body>
 </html>
+
