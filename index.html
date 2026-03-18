@@ -548,7 +548,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 16px 40px;
+  padding: 16px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1157,7 +1157,19 @@ section {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+.nav-menu li a {
+  text-decoration: none;
+  border: none;
+  outline: none;
+}
 
+.dropdown-menu {
+  border: none;
+}
+
+.dropdown-menu li a {
+  border: none;
+}
 
 /* ===============================
    SERVICE CARD
@@ -1184,6 +1196,68 @@ section {
 /* ===============================
    CARD IMAGE
 ================================ */
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:16px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  backdrop-filter:blur(12px);
+  background:rgba(0,0,0,0.85);
+  z-index:999;
+}
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:30px;
+}
+
+.nav-menu{
+  display:flex;
+  list-style:none;
+  gap:20px;
+  align-items:center;
+}
+
+.nav-menu li{position:relative;}
+
+.nav-menu li a{
+  color:#fff;
+  font-weight:600;
+  padding:8px 12px;
+  display:block;
+  text-decoration:none; /* 🔥 FIX UNDERLINE */
+}
+
+.nav-menu li a:hover{
+  color:#C1141C;
+}
+
+.dropdown-menu{
+  position:absolute;
+  top:100%;
+  left:0;
+  background:rgba(0,0,0,0.95);
+  list-style:none;
+  padding:10px 0;
+  display:none;
+  min-width:180px;
+  border-radius:8px;
+}
+
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
 
 
 
@@ -1809,7 +1883,17 @@ body::before{
 .hamburger.active span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
+@media (max-width: 768px) {
 
+  header {
+    padding: 12px 12px; /* 🔻 reduce side spacing */
+  }
+
+  .nav-menu {
+    margin-left: -20px; /* 👈 shift menu slightly left */
+  }
+
+}
 
 </style>
 </head>
