@@ -46,16 +46,24 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100vh; /* full viewport so services title starts after hero */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 140px 24px 80px; /* Fixed padding with header space */
+  padding: 60px 24px 20px; /* tighten vertical spacing */
   box-sizing: border-box;
   overflow: hidden;
 }
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 70vh;
+    padding: 60px 18px 25px;
+  }
+}
+
 
 .hero::before {
   content: '';
@@ -84,7 +92,32 @@
   max-width: 1100px;
   width: 100%;
   padding: 0 20px;
+  transform: translateY(3%); /* shift slightly lower in the hero section */
 }
+
+@media (max-width: 768px) {
+  .hero-content {
+    transform: translateY(6%);
+  }
+}
+
+/* Scroll hint arrow below hero button */
+.scroll-hint {
+  margin: 28px auto 0;
+  width: 26px;
+  height: 26px;
+  border-left: 2px solid rgba(255,255,255,0.75);
+  border-bottom: 2px solid rgba(255,255,255,0.75);
+  transform: rotate(-45deg);
+  animation: scrollHint 1.5s infinite ease-in-out;
+}
+
+@keyframes scrollHint {
+  0% { transform: translateY(0) rotate(-45deg); opacity: 0.8; }
+  50% { transform: translateY(10px) rotate(-45deg); opacity: 0.4; }
+  100% { transform: translateY(0) rotate(-45deg); opacity: 0.8; }
+}
+
 
 /* HERO HEADLINE - Perfect Responsive Scaling */
 /* =========================
@@ -313,60 +346,6 @@ header {
     0 0 0 1px rgba(255,255,255,0.2);
 }
 
-/* Hero feature cards (under the button) */
-.hero-features {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  max-width: 980px;
-  margin: 40px auto 0;
-}
-
-.hero-feature {
-  flex: 1 1 250px;
-  min-width: 230px;
-  max-width: 300px;
-  padding: 18px 16px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 16px;
-  text-align: center;
-  box-shadow: 0 14px 35px rgba(0,0,0,0.25);
-  backdrop-filter: blur(12px);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.hero-feature:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 45px rgba(0,0,0,0.35);
-}
-
-.hero-feature h4 {
-  margin: 0 0 10px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #fff;
-}
-
-.hero-feature p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.5;
-  color: rgba(255,255,255,0.8);
-}
-
-@media (max-width: 768px) {
-  .hero-features {
-    gap: 12px;
-    margin-top: 28px;
-  }
-
-  .hero-feature {
-    flex: 1 1 100%;
-    max-width: 100%;
-  }
-}
 
 /* =========================
    RESPONSIVE BREAKPOINTS
@@ -552,6 +531,16 @@ html, body {
 section {
   scroll-snap-align: start;      /* Each section snaps to top */
   min-height: calc(100vh - 80px); /* Avoid overlap behind fixed header */
+}
+
+/* Disable scroll snapping on mobile devices for smoother touch scrolling */
+@media (max-width: 768px) {
+  body {
+    scroll-snap-type: none;
+  }
+  section {
+    scroll-snap-align: none;
+  }
 }
 
 header {
@@ -1098,19 +1087,15 @@ section {
 
 /* Section */
 #services {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 180px 5% 60px 5%;  /* increased top padding to push title down */
+  padding: 60px 5% 60px 5%;  /* tighter spacing between hero and services */
   position: relative;
 
-  /* NEW: same background as hero */
- 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  /* Solid black background */
+  background: #000;
 }
 
 /* Title */
@@ -1120,19 +1105,10 @@ section {
   font-size:50px;
   font-weight:800;
   text-align:center;
-  margin-top:60px;   /* pushes title down */
-  margin-bottom:70px;
+  margin-top:20px;   /* keep title near top of section */
+  margin-bottom:50px;
   color:white;
   letter-spacing:2px;
-}
-
-/* Scroll wrapper */
-/* SERVICES HEADING */
-/* ===============================
-   SERVICES TITLE
-================================ */
-#services {
-  padding-top: 140px; /* space from navbar */
 }
 
 /* ===============================
@@ -1746,7 +1722,7 @@ body::before{
   }
   
   #services {
-    padding: 120px 5% 40px 5%;    /* adequate spacing for mobile */
+    padding: 60px 5% 40px 5%;    /* reduce space on mobile */
   }
 }
 
@@ -1916,20 +1892,7 @@ body::before{
     <!-- Navigate to services section when clicked -->
     <button onclick="location.href='#services'">Explore Services</button>
 
-    <div class="hero-features">
-      <div class="hero-feature">
-        <h4>Fast Delivery</h4>
-        <p>Launch products faster with an agile, engineering-first delivery model.</p>
-      </div>
-      <div class="hero-feature">
-        <h4>Enterprise-grade</h4>
-        <p>Built for scale, security, and reliability from day one.</p>
-      </div>
-      <div class="hero-feature">
-        <h4>24/7 Support</h4>
-        <p>Dedicated experts available whenever you need them.</p>
-      </div>
-    </div>
+    <div class="scroll-hint" aria-hidden="true"></div>
   </div>
 </section>
 
