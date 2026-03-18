@@ -548,48 +548,6 @@ header.scrolled {
 }
 
 
-/* Mobile Fullscreen Menu */
-@media (max-width: 1024px) {
-  body.menu-open {
-    overflow: hidden;
-  }
-  
-  .nav-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0,0,0,0.98);
-    backdrop-filter: blur(30px);
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start; /* push menu items toward left */
-    gap: 40px;
-    padding: 60px 30px 60px 24px; /* more left breathing room */
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    z-index: 999;
-  }
-  
-  body.menu-open .nav-menu {
-    transform: translateX(0);
-  }
-  
-  .nav-menu li {
-    opacity: 0;
-    transform: translateX(30px);
-    animation: slideInMenu 0.4s ease forwards;
-  }
-  
-  @keyframes slideInMenu {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-}
-
 /* =========================
    RESPONSIVE BREAKPOINTS
 ========================= */
@@ -661,6 +619,8 @@ header.scrolled {
   header {
     position: fixed;
     top: 0;
+    /* Shift header content slightly left on mobile by reducing side padding */
+    padding: 16px 16px;
   }
   
   .nav-btn {
@@ -678,9 +638,10 @@ header.scrolled {
   .header-right {
     flex-direction: row;
     gap: 8px;
-    justify-content: flex-end;
+    justify-content: flex-end; /* keep CTA + hamburger aligned right */
     align-items: center;
-    width: 100%;
+    width: auto; /* avoid forcing full width which can push content too far right */
+    margin-left: auto; /* keep this container flush to the right edge */
   }
   
   .hamburger {
@@ -999,6 +960,8 @@ color:var(--primary);
   /* open */
   .nav-menu.show {
     max-height: 600px;
+    overflow-y: auto;
+    z-index: 1001;
   }
 
   /* Prevent submenu links from sliding behind the container */
@@ -1021,6 +984,9 @@ color:var(--primary);
 
   .nav-menu li.active .dropdown-menu {
     display: block;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
   }
 }
 
@@ -1473,7 +1439,7 @@ section {
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 20px;
-  background: linear-gradient(90deg, #ffffff, #ffffff, #5208a7);
+  background: linear-gradient(90deg, #ffffff, #ffffff, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: transform 0.3s ease, filter 0.3s ease;
@@ -1605,29 +1571,6 @@ body::before{
 
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
-  .nav-menu {
-    position: fixed;
-    top: 70px;              /* below header */
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 70px);
-    background: rgba(0,0,0,0.95);
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-  }
-
-  .nav-menu.active {
-    transform: translateX(0);
-  }
-
-  
-}
-
-
 
 .hero h1 {
   font-size: clamp(20px, 8vw, 42px);
@@ -1761,7 +1704,8 @@ body::before{
   <div class="hero-content">
     <h1>LOOPM TECHNOLOGIES</h1>
     <p>Enterprise-grade software engineering for modern businesses.</p>
-    <button>Explore Services</button>
+    <!-- Navigate to services section when clicked -->
+    <button onclick="location.href='#services'">Explore Services</button>
   </div>
 </section>
 
@@ -2057,63 +2001,63 @@ const observer = new IntersectionObserver((entries) => {
 fadeSections.forEach(section => observer.observe(section));
 </script>
 <script>
-  // PERFECT HAMBURGER MENU - Replace existing script
-document.addEventListener('DOMContentLoaded', function() {
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('nav-menu');
-  const body = document.body;
-  const dropdowns = document.querySelectorAll('.nav-menu .dropdown');
+  // PERFECT HAMBURGER MENU
+  document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    const body = document.body;
 
-  // Toggle menu
-  hamburger.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navMenu.classList.toggle('show');
-    hamburger.classList.toggle('active');
-    body.classList.toggle('menu-open');
-  });
-
-  // Close on outside click (not inside menu or hamburger)
-  document.addEventListener('click', (e) => {
-    if (
-      hamburger.classList.contains('active') &&
-      !e.target.closest('.nav-menu') &&
-      !e.target.closest('#hamburger')
-    ) {
-      navMenu.classList.remove('show');
-      hamburger.classList.remove('active');
-      body.classList.remove('menu-open');
-    }
-  });
-
-  // Close on link click
-  document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-      navMenu.classList.remove('show');
-      hamburger.classList.remove('active');
-      body.classList.remove('menu-open');
+    // Toggle menu open/close
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navMenu.classList.toggle('show');
+      hamburger.classList.toggle('active');
+      body.classList.toggle('menu-open');
     });
-  });
 
-  // Mobile dropdown toggle
-  dropdowns.forEach(drop => {
-    drop.addEventListener('click', () => {
-      // match mobile menu breakpoint (same as CSS)
-      if(window.innerWidth <= 1024){
-        drop.classList.toggle('active');
+    // Close menu on outside click
+    document.addEventListener('click', (e) => {
+      if (
+        hamburger.classList.contains('active') &&
+        !e.target.closest('.nav-menu') &&
+        !e.target.closest('#hamburger')
+      ) {
+        navMenu.classList.remove('show');
+        hamburger.classList.remove('active');
+        body.classList.remove('menu-open');
+      }
+    });
+
+    // Handle dropdown toggles
+    document.querySelectorAll('.nav-menu > .dropdown > a').forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const parent = toggle.closest('.dropdown');
+        parent.classList.toggle('active');
+      });
+    });
+
+    // Close mobile menu when clicking a normal link
+    document.querySelectorAll('.nav-menu a:not(.dropdown > a)').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('show');
+        hamburger.classList.remove('active');
+        body.classList.remove('menu-open');
+      });
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
       }
     });
   });
-
-  // Header scroll effect
-  window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-});
 </script>
 
 
