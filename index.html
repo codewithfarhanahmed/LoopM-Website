@@ -313,6 +313,61 @@ header {
     0 0 0 1px rgba(255,255,255,0.2);
 }
 
+/* Hero feature cards (under the button) */
+.hero-features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 980px;
+  margin: 40px auto 0;
+}
+
+.hero-feature {
+  flex: 1 1 250px;
+  min-width: 230px;
+  max-width: 300px;
+  padding: 18px 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 14px 35px rgba(0,0,0,0.25);
+  backdrop-filter: blur(12px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-feature:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+}
+
+.hero-feature h4 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.hero-feature p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.8);
+}
+
+@media (max-width: 768px) {
+  .hero-features {
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .hero-feature {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
 /* =========================
    RESPONSIVE BREAKPOINTS
 ========================= */
@@ -845,12 +900,19 @@ section {
 }
 
 .section-title{
-text-align:center;
-margin-top:0;
-margin-bottom:70px;
-font-size:40px;
-font-weight:800;
-color:var(--primary);
+  text-align:center;
+  margin-top:0;
+  margin-bottom:70px;
+  font-size:40px;
+  font-weight:800;
+  color:var(--primary);
+}
+
+/* Ensure Services title matches "What We Provide" */
+#services .section-title,
+#text-section .section-title {
+  font-size: 40px;
+  font-weight: 800;
 }
 
 /* =========================
@@ -1041,7 +1103,7 @@ color:var(--primary);
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 60px 5%;
+  padding: 180px 5% 60px 5%;  /* increased top padding to push title down */
   position: relative;
 
   /* NEW: same background as hero */
@@ -1072,31 +1134,6 @@ color:var(--primary);
 #services {
   padding-top: 140px; /* space from navbar */
 }
-.services-title {
-  text-align: center;
-  font-size: 60px;
-  font-weight: 400;
-  color: white;
-  font-family: 'Orbitron', sans-serif;
-  margin-top: 200px;   /* pushes heading down from navbar */
-  margin-bottom: 1;
-  letter-spacing: 2px;
-}
-
-@media (max-width: 768px) {
-  .services-title {
-    font-size: 32px;   /* smaller title for mobile */
-    margin-top: 80px;
-    margin-bottom: 0;
-  }
-}
-
-@media (max-width: 600px) {
-  .services-title {
-    font-size: 24px;   /* even smaller for small phones */
-    margin-top: 60px;
-  }
-}
 
 /* ===============================
    SCROLL CONTAINER
@@ -1120,8 +1157,7 @@ color:var(--primary);
   .services-scroll {
     flex-direction: column;    /* vertical layout on mobile */
     overflow-x: hidden;        /* hide horizontal scroll */
-    overflow-y: auto;          /* enable vertical scroll */
-    max-height: 900px;         /* limit height for scrolling */
+    overflow-y: visible;       /* let parent handle scroll */
     scroll-snap-type: none;    /* remove snap scroll effect */
     gap: 20px;                 /* reduce gap between cards */
     padding: 20px 0;           /* reduce top/bottom padding */
@@ -1131,7 +1167,6 @@ color:var(--primary);
 
 @media (max-width: 600px) {
   .services-scroll {
-    max-height: 800px;         /* smaller height for small phones */
     gap: 15px;
     padding: 15px 0;
   }
@@ -1711,8 +1746,7 @@ body::before{
   }
   
   #services {
-    padding-top: 100px;  /* reduced from 140px */
-    padding: 40px 5%;    /* reduced padding */
+    padding: 120px 5% 40px 5%;    /* adequate spacing for mobile */
   }
 }
 
@@ -1881,6 +1915,21 @@ body::before{
     <p>Enterprise-grade software engineering for modern businesses.</p>
     <!-- Navigate to services section when clicked -->
     <button onclick="location.href='#services'">Explore Services</button>
+
+    <div class="hero-features">
+      <div class="hero-feature">
+        <h4>Fast Delivery</h4>
+        <p>Launch products faster with an agile, engineering-first delivery model.</p>
+      </div>
+      <div class="hero-feature">
+        <h4>Enterprise-grade</h4>
+        <p>Built for scale, security, and reliability from day one.</p>
+      </div>
+      <div class="hero-feature">
+        <h4>24/7 Support</h4>
+        <p>Dedicated experts available whenever you need them.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2118,6 +2167,7 @@ window.addEventListener("resize", () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 </script>
+
 <script>
   const scrollContainer = document.querySelector(".services-scroll");
 const cards = document.querySelectorAll(".service-card");
