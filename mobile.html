@@ -3,26 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UI/UX Design | LoopM Technologies</title>
-
+<title>Mobile Apps | LoopM Technologies</title>
 <link rel="icon" type="image/png" href="assets/images/fevicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ========== Reset & Fonts ========== */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans', sans-serif;}
 body{background:#000;color:#fff;scroll-behavior:smooth;overflow-x:hidden;}
 a{text-decoration:none;color:inherit;}
 img{max-width:100%;display:block;}
 
-/* ========== Header / Navbar ========== */
+/* Header / Navbar */
 header{
   position:fixed;top:0;left:0;width:100%;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;
-  backdrop-filter:blur(12px);background:rgba(0,0,0,0.45);z-index:999;
+  backdrop-filter:blur(12px);background:rgba(0,0,0,0.85);z-index:999;
 }
 .logo img{height:50px;transition:0.3s;}
-
-/* Dropdown Navbar */
 nav{display:flex;align-items:center;gap:30px;}
 .nav-menu{
   display:flex;
@@ -54,73 +50,79 @@ nav{display:flex;align-items:center;gap:30px;}
 }
 .nav-btn .cta-btn:hover{filter:brightness(1.1);}
 
-/* Header right container (CTA + hamburger) */
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-left: auto;
-}
+/* Header right container */
+.header-right{display:flex;align-items:center;gap:10px;margin-left:auto;}
 
-/* Hamburger Menu */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 25px;
-  height: 18px;
-  cursor: pointer;
-}
-.hamburger span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: #fff;
-  border-radius: 2px;
-  transition: 0.3s;
-}
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;justify-content:space-between;width:25px;height:18px;cursor:pointer;}
+.hamburger span{display:block;height:3px;width:100%;background:#fff;border-radius:2px;transition:0.3s;}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.active span:nth-child(2){opacity:0;}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
 
-/* ========== Hero Section ========== */
+/* Hero */
 .hero{
-  position:relative;height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("assets/images/uiux-bg.jpg") center/cover no-repeat;
-  text-align:center;overflow:hidden;
+  text-align:center;
+  padding:120px 20px 80px 20px;
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("assets/images/mobile-bg.jpg") center/cover no-repeat;
 }
 .hero h1{font-size:48px;font-weight:800;margin-bottom:20px;color:#fff;}
 .hero p{font-size:20px;color:#ddd;margin-bottom:30px;}
-.hero button{padding:12px 28px;border:2px solid #C1141C;color:#C1141C;background:transparent;font-weight:600;cursor:pointer;}
+.hero button{padding:12px 28px;border:2px solid #C1141C;color:#C1141C;background:transparent;font-weight:600;cursor:pointer;transition:0.3s;}
 .hero button:hover{background:#C1141C;color:#fff;}
 
-/* ========== Service Detail Section ========== */
-#service-detail{
-  padding:120px 40px 80px 40px;
-  max-width:1200px;margin:0 auto;
+/* Explore more description */
+#explore-desc{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.5s ease;
+  padding:0 20px;
+  margin-top:20px;
 }
-#service-detail h2{font-size:40px;font-weight:800;margin-bottom:30px;color:#C1141C;text-align:center;}
-#service-detail p{font-size:18px;line-height:1.6;margin-bottom:20px;color:#ddd;}
-.detail-image{width:100%;max-width:800px;margin:30px auto;display:block;border-radius:20px;}
+#explore-desc p{color:#ddd;font-size:16px;line-height:1.6;}
 
-/* ========== Footer ========== */
+/* Services / Cards */
+.services{
+  padding:60px 40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  gap:25px;
+}
+.card{
+  background:#111;
+  padding:25px;
+  border-radius:15px;
+  border:1px solid #000; /* black border */
+  transition:0.3s;
+}
+.card:hover{transform:translateY(-5px);border-color:#C1141C;} /* red hover border */
+.card h3{margin-bottom:10px;color:#C1141C;}
+.card p{color:#bbb;font-size:14px;}
+
+/* Service Image */
+.ai-image{
+  width:100%;
+  max-width:800px;
+  margin:60px auto;
+  display:block;
+  border-radius:15px;
+  border:1px solid #000; /* black border */
+}
+
+/* Footer */
 footer{
-  background:#111;color:#fff;padding:40px;text-align:center;
+  text-align:center;
+  padding:40px;
+  background:#111;
 }
 footer p{margin:0;font-size:14px;color:#ccc;}
 
-/* ========== Mobile Responsiveness ========== */
-@media (max-width: 768px) {
-  header{padding:16px 16px;flex-wrap:wrap; /* match index mobile header padding */}
+/* Mobile */
+@media (max-width:768px){
+  header{padding:16px 16px;flex-wrap:wrap;}
   nav{width:100%;order:2;}
   .nav-menu{
-    flex-direction: column;
+    flex-direction:column;
     gap:15px;
     max-height:0;
     overflow:hidden;
@@ -130,14 +132,13 @@ footer p{margin:0;font-size:14px;color:#ccc;}
   .nav-menu.show{max-height:600px;}
   .dropdown-menu{position:static;background:rgba(0,0,0,0.9);border-radius:0;display:none;}
   .nav-menu li.active .dropdown-menu{display:block;}
-  .hamburger{display:flex;order:1;}
-  .nav-btn{width:100%;text-align:center;margin-top:10px;}
+  .hamburger{display:flex;order:2;}
+  .nav-btn{order:1;width:100%;text-align:center;margin-top:10px;}
   .nav-btn .cta-btn{display:inline-block;margin-bottom:10px;}
   .hero h1{font-size:32px;}
   .hero p{font-size:16px;}
-  #service-detail{padding:100px 20px 60px 20px;}
-  #service-detail h2{font-size:32px;}
-  #service-detail p{font-size:16px;}
+  .services{padding:40px 20px;grid-template-columns:1fr;}
+  .ai-image{margin:40px auto;}
 }
 </style>
 </head>
@@ -159,7 +160,6 @@ footer p{margin:0;font-size:14px;color:#ccc;}
           <li><a href="uiux.html">UI/UX Design</a></li>
         </ul>
       </li>
-
       <li class="dropdown">
         <a href="#">Who We Help</a>
         <ul class="dropdown-menu">
@@ -169,7 +169,6 @@ footer p{margin:0;font-size:14px;color:#ccc;}
           <li><a href="#">NGOs</a></li>
         </ul>
       </li>
-
       <li class="dropdown">
         <a href="#">Who We Are</a>
         <ul class="dropdown-menu">
@@ -178,7 +177,6 @@ footer p{margin:0;font-size:14px;color:#ccc;}
           <li><a href="#">Culture</a></li>
         </ul>
       </li>
-
       <li class="dropdown">
         <a href="#">How We Deliver</a>
         <ul class="dropdown-menu">
@@ -187,7 +185,6 @@ footer p{margin:0;font-size:14px;color:#ccc;}
           <li><a href="#">Testimonials</a></li>
         </ul>
       </li>
-
       <li><a href="#">Join LoopM</a></li>
     </ul>
   </nav>
@@ -196,7 +193,6 @@ footer p{margin:0;font-size:14px;color:#ccc;}
     <div class="nav-btn">
       <a href="#contact" class="cta-btn">Let's Talk Business</a>
     </div>
-
     <div class="hamburger" id="hamburger">
       <span></span>
       <span></span>
@@ -206,27 +202,46 @@ footer p{margin:0;font-size:14px;color:#ccc;}
 </header>
 
 <section class="hero">
-  <h1>Mobile App Development</h1>
-  <p>Creating intuitive and engaging digital experiences that users love.</p>
-  <button>Explore More</button>
+  <h1>Mobile Apps</h1>
+  <p>Cutting-edge mobile applications for Android and iOS platforms.</p>
+  <button id="explore-btn">Explore More</button>
+
+  <div id="explore-desc">
+    <p>
+      We design and develop high-performance mobile applications with intuitive UI/UX, 
+      robust backend integration, and seamless functionality. Technologies include React Native, Flutter, and Swift/Java.
+    </p>
+  </div>
 </section>
 
-<section id="service-detail">
-  <h2>About Our UI/UX Design</h2>
-  <p>Our UI/UX team focuses on crafting interfaces that are visually appealing, easy to use, and provide seamless experiences. We prioritize user-centric design principles to ensure your digital products resonate with your audience.</p>
-
-  <p>From wireframing and prototyping to user testing and interface design, we combine creativity with data-driven insights to produce interfaces that not only look great but also perform exceptionally.</p>
-
-  <p>Whether designing for web, mobile, or complex enterprise applications, we ensure every interaction feels natural, intuitive, and impactful.</p>
-
-  <img src="assets/images/uiux.png" alt="UI/UX Design" class="detail-image">
+<section class="services">
+  <div class="card">
+    <h3>iOS Development</h3>
+    <p>Create native iPhone apps with Swift for smooth performance and App Store readiness.</p>
+  </div>
+  <div class="card">
+    <h3>Android Development</h3>
+    <p>Develop responsive and reliable Android apps using Kotlin and Java for all devices.</p>
+  </div>
+  <div class="card">
+    <h3>Cross-Platform Apps</h3>
+    <p>Build apps with Flutter or React Native to run on both Android and iOS from a single codebase.</p>
+  </div>
+  <div class="card">
+    <h3>App Optimization</h3>
+    <p>Improve app speed, security, and user experience with best development practices.</p>
+  </div>
 </section>
+
+<!-- Service Image -->
+<img src="assets/images/om.png" alt="Mobile App Development" class="ai-image">
 
 <footer>
   <p>© 2026 LoopM Technologies. All rights reserved.</p>
 </footer>
 
 <script>
+// Hamburger menu
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 const dropdowns = document.querySelectorAll('.nav-menu .dropdown');
@@ -243,6 +258,20 @@ dropdowns.forEach(drop => {
       drop.classList.toggle('active');
     }
   });
+});
+
+// Explore more button toggle
+const exploreBtn = document.getElementById('explore-btn');
+const exploreDesc = document.getElementById('explore-desc');
+
+exploreBtn.addEventListener('click', () => {
+  if (exploreDesc.style.maxHeight === "0px" || exploreDesc.style.maxHeight === "") {
+    exploreDesc.style.maxHeight = exploreDesc.scrollHeight + "px";
+    exploreBtn.textContent = "Show Less";
+  } else {
+    exploreDesc.style.maxHeight = "0";
+    exploreBtn.textContent = "Explore More";
+  }
 });
 </script>
 </body>
