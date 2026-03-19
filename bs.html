@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UI/UX Design | LoopM Technologies</title>
+<title>Business Solutions | LoopM Technologies</title>
 <link rel="icon" type="image/png" href="assets/images/fevicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -64,7 +64,7 @@ nav{display:flex;align-items:center;gap:30px;}
 .hero{
   text-align:center;
   padding:120px 20px 80px 20px;
-  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("assets/images/uiux-bg.jpg") center/cover no-repeat;
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("assets/images/business-bg.jpg") center/cover no-repeat;
 }
 .hero h1{font-size:48px;font-weight:800;margin-bottom:20px;color:#fff;}
 .hero p{font-size:20px;color:#ddd;margin-bottom:30px;}
@@ -92,10 +92,10 @@ nav{display:flex;align-items:center;gap:30px;}
   background:#111;
   padding:25px;
   border-radius:15px;
-  border:1px solid #000; /* black border */
+  border:1px solid #000;
   transition:0.3s;
 }
-.card:hover{transform:translateY(-5px);border-color:#C1141C;} /* red hover border */
+.card:hover{transform:translateY(-5px);border-color:#C1141C;}
 .card h3{margin-bottom:10px;color:#C1141C;}
 .card p{color:#bbb;font-size:14px;}
 
@@ -106,7 +106,7 @@ nav{display:flex;align-items:center;gap:30px;}
   margin:60px auto;
   display:block;
   border-radius:15px;
-  border:1px solid #000; /* black border */
+  border:1px solid #000;
 }
 
 /* Footer */
@@ -144,6 +144,7 @@ footer p{margin:0;font-size:14px;color:#ccc;}
 </head>
 
 <body>
+
 <header>
   <div class="logo"><a href="index.html"><img src="assets/images/logo.png" alt="LoopM Logo"></a></div>
 
@@ -158,33 +159,8 @@ footer p{margin:0;font-size:14px;color:#ccc;}
           <li><a href="cloud.html">Cloud Solutions</a></li>
           <li><a href="graphic.html">Graphic Design</a></li>
           <li><a href="uiux.html">UI/UX Design</a></li>
-          <li><a href="erp.html">ERP</a></li>
+          <li><a href="erp.html">ERP Solutions</a></li>
           <li><a href="bs.html">Business Solutions</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#">Who We Help</a>
-        <ul class="dropdown-menu">
-          <li><a href="startups.html">Startups</a></li>
-          <li><a href="enterprise.html">Enterprises</a></li>
-          <li><a href="agencies.html">Agencies</a></li>
-          <li><a href="ngo.html">NGOs</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#">Who We Are</a>
-        <ul class="dropdown-menu">
-          <li><a href="#">About Us</a></li>
-          <li><a href="team.html">Team</a></li>
-          <li><a href="#">Culture</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#">How We Deliver</a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Process</a></li>
-          <li><a href="#">Case Studies</a></li>
-          <li><a href="#">Testimonials</a></li>
         </ul>
       </li>
       <li><a href="#">Join LoopM</a></li>
@@ -204,65 +180,54 @@ footer p{margin:0;font-size:14px;color:#ccc;}
 </header>
 
 <section class="hero">
-  <h1>UI/UX Design</h1>
-  <p>Designing intuitive and engaging digital experiences for your users.</p>
+  <h1>Business Solutions</h1>
+  <p>Empowering businesses with strategies, tools, and systems to accelerate growth.</p>
   <button id="explore-btn">Explore More</button>
 
   <div id="explore-desc">
     <p>
-      Our UI/UX services focus on user-centered design, wireframing, prototyping, and responsive layouts. 
-      We create visually appealing and easy-to-navigate interfaces that improve usability and user engagement.
+      Our Business Solutions are designed to optimize operations, increase productivity, and drive strategic growth. 
+      We provide consulting, digital transformation, and management solutions that align with your business goals.
     </p>
   </div>
 </section>
 
 <section class="services">
   <div class="card">
-    <h3>User Research</h3>
-    <p>Understand your users through surveys, interviews, and analytics for better design decisions.</p>
+    <h3>Business Consulting</h3>
+    <p>Expert guidance to analyze your operations, identify opportunities, and implement growth strategies.</p>
   </div>
   <div class="card">
-    <h3>Wireframing & Prototyping</h3>
-    <p>Create interactive mockups and prototypes to visualize the user journey and app flow.</p>
+    <h3>Digital Transformation</h3>
+    <p>Leverage technology to streamline workflows, enhance customer experience, and increase efficiency.</p>
   </div>
   <div class="card">
-    <h3>Interface Design</h3>
-    <p>Design modern, clean, and intuitive interfaces that enhance user experience across devices.</p>
+    <h3>Process Optimization</h3>
+    <p>Identify inefficiencies and implement solutions to reduce costs and improve productivity.</p>
   </div>
   <div class="card">
-    <h3>Usability Testing</h3>
-    <p>Test designs with real users to identify issues and improve the overall experience.</p>
+    <h3>Management Solutions</h3>
+    <p>Tools and strategies for performance tracking, project management, and decision-making support.</p>
   </div>
 </section>
 
-<!-- Service Image -->
-<img src="assets/images/uiux.png" alt="UI/UX Design" class="ai-image">
+<img src="assets/images/business.png" alt="Business Solutions" class="ai-image">
 
 <footer>
   <p>© 2026 LoopM Technologies. All rights reserved.</p>
 </footer>
 
 <script>
-// Hamburger menu
+// Hamburger
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
-const dropdowns = document.querySelectorAll('.nav-menu .dropdown');
 
 hamburger.addEventListener('click', () => {
   navMenu.classList.toggle('show');
   hamburger.classList.toggle('active');
 });
 
-// Mobile dropdown toggle
-dropdowns.forEach(drop => {
-  drop.addEventListener('click', () => {
-    if(window.innerWidth <= 768){
-      drop.classList.toggle('active');
-    }
-  });
-});
-
-// Explore more button toggle
+// Explore toggle
 const exploreBtn = document.getElementById('explore-btn');
 const exploreDesc = document.getElementById('explore-desc');
 
@@ -276,5 +241,6 @@ exploreBtn.addEventListener('click', () => {
   }
 });
 </script>
+
 </body>
 </html>
