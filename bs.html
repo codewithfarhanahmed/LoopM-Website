@@ -3,18 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Services | LoopM Technologies</title>
+<title>UI/UX Design | LoopM Technologies</title>
 <link rel="icon" type="image/png" href="assets/images/fevicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ================= Reset & Fonts ================= */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans', sans-serif;}
 body{background:#000;color:#fff;scroll-behavior:smooth;overflow-x:hidden;}
 a{text-decoration:none;color:inherit;}
 img{max-width:100%;display:block;}
 
-/* ================= Header / Navbar ================= */
+/* Header / Navbar */
 header{
   position:fixed;top:0;left:0;width:100%;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;
   backdrop-filter:blur(12px);background:rgba(0,0,0,0.85);z-index:999;
@@ -61,11 +60,11 @@ nav{display:flex;align-items:center;gap:30px;}
 .hamburger.active span:nth-child(2){opacity:0;}
 .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
 
-/* ================= Hero ================= */
+/* Hero */
 .hero{
   text-align:center;
   padding:120px 20px 80px 20px;
-  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("assets/images/ai-bg.jpg") center/cover no-repeat;
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("assets/images/uiux-bg.jpg") center/cover no-repeat;
 }
 .hero h1{font-size:48px;font-weight:800;margin-bottom:20px;color:#fff;}
 .hero p{font-size:20px;color:#ddd;margin-bottom:30px;}
@@ -82,7 +81,7 @@ nav{display:flex;align-items:center;gap:30px;}
 }
 #explore-desc p{color:#ddd;font-size:16px;line-height:1.6;}
 
-/* ================= Services / Cards ================= */
+/* Services / Cards */
 .services{
   padding:60px 40px;
   display:grid;
@@ -100,7 +99,7 @@ nav{display:flex;align-items:center;gap:30px;}
 .card h3{margin-bottom:10px;color:#C1141C;}
 .card p{color:#bbb;font-size:14px;}
 
-/* ================= AI Image ================= */
+/* Service Image */
 .ai-image{
   width:100%;
   max-width:800px;
@@ -110,7 +109,7 @@ nav{display:flex;align-items:center;gap:30px;}
   border:1px solid #000; /* black border */
 }
 
-/* ================= Footer ================= */
+/* Footer */
 footer{
   text-align:center;
   padding:40px;
@@ -118,7 +117,7 @@ footer{
 }
 footer p{margin:0;font-size:14px;color:#ccc;}
 
-/* ================= Mobile ================= */
+/* Mobile */
 @media (max-width:768px){
   header{padding:16px 16px;flex-wrap:wrap;}
   nav{width:100%;order:2;}
@@ -166,10 +165,10 @@ footer p{margin:0;font-size:14px;color:#ccc;}
       <li class="dropdown">
         <a href="#">Who We Help</a>
         <ul class="dropdown-menu">
-          <li><a href="#">Startups</a></li>
-          <li><a href="#">Enterprises</a></li>
-          <li><a href="#">Agencies</a></li>
-          <li><a href="#">NGOs</a></li>
+          <li><a href="startups.html">Startups</a></li>
+          <li><a href="enterprise.html">Enterprises</a></li>
+          <li><a href="agencies.html">Agencies</a></li>
+          <li><a href="ngo.html">NGOs</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -205,41 +204,39 @@ footer p{margin:0;font-size:14px;color:#ccc;}
 </header>
 
 <section class="hero">
-  <h1>AI Services</h1>
-  <p>Cutting-edge artificial intelligence solutions to transform your business.</p>
+  <h1>UI/UX Design</h1>
+  <p>Designing intuitive and engaging digital experiences for your users.</p>
   <button id="explore-btn">Explore More</button>
 
   <div id="explore-desc">
     <p>
-      Our AI services cover a wide range of technologies including Machine Learning, 
-      Natural Language Processing, Computer Vision, and AI Automation. We tailor 
-      solutions to optimize operations, enhance decision-making, and create 
-      innovative experiences for your business.
+      Our UI/UX services focus on user-centered design, wireframing, prototyping, and responsive layouts. 
+      We create visually appealing and easy-to-navigate interfaces that improve usability and user engagement.
     </p>
   </div>
 </section>
 
 <section class="services">
   <div class="card">
-    <h3>Machine Learning</h3>
-    <p>Build predictive models and intelligent systems to automate decision-making.</p>
+    <h3>User Research</h3>
+    <p>Understand your users through surveys, interviews, and analytics for better design decisions.</p>
   </div>
   <div class="card">
-    <h3>Computer Vision</h3>
-    <p>Image recognition, object detection, and real-time vision systems.</p>
+    <h3>Wireframing & Prototyping</h3>
+    <p>Create interactive mockups and prototypes to visualize the user journey and app flow.</p>
   </div>
   <div class="card">
-    <h3>Natural Language Processing</h3>
-    <p>Chatbots, sentiment analysis, and speech-to-text systems.</p>
+    <h3>Interface Design</h3>
+    <p>Design modern, clean, and intuitive interfaces that enhance user experience across devices.</p>
   </div>
   <div class="card">
-    <h3>AI Automation</h3>
-    <p>Automate workflows and business processes using intelligent AI tools.</p>
+    <h3>Usability Testing</h3>
+    <p>Test designs with real users to identify issues and improve the overall experience.</p>
   </div>
 </section>
 
-<!-- AI Image at the end -->
-<img src="assets/images/bot.png" alt="AI Services Image" class="ai-image">
+<!-- Service Image -->
+<img src="assets/images/uiux.png" alt="UI/UX Design" class="ai-image">
 
 <footer>
   <p>© 2026 LoopM Technologies. All rights reserved.</p>

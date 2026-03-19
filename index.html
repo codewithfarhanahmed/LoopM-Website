@@ -1894,6 +1894,99 @@ body::before{
   }
 
 }
+/* =========================
+   CLIENT LOGO SLIDER
+========================= */
+
+.logo-slider {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 50px;
+  position: relative;
+}
+
+/* Fade edges for premium look */
+.logo-slider::before,
+.logo-slider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+}
+
+.logo-slider::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(0,0,0,1), transparent);
+}
+
+.logo-slider::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0,0,0,1), transparent);
+}
+
+.logo-track {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  width: max-content;
+  animation: scrollLogos 20s linear infinite;
+}
+
+.logo-track img {
+  height: 50px;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.logo-track img:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.1);
+}
+
+/* Animation */
+/* CONTAINER */
+.logo-slider {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 50px;
+  position: relative;
+}
+
+/* TRACK */
+.logo-track {
+  display: flex;
+  gap: 60px;
+  width: max-content;
+  animation: logoLoop 25s linear infinite;
+}
+
+/* LOGOS */
+.logo-track img {
+  height: 50px;
+  opacity: 0.7;
+  filter: grayscale(100%);
+  transition: 0.3s;
+}
+
+.logo-track img:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.1);
+}
+
+/* 🔥 PERFECT LOOP ANIMATION */
+@keyframes logoLoop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333%);
+  }
+}
 
 </style>
 </head>
@@ -1920,7 +2013,9 @@ body::before{
           <li><a href="cloud.html">Cloud Solutions</a></li>
           <li><a href="graphic.html">Graphic Design</a></li>
           <li><a href="uiux.html">UI/UX Design</a></li>
-          <li><a href="graphic.html">UI/UX Design</a></li>
+          <li><a href="erp.html">ERP</a></li>
+          <li><a href="bs.html">Business Solutions</a></li>
+
         </ul>
       </li>
       <li class="dropdown">
@@ -1979,6 +2074,35 @@ body::before{
 
     <div class="scroll-hint" aria-hidden="true"></div>
   </div>
+
+  <div class="logo-slider">
+  <div class="logo-track">
+
+    <!-- SET 1 -->
+   <!-- SET 1 -->
+    <img src="assets/images/visu.png">
+    <img src="assets/images/DAC.png">
+    <img src="assets/images/SLOSH.png">
+    <img src="assets/images/NTTS.png">
+    <img src="assets/images/KAZAROO.png">
+     <!-- SET 1 -->
+       <!-- SET 1 -->
+    <img src="assets/images/visu.png">
+    <img src="assets/images/DAC.png">
+    <img src="assets/images/SLOSH.png">
+    <img src="assets/images/NTTS.png">
+    <img src="assets/images/KAZAROO.png">
+     <!-- SET 1 -->
+       <!-- SET 1 -->
+    <img src="assets/images/visu.png">
+    <img src="assets/images/DAC.png">
+    <img src="assets/images/SLOSH.png">
+    <img src="assets/images/NTTS.png">
+    <img src="assets/images/KAZAROO.png">
+     <!-- SET 1 -->
+    
+  </div>
+</div>
 </section>
 
 <!-- SERVICES -->
@@ -2031,6 +2155,22 @@ body::before{
       <div class="overlay">
         <h3>Graphic Design</h3>
         <p>Beautiful user experiences & intuitive Graphics and Visuals.</p>
+      </div>
+    </a>
+
+    <a href="erp.html" class="service-card">
+      <img src="assets/images/erp.png" alt="ERP">
+      <div class="overlay">
+        <h3>ERP</h3>
+        <p>We help you with your Enterprise resource planning system.</p>
+      </div>
+    </a>
+
+    <a href="bs.html" class="service-card">
+      <img src="assets/images/BS.png" alt="Business Solutions">
+      <div class="overlay">
+        <h3>Business Solutions</h3>
+        <p>We provide best and practical business solutions.</p>
       </div>
     </a>
 
