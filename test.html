@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wall of Trust | LoopM Technologies</title>
+<title>Testimonials | LoopM Technologies</title>
 <link rel="icon" type="image/png" href="assets/images/fevicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -16,30 +16,31 @@ a{text-decoration:none;color:inherit;}
 /* ================= HEADER (ERP COMPLIANT) ================= */
 header{
   position:fixed;top:0;left:0;width:100%;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;
-  backdrop-filter:blur(12px);background:rgba(0,0,0,0.85);z-index:999;
+  backdrop-filter:blur(15px);background:rgba(0,0,0,0.8);z-index:999;border-bottom:1px solid rgba(255,255,255,0.05);
 }
 .logo img{height:50px;transition:0.3s;}
 nav{display:flex;align-items:center;gap:30px;}
 
 .nav-menu{display:flex; list-style:none; gap:20px; align-items:center;}
 .nav-menu li{position:relative;}
-.nav-menu li a{color:#fff;font-weight:600;padding:8px 12px;display:block;transition:0.3s;}
+.nav-menu li a{color:#fff;font-weight:600;padding:8px 12px;display:block;transition:0.3s;font-size:14px;}
 .nav-menu li a:hover{color:#C1141C;}
 
 .dropdown-menu{
-  position:absolute; top:100%; left:0; background:rgba(0,0,0,0.95); list-style:none; padding:10px 0;
-  display:none; min-width:180px; border-radius:8px; z-index:998;
+  position:absolute; top:100%; left:0; background:rgba(10,10,10,0.98); list-style:none; padding:15px 0;
+  display:none; min-width:200px; border-radius:12px; border:1px solid #222; box-shadow:0 20px 40px rgba(0,0,0,0.5);
 }
-.dropdown-menu li a{padding:8px 15px;}
+.dropdown-menu li a{padding:10px 20px; font-size:13px; border-bottom:1px solid rgba(255,255,255,0.03);}
 .dropdown:hover .dropdown-menu{display:block;}
 
-.header-right{display:flex;align-items:center;gap:10px;margin-left:auto;}
+.header-right{display:flex;align-items:center;gap:20px;margin-left:auto;}
 .nav-btn .cta-btn{
-  padding:8px 20px;background:linear-gradient(45deg,#C1141C,#224989);color:#fff;border-radius:25px;font-weight:600;transition:0.3s;
+  padding:10px 24px;background:linear-gradient(45deg,#C1141C,#224989);color:#fff;border-radius:30px;font-weight:700;font-size:13px;transition:0.3s;
 }
 
-.hamburger{display:none;flex-direction:column;justify-content:space-between;width:25px;height:18px;cursor:pointer;}
-.hamburger span{display:block;height:3px;width:100%;background:#fff;border-radius:2px;transition:0.3s;}
+/* Hamburger Style */
+.hamburger{display:none;flex-direction:column;justify-content:space-between;width:24px;height:16px;cursor:pointer;z-index:1000;}
+.hamburger span{display:block;height:2px;width:100%;background:#fff;border-radius:10px;transition:0.3s;}
 .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
 .hamburger.active span:nth-child(2){opacity:0;}
 .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
@@ -47,109 +48,114 @@ nav{display:flex;align-items:center;gap:30px;}
 /* ================= HERO ================= */
 .hero{
   text-align:center;
-  padding:180px 20px 100px 20px;
-  background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+  padding:200px 20px 120px 20px;
+  background: radial-gradient(circle at top, #1a1a1a 0%, #000 80%);
 }
-.hero h1{font-size:56px;font-weight:800;margin-bottom:24px; letter-spacing:-2px;}
-.hero p{font-size:20px;color:#bbb;max-width:800px;margin:0 auto;line-height:1.6;}
+.hero h1{font-size:64px;font-weight:800;margin-bottom:24px; letter-spacing:-3px; background: linear-gradient(#fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+.hero p{font-size:18px;color:#777;max-width:700px;margin:0 auto;line-height:1.8; font-weight: 500;}
 
-/* ================= TESTIMONIALS SECTION ================= */
-.testimonial-section{padding:100px 40px; max-width:1400px; margin:auto;}
+/* ================= ZIG-ZAG TESTIMONIALS ================= */
+.testimonial-container{max-width:1200px; margin:auto; padding:0 40px 100px 40px;}
 
-.testimonial-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap:40px;
-}
-
-.test-card{
-  background:#0a0a0a;
-  border-radius:30px;
-  overflow:hidden;
-  border:1px solid #1a1a1a;
-  transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+.test-row{
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  margin-bottom: 120px;
 }
 
-.test-card:hover{
-  transform: translateY(-10px);
-  border-color: #C1141C;
-  background: #0f0f0f;
+.test-row:nth-child(even){flex-direction: row-reverse;}
+
+.test-image{
+  flex: 1;
+  height: 500px;
+  border-radius: 40px;
+  overflow: hidden;
+  border: 1px solid #222;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.8);
 }
 
-.test-img-wrap{
-  width:100%;
-  height:300px;
-  overflow:hidden;
+.test-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6) contrast(1.1);
+  transition: 1s ease;
 }
 
-.test-img-wrap img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter: brightness(0.5) grayscale(100%);
-  transition: 0.8s;
-}
-
-.test-card:hover .test-img-wrap img{
-  filter: brightness(0.8) grayscale(0%);
-  transform: scale(1.05);
+.test-row:hover .test-image img{
+  filter: brightness(0.9);
+  transform: scale(1.03);
 }
 
 .test-content{
-  padding:40px;
-  position: relative;
+  flex: 1;
 }
 
-.quote-icon{
-    font-size: 40px;
-    color: #C1141C;
-    margin-bottom: 20px;
-    display: block;
-    opacity: 0.6;
+.test-content .quote-icon{
+  font-size: 60px;
+  color: #C1141C;
+  line-height: 1;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.test-content h2{
+  font-size: 32px;
+  margin-bottom: 25px;
+  font-weight: 800;
+  line-height: 1.3;
 }
 
 .test-content p{
-  color:#999;
-  font-size:17px;
-  line-height:1.8;
-  font-style: italic;
+  font-size: 18px;
+  color: #999;
+  line-height: 1.9;
   margin-bottom: 30px;
 }
 
-.test-footer{
-    border-top: 1px solid #222;
-    padding-top: 25px;
+.author-meta{
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.test-footer h4{
-  font-size:20px;
-  color:#fff;
-  font-weight: 700;
-  margin-bottom: 5px;
+.author-meta .line{
+    width: 40px;
+    height: 2px;
+    background: #C1141C;
 }
 
-.test-footer span{
-  color:#C1141C;
-  font-size:13px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 700;
+.author-meta span{
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
+    color: #fff;
 }
 
 /* ================= FOOTER ================= */
-footer{text-align:center;padding:60px 40px;background:#050505; border-top:1px solid #111;}
-footer p{font-size:14px;color:#444; letter-spacing:1px;}
+footer{text-align:center;padding:80px 40px;background:#050505; border-top:1px solid #111;}
+footer p{font-size:12px;color:#333; letter-spacing:2px; text-transform: uppercase;}
 
-/* ================= MOBILE RESPONSIVE ================= */
+/* ================= MOBILE RESPONSIVE (ERP STYLE) ================= */
+@media (max-width:992px){
+  .test-row, .test-row:nth-child(even){flex-direction: column; gap: 40px; margin-bottom: 80px;}
+  .test-image{height: 350px; width: 100%;}
+  .hero h1{font-size: 42px;}
+}
+
 @media (max-width:768px){
-  header{padding:16px 20px; flex-wrap:wrap;}
-  .nav-menu{flex-direction:column; max-height:0; overflow:hidden; transition:max-height 0.3s ease; width:100%;}
-  .nav-menu.show{max-height:800px; padding:20px 0;}
-  .hamburger{display:flex;}
-  .hero h1{font-size:38px;}
-  .testimonial-grid{grid-template-columns: 1fr;}
+  header{padding:16px 20px;}
+  .nav-menu{
+    position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; 
+    background: #0a0a0a; flex-direction: column; padding: 100px 40px; 
+    transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1); border-left: 1px solid #222;
+  }
+  .nav-menu.show{right: 0;}
+  .hamburger{display: flex;}
+  .dropdown-menu{position: static; background: transparent; border: none; box-shadow: none; display: none; padding-left: 20px;}
+  .dropdown.active .dropdown-menu{display: block;}
 }
 </style>
 </head>
@@ -161,21 +167,38 @@ footer p{font-size:14px;color:#444; letter-spacing:1px;}
 
   <nav>
     <ul class="nav-menu" id="nav-menu">
-      <li class="dropdown"><a href="#">What We Do</a>
+      <li class="dropdown">
+        <a href="#">What We Do</a>
         <ul class="dropdown-menu">
           <li><a href="web.html">Web Development</a></li>
           <li><a href="mobile.html">Mobile Apps</a></li>
           <li><a href="ai.html">AI Services</a></li>
-          <li><a href="erp.html">ERP Solutions</a></li>
+          <li><a href="cloud.html">Cloud Solutions</a></li>
+          <li><a href="graphic.html">Graphic Design</a></li>
+          <li><a href="uiux.html">UI/UX Design</a></li>
+          <li><a href="erp.html">ERP</a></li>
+          <li><a href="bs.html">Business Solutions</a></li>
         </ul>
       </li>
-      <li class="dropdown"><a href="#">Who We Are</a>
+      <li class="dropdown">
+        <a href="#">Who We Help</a>
         <ul class="dropdown-menu">
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="team.html">Team</a></li>
+          <li><a href="startups.html">Startups</a></li>
+          <li><a href="enterprise.html">Enterprises</a></li>
+          <li><a href="agencies.html">Agencies</a></li>
+          <li><a href="ngo.html">NGOs</a></li>
         </ul>
       </li>
-      <li class="dropdown"><a href="#">How We Deliver</a>
+      <li class="dropdown">
+        <a href="#">Who We Are</a>
+        <ul class="dropdown-menu">
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="culture.html">Culture</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">How We Deliver</a>
         <ul class="dropdown-menu">
           <li><a href="process.html">Process</a></li>
           <li><a href="casestudies.html">Case Studies</a></li>
@@ -185,7 +208,7 @@ footer p{font-size:14px;color:#444; letter-spacing:1px;}
       <li><a href="https://wa.me/923209976848">Join LoopM</a></li>
     </ul>
   </nav>
-
+  
   <div class="header-right">
     <div class="nav-btn"><a href="https://wa.me/923209976848" class="cta-btn">Start a Project</a></div>
     <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
@@ -194,70 +217,72 @@ footer p{font-size:14px;color:#444; letter-spacing:1px;}
 
 <section class="hero">
   <h1>The Wall of Trust</h1>
-  <p>Partnerships built on technical excellence. Read how we’ve helped industry leaders transform their raw ideas into powerful digital solutions.</p>
+  <p>Our work is defined by the success of our partners. Discover how LoopM Technologies transforms complex challenges into seamless digital experiences.</p>
 </section>
 
-<section class="testimonial-section">
-  <div class="testimonial-grid">
+<div class="testimonial-container">
     
-    <div class="test-card">
-      <div class="test-img-wrap">
-        <img src="https://images.unsplash.com/photo-1551288049-bbbda536339a?q=80&w=2070&auto=format&fit=crop" alt="AI Radiology">
-      </div>
-      <div class="test-content">
-        <span class="quote-icon">“</span>
-        <p>LoopM Technologies was instrumental in our mission to revolutionize radiology. Their AI-driven solutions enhanced our diagnostic precision and speed, creating a significant milestone in healthcare tech.</p>
-        <div class="test-footer">
-          <h4>Research Lead</h4>
-          <span>Slosh.ai</span>
+    <div class="test-row">
+        <div class="test-image">
+            <img src="https://qtxasset.com/quartz/qcloud5/media/image/fiercehealthcare/1640017111/GettyImages-1186776186.jpg/GettyImages-1186776186.jpg?VersionId=BbcaRRqcvIGkwML.7qifpMMtTVWG7_.H" alt="AI Interface">
         </div>
-      </div>
+        <div class="test-content">
+            <span class="quote-icon">“</span>
+            <h2>Advancing Radiology with AI Precision</h2>
+            <p>LoopM was a strategic partner in our journey to modernize healthcare diagnostics. Their ability to integrate deep AI into our radiology workflow resulted in diagnostic speeds that were previously impossible.</p>
+            <div class="author-meta">
+                <div class="line"></div>
+                <span>The AI Team at Slosh.ai</span>
+            </div>
+        </div>
     </div>
 
-    <div class="test-card">
-      <div class="test-img-wrap">
-        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop" alt="Digital Ecosystem">
-      </div>
-      <div class="test-content">
-        <span class="quote-icon">“</span>
-        <p>The web ecosystem LoopM built for us is seamless. Connecting Artists, Owners, and Visitors in one secure platform has allowed our business to scale beyond expectations.</p>
-        <div class="test-footer">
-          <h4>Operations Director</h4>
-          <span>Kazaroo Ecosystem</span>
+    <div class="test-row">
+        <div class="test-image">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop" alt="Web Code">
         </div>
-      </div>
+        <div class="test-content">
+            <span class="quote-icon">“</span>
+            <h2>A Unified Creative Ecosystem</h2>
+            <p>Creating a platform that balances the needs of Artists, Owners, and Visitors was a massive task. LoopM built an ecosystem that is not only secure and functional but incredibly smooth to navigate.</p>
+            <div class="author-meta">
+                <div class="line"></div>
+                <span>Product Head, Kazaroo</span>
+            </div>
+        </div>
     </div>
 
-    <div class="test-card">
-      <div class="test-img-wrap">
-        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" alt="Global News">
-      </div>
-      <div class="test-content">
-        <span class="quote-icon">“</span>
-        <p>A global dissemination engine requires unmatched performance. LoopM delivered a high-speed portal for our financial news that serves real-time insights to a massive international audience.</p>
-        <div class="test-footer">
-          <h4>Technical Head</h4>
-          <span>New to the Street (FNN)</span>
+    <div class="test-row">
+        <div class="test-image">
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" alt="Global Network">
         </div>
-      </div>
+        <div class="test-content">
+            <span class="quote-icon">“</span>
+            <h2>Global News Dissemination at Scale</h2>
+            <p>Reliability is everything in financial news. LoopM delivered a high-performance dissemination engine that allows us to serve real-time interviews and insights to an international audience with zero downtime.</p>
+            <div class="author-meta">
+                <div class="line"></div>
+                <span>Lead Engineer, FNN Network</span>
+            </div>
+        </div>
     </div>
 
-    <div class="test-card">
-      <div class="test-img-wrap">
-        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="Advertising Tech">
-      </div>
-      <div class="test-content">
-        <span class="quote-icon">“</span>
-        <p>VISU represents the future of advertising. LoopM created a flexible, user-friendly platform that perfectly connects our advertisers and users through smart data.</p>
-        <div class="test-footer">
-          <h4>Founder</h4>
-          <span>VISU Advertising</span>
+    <div class="test-row">
+        <div class="test-image">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" alt="Abstract Tech">
         </div>
-      </div>
+        <div class="test-content">
+            <span class="quote-icon">“</span>
+            <h2>The Future of Advertising Tech</h2>
+            <p>VISU required a platform that was as flexible as it was powerful. LoopM sculpted a data-driven interface that seamlessly connects advertisers and audiences through smart technology.</p>
+            <div class="author-meta">
+                <div class="line"></div>
+                <span>Operations, VISU Advertising</span>
+            </div>
+        </div>
     </div>
 
-  </div>
-</section>
+</div>
 
 <footer>
   <p>© 2026 LOOPM TECHNOLOGIES (PVT) LTD. | ISLAMABAD</p>
@@ -266,9 +291,19 @@ footer p{font-size:14px;color:#444; letter-spacing:1px;}
 <script>
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
+const dropdowns = document.querySelectorAll('.dropdown');
+
 hamburger.addEventListener('click', () => {
   navMenu.classList.toggle('show');
   hamburger.classList.toggle('active');
+});
+
+dropdowns.forEach(drop => {
+  drop.addEventListener('click', () => {
+    if(window.innerWidth <= 768){
+      drop.classList.toggle('active');
+    }
+  });
 });
 </script>
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How We Deliver | LoopM Technologies</title>
+<title>The Delivery Path | LoopM Technologies</title>
 <link rel="icon" type="image/png" href="assets/images/fevicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -49,26 +49,22 @@ nav{display:flex;align-items:center;gap:30px;}
 /* ================= HERO ================= */
 .hero{
   text-align:center;
-  padding:160px 20px 80px 20px;
-  background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)), url("assets/images/process-bg.jpg") center/cover no-repeat;
+  padding:180px 20px 100px 20px;
+  /* Darkened background image */
+  background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.9)), url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop") center/cover no-repeat;
 }
-.hero h1{font-size:48px;font-weight:800;margin-bottom:20px;}
-.hero p{font-size:18px;color:#ddd;max-width:800px;margin:0 auto;line-height:1.8;}
+.hero h1{font-size:56px;font-weight:800;margin-bottom:20px; letter-spacing:-2px;}
+.hero p{font-size:18px;color:#888;max-width:800px;margin:0 auto;line-height:1.8;}
 
 /* ================= PROCESS STEPS ================= */
 .process-section{padding:100px 40px; max-width:1200px; margin:auto;}
-
-.process-grid{
-  display:flex;
-  flex-direction: column;
-  gap:80px;
-}
+.process-grid{display:flex; flex-direction: column; gap:120px;}
 
 .step-item{
   display:grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap:60px;
+  gap:80px;
 }
 
 .step-item:nth-child(even){direction: rtl;}
@@ -76,49 +72,69 @@ nav{display:flex;align-items:center;gap:30px;}
 
 .step-img-area{
   width:100%;
-  border-radius:20px;
+  height:450px;
+  border-radius:30px;
   overflow:hidden;
-  border:1px solid #222;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  border:1px solid #1a1a1a;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+}
+
+/* Black and White Filter on Images */
+.step-img-area img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter: grayscale(100%) brightness(0.7);
+    transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.step-item:hover .step-img-area img{
+    filter: grayscale(0%) brightness(0.9);
+    transform: scale(1.05);
 }
 
 .step-content h3{
   color:#C1141C;
-  font-size:14px;
+  font-size:12px;
   text-transform:uppercase;
-  letter-spacing:2px;
-  margin-bottom:10px;
+  letter-spacing:4px;
+  margin-bottom:15px;
+  font-weight:700;
 }
 .step-content h2{
-  font-size:32px;
-  margin-bottom:20px;
+  font-size:38px;
+  margin-bottom:25px;
   color:#fff;
+  font-weight:800;
+  letter-spacing:-1px;
 }
 .step-content p{
-  color:#bbb;
-  line-height:1.8;
-  font-size:16px;
+  color:#777;
+  line-height:1.9;
+  font-size:17px;
 }
 
 /* ================= LARGE IMAGE BREAKS ================= */
 .full-width-image{
     width:100%;
-    height:450px;
-    background: url('assets/images/workflow.jpg') center/cover fixed no-repeat;
-    margin:60px 0;
-    border-top: 1px solid #C1141C;
-    border-bottom: 1px solid #C1141C;
+    height:500px;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop') center/cover fixed no-repeat;
+    margin:100px 0;
+    border-top: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+    filter: grayscale(100%);
 }
 
 /* ================= FOOTER ================= */
-footer{text-align:center;padding:40px;background:#111;}
-footer p{font-size:14px;color:#ccc;}
+footer{text-align:center;padding:80px 40px;background:#050505; border-top:1px solid #111;}
+footer p{font-size:14px;color:#333; letter-spacing:1px;}
 
 /* ================= MOBILE ================= */
 @media (max-width:992px){
-  .step-item{grid-template-columns: 1fr; gap:30px;}
+  .step-item{grid-template-columns: 1fr; gap:40px;}
   .step-item:nth-child(even){direction: ltr;}
-  .process-section{padding:60px 20px;}
+  .step-img-area{height:350px;}
+  .hero h1{font-size:42px;}
 }
 
 @media (max-width:768px){
@@ -132,7 +148,6 @@ footer p{font-size:14px;color:#ccc;}
   .nav-menu li.active .dropdown-menu{display:block;}
   .hamburger{display:flex;order:2;}
   .nav-btn{order:1;width:100%;text-align:center;margin-top:10px;}
-  .hero h1{font-size:32px;}
 }
 </style>
 </head>
@@ -143,13 +158,48 @@ footer p{font-size:14px;color:#ccc;}
   <div class="logo"><a href="index.html"><img src="assets/images/logo.png" alt="LoopM Logo"></a></div>
   <nav>
     <ul class="nav-menu" id="nav-menu">
-      <li class="dropdown"><a href="#">What We Do</a><ul class="dropdown-menu"><li><a href="web.html">Web Development</a></li><li><a href="mobile.html">Mobile Apps</a></li><li><a href="ai.html">AI Services</a></li><li><a href="cloud.html">Cloud Solutions</a></li><li><a href="graphic.html">Graphic Design</a></li><li><a href="uiux.html">UI/UX Design</a></li><li><a href="erp.html">ERP</a></li><li><a href="bs.html">Business Solutions</a></li></ul></li>
-      <li class="dropdown"><a href="#">Who We Help</a><ul class="dropdown-menu"><li><a href="startups.html">Startups</a></li><li><a href="enterprise.html">Enterprises</a></li><li><a href="agencies.html">Agencies</a></li><li><a href="ngo.html">NGOs</a></li></ul></li>
-      <li class="dropdown"><a href="#">Who We Are</a><ul class="dropdown-menu"><li><a href="about.html">About Us</a></li><li><a href="team.html">Team</a></li><li><a href="culture.html">Culture</a></li></ul></li>
-      <li class="dropdown"><a href="#">How We Deliver</a><ul class="dropdown-menu"><li><a href="process.html">Process</a></li><li><a href="casestudies.html">Case Studies</a></li><li><a href="test.html">Testimonials</a></li></ul></li>
+      <li class="dropdown">
+        <a href="#">What We Do</a>
+        <ul class="dropdown-menu">
+          <li><a href="web.html">Web Development</a></li>
+          <li><a href="mobile.html">Mobile Apps</a></li>
+          <li><a href="ai.html">AI Services</a></li>
+          <li><a href="cloud.html">Cloud Solutions</a></li>
+          <li><a href="graphic.html">Graphic Design</a></li>
+          <li><a href="uiux.html">UI/UX Design</a></li>
+          <li><a href="erp.html">ERP</a></li>
+          <li><a href="bs.html">Business Solutions</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Who We Help</a>
+        <ul class="dropdown-menu">
+          <li><a href="startups.html">Startups</a></li>
+          <li><a href="enterprise.html">Enterprises</a></li>
+          <li><a href="agencies.html">Agencies</a></li>
+          <li><a href="ngo.html">NGOs</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Who We Are</a>
+        <ul class="dropdown-menu">
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="culture.html">Culture</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">How We Deliver</a>
+        <ul class="dropdown-menu">
+          <li><a href="process.html">Process</a></li>
+          <li><a href="casestudies.html">Case Studies</a></li>
+          <li><a href="test.html">Testimonials</a></li>
+        </ul>
+      </li>
       <li><a href="https://wa.me/923209976848">Join LoopM</a></li>
     </ul>
   </nav>
+
   <div class="header-right">
     <div class="nav-btn"><a href="https://wa.me/923209976848" class="cta-btn">Let's Talk Business</a></div>
     <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
@@ -158,7 +208,7 @@ footer p{font-size:14px;color:#ccc;}
 
 <section class="hero">
   <h1>The Delivery Path</h1>
-  <p>Our process is a journey from raw concept to a refined digital masterpiece. We follow a sculpture-smooth workflow that ensures precision at every milestone.</p>
+  <p>A journey from raw concept to digital masterpiece. Our structured methodology ensures every project is scalable, secure, and aligned with your business growth.</p>
 </section>
 
 <section class="process-section">
@@ -166,23 +216,23 @@ footer p{font-size:14px;color:#ccc;}
     
     <div class="step-item">
       <div class="step-content">
-        <h3>Step 01</h3>
-        <h2>Discovery & Strategy</h2>
-        <p>Before we write a single line of code, we dive deep into your business ecosystem. We identify pain points, define user personas, and establish technical requirements. This phase ensures the foundation of your project is unbreakable.</p>
+        <h3>Phase 01</h3>
+        <h2>Discovery & Consultation</h2>
+        <p>Before engineering begins, we perform a deep-dive into your ecosystem. We analyze operational challenges, define technical requirements, and establish a strategic roadmap that eliminates uncertainty.</p>
       </div>
       <div class="step-img-area">
-        <img src="assets/images/discovery.jpg" alt="Strategy Phase">
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop" alt="Consultation">
       </div>
     </div>
 
     <div class="step-item">
       <div class="step-content">
-        <h3>Step 02</h3>
-        <h2>Prototyping & Design</h2>
-        <p>Our designers create "unrealistically smooth" UI/UX wireframes. We focus on the user journey, ensuring that every interaction is intuitive. You get to see the digital sculpture taking shape before the engineering begins.</p>
+        <h3>Phase 02</h3>
+        <h2>Strategic Planning</h2>
+        <p>We map out the architecture of your solution. From database design to user journeys, our planning phase ensures that the final product is built for long-term scalability and performance.</p>
       </div>
       <div class="step-img-area">
-        <img src="assets/images/design-phase.jpg" alt="Design Phase">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop" alt="Strategy">
       </div>
     </div>
 
@@ -190,34 +240,34 @@ footer p{font-size:14px;color:#ccc;}
 
     <div class="step-item">
       <div class="step-content">
-        <h3>Step 03</h3>
-        <h2>Agile Development</h2>
-        <p>This is where Farhan Ahmed and the dev team turn designs into reality. Using modern stacks, we build in two-week sprints, keeping you updated with live staging links so you can track progress in real-time.</p>
+        <h3>Phase 03</h3>
+        <h2>Custom Engineering</h2>
+        <p>Our developers translate the roadmap into robust code. Using modern stacks, we focus on clean architecture and smooth interactions, building your "digital sculpture" with precision and care.</p>
       </div>
       <div class="step-img-area">
-        <img src="assets/images/dev-phase.jpg" alt="Development Phase">
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="Development">
       </div>
     </div>
 
     <div class="step-item">
       <div class="step-content">
-        <h3>Step 04</h3>
+        <h3>Phase 04</h3>
         <h2>Quality Assurance</h2>
-        <p>We don't launch until it's perfect. Our QA team performs rigorous stress tests, security audits, and cross-browser checks to ensure the product is stable, fast, and secure under any load.</p>
+        <p>We don't just launch; we validate. Every project undergoes rigorous stress testing, security audits, and cross-browser checks to ensure it is stable and secure before reaching your users.</p>
       </div>
       <div class="step-img-area">
-        <img src="assets/images/qa-phase.jpg" alt="QA Phase">
+        <img src="https://images.unsplash.com/photo-1581092921461-7d15cb8905ed?q=80&w=2070&auto=format&fit=crop" alt="QA">
       </div>
     </div>
 
     <div class="step-item">
       <div class="step-content">
-        <h3>Step 05</h3>
-        <h2>Launch & Scaling</h2>
-        <p>We handle the deployment and cloud setup. But we don't just "leave." We monitor the performance and help you scale as your user base grows, ensuring long-term digital success.</p>
+        <h3>Phase 05</h3>
+        <h2>Launch & Support</h2>
+        <p>Deployment is just the beginning. We handle the cloud setup and provide ongoing support to monitor performance, ensuring your system continues to scale alongside your business.</p>
       </div>
       <div class="step-img-area">
-        <img src="assets/images/launch.jpg" alt="Launch Phase">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" alt="Launch">
       </div>
     </div>
 
@@ -225,7 +275,7 @@ footer p{font-size:14px;color:#ccc;}
 </section>
 
 <footer>
-  <p>© 2026 LoopM Technologies. All rights reserved.</p>
+  <p>© 2026 LOOPM TECHNOLOGIES (PVT) LTD. | ISLAMABAD</p>
 </footer>
 
 <script>
