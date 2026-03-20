@@ -1,434 +1,269 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Team | LoopM Technologies</title>
-
-<link rel="icon" href="assets/images/fevicon.png">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>Our Team | LoopM Technologies</title>
+<link rel="icon" type="image/png" href="assets/images/fevicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* Reset & Base Styles */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans', sans-serif;}
+body{background:#000;color:#fff;scroll-behavior:smooth;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
 
-:root{
---primary:#224989;
---accent:#C1141C;
---dark:#0f1f3d;
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
-body{
-background:#000;
-color:#fff;
-overflow-x:hidden;
-}
-
-/* NAVBAR */
-
+/* ================= HEADER (Exact ERP/About Sync) ================= */
 header{
-position:fixed;
-top:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 60px;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(12px);
-z-index:999;
+  position:fixed;top:0;left:0;width:100%;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;
+  backdrop-filter:blur(12px);background:rgba(0,0,0,0.85);z-index:999;
 }
-
-.logo img{
-height:45px;
-}
+.logo img{height:50px;transition:0.3s;}
+nav{display:flex;align-items:center;gap:30px;}
 
 .nav-menu{
-display:flex;
-gap:35px;
-list-style:none;
+  display:flex;
+  list-style:none;
+  gap:20px;
+  align-items:center;
 }
+.nav-menu li{position:relative;}
+.nav-menu li a{color:#fff;font-weight:600;padding:8px 12px;display:block;transition:0.3s;}
+.nav-menu li a:hover{color:#C1141C;}
 
-.nav-menu a{
-text-decoration:none;
-color:#fff;
-font-weight:500;
-position:relative;
+.dropdown-menu{
+  position:absolute;
+  top:100%;
+  left:0;
+  background:rgba(0,0,0,0.95);
+  list-style:none;
+  padding:10px 0;
+  display:none;
+  min-width:180px;
+  border-radius:8px;
+  z-index:998;
 }
+.dropdown-menu li a{padding:8px 15px;}
+.dropdown:hover .dropdown-menu{display:block;}
 
-.nav-menu a::after{
-content:"";
-position:absolute;
-left:0;
-bottom:-5px;
-height:2px;
-width:0%;
-background:var(--accent);
-transition:.4s;
+.header-right{display:flex;align-items:center;gap:10px;margin-left:auto;}
+
+.nav-btn .cta-btn{
+  padding:8px 20px;background:linear-gradient(45deg,#C1141C,#224989);color:#fff;border-radius:25px;font-weight:600;transition:0.3s;
 }
+.nav-btn .cta-btn:hover{filter:brightness(1.1);}
 
-.nav-menu a:hover::after{
-width:100%;
-}
+.hamburger{display:none;flex-direction:column;justify-content:space-between;width:25px;height:18px;cursor:pointer;}
+.hamburger span{display:block;height:3px;width:100%;background:#fff;border-radius:2px;transition:0.3s;}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.active span:nth-child(2){opacity:0;}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
 
-.cta-btn{
-background:linear-gradient(45deg,var(--accent),var(--primary));
-padding:10px 25px;
-border-radius:25px;
-text-decoration:none;
-color:#fff;
-font-weight:600;
-transition:.4s;
-}
-
-.cta-btn:hover{
-transform:scale(1.1);
-box-shadow:0 0 20px var(--accent);
-}
-
-/* HERO */
-
+/* ================= HERO ================= */
 .hero{
-height:60vh;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-
-background:
-linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),
-url("assets/images/Bg.png") center/cover;
+  text-align:center;
+  padding:160px 20px 80px 20px;
+  background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("assets/images/team-bg.jpg") center/cover no-repeat;
 }
+.hero h1{font-size:48px;font-weight:800;margin-bottom:20px;}
+.hero p{font-size:18px;color:#ddd;max-width:800px;margin:0 auto;line-height:1.8;}
 
-.hero h1{
-font-size:60px;
-font-weight:800;
-
-background:linear-gradient(90deg,#C1141C,#224989,#C1141C);
-background-size:200%;
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-
-animation:gradientMove 5s infinite linear;
-}
-
-@keyframes gradientMove{
-0%{background-position:0%;}
-100%{background-position:200%;}
-}
-
-/* TEAM SECTION */
-
-.team-section{
-padding:120px 10%;
-}
-
-.section-title{
-text-align:center;
-font-size:42px;
-margin-bottom:80px;
-font-weight:700;
-}
-
-/* GRID */
+/* ================= TEAM GRID ================= */
+.team-section{padding:80px 40px;text-align:center;max-width:1200px;margin:auto;}
+.team-section h2{font-size:36px;margin-bottom:50px;color:#C1141C;}
 
 .team-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:30px;
 }
-
-/* CARD */
 
 .team-card{
-background:rgba(255,255,255,0.05);
-border-radius:20px;
-padding:40px;
-text-align:center;
-backdrop-filter:blur(12px);
-border:1px solid rgba(255,255,255,0.1);
-transition:.5s;
-position:relative;
-overflow:hidden;
+  background:#111;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid #1a1a1a;
+  transition:0.4s;
+  text-align:center;
+  padding-bottom:25px;
 }
+.team-card:hover{transform:translateY(-10px);border-color:#C1141C;box-shadow: 0 10px 30px rgba(193, 20, 28, 0.1);}
 
-.team-card:hover{
-transform:translateY(-12px) scale(1.03);
-box-shadow:0 20px 40px rgba(0,0,0,.6);
+.member-img-wrap{
+  width:100%;
+  aspect-ratio: 1 / 1;
+  overflow:hidden;
+  margin-bottom:20px;
+  background:#222; /* Placeholder color while image loads */
 }
-
-.team-card img{
-width:120px;
-height:120px;
-border-radius:50%;
-border:4px solid var(--primary);
-margin-bottom:20px;
-transition:.4s;
+.member-img-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:0.5s;
 }
+.team-card:hover .member-img-wrap img{transform:scale(1.05);}
 
-.team-card:hover img{
-transform:scale(1.1);
-border-color:var(--accent);
+.team-card h3{font-size:22px;margin-bottom:8px;color:#fff;}
+.team-card p{font-size:14px;color:#C1141C;font-weight:700;text-transform:uppercase;letter-spacing:1px;}
+
+/* ================= FOOTER ================= */
+footer{text-align:center;padding:40px;background:#111;}
+footer p{font-size:14px;color:#ccc;}
+
+/* ================= MOBILE RESPONSIVE ================= */
+@media (max-width:768px){
+  header{padding:16px 16px;flex-wrap:wrap;}
+  nav{width:100%;order:2;}
+  .nav-menu{
+    flex-direction:column;
+    gap:15px;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.3s ease;
+    width:100%;
+  }
+  .nav-menu.show{max-height:600px; padding:20px 0;}
+  .dropdown-menu{position:static;background:rgba(0,0,0,0.9);border-radius:0;display:none;}
+  .nav-menu li.active .dropdown-menu{display:block;}
+  
+  .hamburger{display:flex;order:2;}
+  .nav-btn{order:1;width:100%;text-align:center;margin-top:10px;}
+  
+  .hero h1{font-size:32px;}
+  .team-section{padding:50px 20px;}
+  .team-grid{grid-template-columns:1fr; max-width:400px; margin:auto;}
 }
-
-.team-card h3{
-font-size:20px;
-margin-bottom:5px;
-}
-
-.team-card span{
-color:var(--accent);
-font-size:14px;
-display:block;
-margin-bottom:10px;
-}
-
-.team-card p{
-font-size:14px;
-color:#ccc;
-margin-bottom:15px;
-}
-
-/* SOCIAL */
-
-.social{
-display:flex;
-justify-content:center;
-gap:15px;
-opacity:0;
-transform:translateY(10px);
-transition:.4s;
-}
-
-.team-card:hover .social{
-opacity:1;
-transform:translateY(0);
-}
-
-.social i{
-background:#111;
-padding:10px;
-border-radius:50%;
-transition:.3s;
-cursor:pointer;
-}
-
-.social i:hover{
-background:var(--accent);
-}
-
-/* FOOTER */
-
-.business-footer{
-background:var(--primary);
-padding:80px 10%;
-}
-
-.footer-container{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:40px;
-}
-
-footer{
-background:#000;
-text-align:center;
-padding:20px;
-}
-
-/* PARTICLES */
-
-#particles-js{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
-}
-
-/* SCROLL ANIMATION */
-
-.reveal{
-opacity:0;
-transform:translateY(50px);
-transition:1s ease;
-}
-
-.reveal.active{
-opacity:1;
-transform:translateY(0);
-}
-
 </style>
 </head>
 
 <body>
 
-<div id="particles-js"></div>
-
 <header>
+  <div class="logo"><a href="index.html"><img src="assets/images/logo.png" alt="LoopM Logo"></a></div>
 
-<div class="logo">
-<img src="assets/images/logo.png">
-</div>
+  <nav>
+    <ul class="nav-menu" id="nav-menu">
+      <li class="dropdown">
+        <a href="#">What We Do</a>
+        <ul class="dropdown-menu">
+          <li><a href="web.html">Web Development</a></li>
+          <li><a href="mobile.html">Mobile Apps</a></li>
+          <li><a href="ai.html">AI Services</a></li>
+          <li><a href="cloud.html">Cloud Solutions</a></li>
+          <li><a href="graphic.html">Graphic Design</a></li>
+          <li><a href="uiux.html">UI/UX Design</a></li>
+          <li><a href="erp.html">ERP</a></li>
+          <li><a href="bs.html">Business Solutions</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Who We Help</a>
+        <ul class="dropdown-menu">
+          <li><a href="startups.html">Startups</a></li>
+          <li><a href="enterprise.html">Enterprises</a></li>
+          <li><a href="agencies.html">Agencies</a></li>
+          <li><a href="ngo.html">NGOs</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Who We Are</a>
+        <ul class="dropdown-menu">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="culture.html">Culture</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">How We Deliver</a>
+        <ul class="dropdown-menu">
+          <li><a href="process.html">Process</a></li>
+          <li><a href="casestudies.html">Case Studies</a></li>
+          <li><a href="test.html">Testimonials</a></li>
+        </ul>
+      </li>
+      <li><a href="https://wa.me/923209976848">Join LoopM</a></li>
+    </ul>
+  </nav>
 
-<ul class="nav-menu">
-<li><a href="#">Home</a></li>
-<li><a href="#">What We Do</a></li>
-<li><a href="#">Who We Help</a></li>
-<li><a href="#">Who We Are</a></li>
-<li><a href="#">Team</a></li>
-</ul>
-
-<a href="#" class="cta-btn">Let's Talk Business</a>
-
+  <div class="header-right">
+    <div class="nav-btn">
+      <a href="https://wa.me/923209976848" class="cta-btn">Let's Talk Business</a>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
 </header>
 
-<!-- HERO -->
-
 <section class="hero">
-<h1>Meet Our Team</h1>
+  <h1>Meet the Team</h1>
+  <p>The innovative minds behind LoopM Technologies. We combine expertise with passion to deliver world-class digital solutions.</p>
+  <p>1. Abdul Moiz | CEO & Founder
+The Strategy & Vision As the driving force behind LoopM Technologies, Abdul Moiz specializes in aligning cutting-edge technology with high-level business goals. With a focus on scalability and innovation, he ensures that every project handled by LoopM isn't just a product, but a long-term asset for the client. His leadership is defined by a commitment to transparency and the pursuit of excellence in the global tech landscape.
+</p>
+  <p>2. Zain Muneer | Lead Generation Specialist
+The Growth Engine Zain Muneer is the bridge between LoopM’s technical capabilities and the businesses that need them most. Expert in market analysis and strategic outreach, Zain identifies opportunities where digital transformation can make the biggest impact. He ensures that our solutions reach the right partners, fostering sustainable growth and building the long-term relationships that LoopM is known for.
+</p>
+  <p>3. Farhan Ahmed | Full-Stack Developer
+The Technical Architect Farhan Ahmed is the engine behind the code. Specializing in Software Engineering and Full-Stack development, Farhan translates complex business requirements into high-performance digital reality. From robust ERP systems to sleek mobile interfaces, his focus is on writing clean, scalable code that prioritizes speed, security, and an "unrealistically smooth" user experience.</p>
 </section>
-
-<!-- TEAM -->
 
 <section class="team-section">
+  <h2>Our Leadership & Core Team</h2>
+  
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="member-img-wrap">
+        <img src="assets/images/moiz.jpg" alt="Abdul Moiz">
+      </div>
+      <h3>Abdul Moiz</h3>
+      <p>CEO & Founder</p>
+    </div>
 
-<h2 class="section-title reveal">Leadership & Experts</h2>
+    <div class="team-card">
+      <div class="member-img-wrap">
+        <img src="assets/images/zain.jpg" alt="Zain Muneer">
+      </div>
+      <h3>Zain Muneer</h3>
+      <p>Lead Generation Specialist</p>
+    </div>
 
-<div class="team-grid">
-
-<div class="team-card reveal">
-<img src="https://randomuser.me/api/portraits/men/32.jpg">
-<h3>Muhammad Ali</h3>
-<span>Founder & CEO</span>
-<p>Leading digital transformation strategies.</p>
-<div class="social">
-<i class="fab fa-linkedin"></i>
-<i class="fab fa-twitter"></i>
-<i class="fab fa-github"></i>
-</div>
-</div>
-
-<div class="team-card reveal">
-<img src="https://randomuser.me/api/portraits/women/44.jpg">
-<h3>Sarah Khan</h3>
-<span>Head of Development</span>
-<p>Expert in scalable web applications.</p>
-<div class="social">
-<i class="fab fa-linkedin"></i>
-<i class="fab fa-twitter"></i>
-<i class="fab fa-github"></i>
-</div>
-</div>
-
-<div class="team-card reveal">
-<img src="https://randomuser.me/api/portraits/men/65.jpg">
-<h3>Ali Raza</h3>
-<span>AI & Automation Lead</span>
-<p>Building AI-driven solutions.</p>
-<div class="social">
-<i class="fab fa-linkedin"></i>
-<i class="fab fa-twitter"></i>
-<i class="fab fa-github"></i>
-</div>
-</div>
-
-<div class="team-card reveal">
-<img src="https://randomuser.me/api/portraits/women/68.jpg">
-<h3>Ayesha Malik</h3>
-<span>UI / UX Designer</span>
-<p>Crafting user-centered experiences.</p>
-<div class="social">
-<i class="fab fa-linkedin"></i>
-<i class="fab fa-dribbble"></i>
-<i class="fab fa-behance"></i>
-</div>
-</div>
-
-</div>
-
-</section>
-
-<!-- FOOTER -->
-
-<section class="business-footer">
-
-<div class="footer-container">
-
-<div>
-<h3>LoopM Technologies</h3>
-<p>Building scalable digital solutions.</p>
-</div>
-
-<div>
-<h4>Head Office</h4>
-<p>Rawalpindi, Pakistan</p>
-</div>
-
-<div>
-<h4>Contact</h4>
-<p>info@loopmtech.com</p>
-</div>
-
-</div>
-
+    <div class="team-card">
+      <div class="member-img-wrap">
+        <img src="assets/images/farhan.jpg" alt="Farhan Ahmed">
+      </div>
+      <h3>Farhan Ahmed</h3>
+      <p>Full-Stack Developer</p>
+    </div>
+  </div>
 </section>
 
 <footer>
-<p>© 2026 LoopM Technologies</p>
+  <p>© 2026 LoopM Technologies. All rights reserved.</p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-
 <script>
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+const dropdowns = document.querySelectorAll('.nav-menu .dropdown');
 
-particlesJS("particles-js",{
-particles:{
-number:{value:80},
-size:{value:3},
-move:{speed:2},
-line_linked:{enable:true}
-}
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('show');
+  hamburger.classList.toggle('active');
 });
 
-/* SCROLL REVEAL */
-
-function reveal(){
-
-let reveals=document.querySelectorAll(".reveal");
-
-for(let i=0;i<reveals.length;i++){
-
-let windowHeight=window.innerHeight;
-let elementTop=reveals[i].getBoundingClientRect().top;
-let elementVisible=100;
-
-if(elementTop < windowHeight - elementVisible){
-reveals[i].classList.add("active");
-}
-
-}
-
-}
-
-window.addEventListener("scroll", reveal);
-
+dropdowns.forEach(drop => {
+  drop.addEventListener('click', () => {
+    if(window.innerWidth <= 768){
+      drop.classList.toggle('active');
+    }
+  });
+});
 </script>
 
 </body>
 </html>
-```

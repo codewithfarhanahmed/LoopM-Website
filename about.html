@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | LoopM Technologies</title>
+<link rel="icon" type="image/png" href="assets/images/fevicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* Reset & Base Styles */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans', sans-serif;}
+body{background:#000;color:#fff;scroll-behavior:smooth;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+
+/* ================= HEADER (Exact ERP Implementation) ================= */
+header{
+  position:fixed;top:0;left:0;width:100%;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;
+  backdrop-filter:blur(12px);background:rgba(0,0,0,0.85);z-index:999;
+}
+.logo img{height:50px;transition:0.3s;}
+nav{display:flex;align-items:center;gap:30px;}
+
+.nav-menu{
+  display:flex;
+  list-style:none;
+  gap:20px;
+  align-items:center;
+}
+.nav-menu li{position:relative;}
+.nav-menu li a{color:#fff;font-weight:600;padding:8px 12px;display:block;transition:0.3s;}
+.nav-menu li a:hover{color:#C1141C;}
+
+.dropdown-menu{
+  position:absolute;
+  top:100%;
+  left:0;
+  background:rgba(0,0,0,0.95);
+  list-style:none;
+  padding:10px 0;
+  display:none;
+  min-width:180px;
+  border-radius:8px;
+  z-index:998;
+}
+.dropdown-menu li a{padding:8px 15px;}
+.dropdown:hover .dropdown-menu{display:block;}
+
+.header-right{display:flex;align-items:center;gap:10px;margin-left:auto;}
+
+/* CTA Button */
+.nav-btn .cta-btn{
+  padding:8px 20px;background:linear-gradient(45deg,#C1141C,#224989);color:#fff;border-radius:25px;font-weight:600;transition:0.3s;
+}
+.nav-btn .cta-btn:hover{filter:brightness(1.1);}
+
+/* Hamburger (Exact ERP Morphing) */
+.hamburger{display:none;flex-direction:column;justify-content:space-between;width:25px;height:18px;cursor:pointer;}
+.hamburger span{display:block;height:3px;width:100%;background:#fff;border-radius:2px;transition:0.3s;}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.active span:nth-child(2){opacity:0;}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* ================= CONTENT SECTIONS ================= */
+.hero{
+  text-align:center;
+  padding:160px 20px 80px 20px;
+  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url("assets/images/about-bg.jpg") center/cover no-repeat;
+}
+.hero h1{font-size:48px;font-weight:800;margin-bottom:20px;}
+.hero p{font-size:18px;color:#ddd;max-width:850px;margin:0 auto 30px;line-height:1.8;}
+
+.section{padding:70px 40px;text-align:center;max-width:1200px;margin:auto;}
+.section h2{font-size:36px;margin-bottom:20px;color:#C1141C;}
+.section p{color:#bbb;line-height:1.7;font-size:16px;max-width:900px;margin:20px auto 0;}
+
+/* Responsive Grid for Mission/Values/Why */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:25px;
+  margin-top:40px;
+}
+.card{
+  background:#111;
+  padding:30px;
+  border-radius:15px;
+  border:1px solid #1a1a1a;
+  transition:0.3s;
+  text-align:left;
+}
+.card:hover{transform:translateY(-5px);border-color:#C1141C;}
+.card h3{margin-bottom:15px;color:#C1141C;font-size:22px;}
+.card p{color:#bbb;font-size:14px;line-height:1.6;}
+
+.about-img{
+  width:100%;
+  max-width:950px;
+  margin:50px auto;
+  border-radius:15px;
+  border:1px solid #333;
+}
+
+footer{text-align:center;padding:40px;background:#111;}
+footer p{font-size:14px;color:#ccc;}
+
+/* ================= MOBILE RESPONSIVE (Exact ERP Logic) ================= */
+@media (max-width:768px){
+  header{padding:16px 16px;flex-wrap:wrap;}
+  nav{width:100%;order:2;}
+  .nav-menu{
+    flex-direction:column;
+    gap:15px;
+    max-height:0; /* Controlled by JS show class */
+    overflow:hidden;
+    transition:max-height 0.3s ease;
+    width:100%;
+  }
+  .nav-menu.show{max-height:600px; padding:20px 0;}
+  
+  .dropdown-menu{position:static;background:rgba(10,10,10,0.95);border-radius:0;display:none;}
+  .nav-menu li.active .dropdown-menu{display:block;}
+  
+  .hamburger{display:flex;order:2;}
+  .nav-btn{order:1;width:100%;text-align:center;margin-top:10px;}
+  .nav-btn .cta-btn{display:inline-block;margin-bottom:10px;}
+  
+  .hero h1{font-size:32px;}
+  .section{padding:50px 20px;}
+  .grid{grid-template-columns:1fr;} /* Stack cards on mobile */
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo"><a href="index.html"><img src="assets/images/logo.png" alt="LoopM Logo"></a></div>
+
+  <nav>
+    <ul class="nav-menu" id="nav-menu">
+      <li class="dropdown">
+        <a href="#">What We Do</a>
+        <ul class="dropdown-menu">
+          <li><a href="web.html">Web Development</a></li>
+          <li><a href="mobile.html">Mobile Apps</a></li>
+          <li><a href="ai.html">AI Services</a></li>
+          <li><a href="cloud.html">Cloud Solutions</a></li>
+          <li><a href="graphic.html">Graphic Design</a></li>
+          <li><a href="uiux.html">UI/UX Design</a></li>
+          <li><a href="erp.html">ERP</a></li>
+          <li><a href="bs.html">Business Solutions</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Who We Help</a>
+        <ul class="dropdown-menu">
+          <li><a href="startups.html">Startups</a></li>
+          <li><a href="enterprise.html">Enterprises</a></li>
+          <li><a href="agencies.html">Agencies</a></li>
+          <li><a href="ngo.html">NGOs</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Who We Are</a>
+        <ul class="dropdown-menu">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="culture.html">Culture</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">How We Deliver</a>
+        <ul class="dropdown-menu">
+          <li><a href="process.html">Process</a></li>
+          <li><a href="casestudies.html">Case Studies</a></li>
+          <li><a href="test.html">Testimonials</a></li>
+        </ul>
+      </li>
+      <li><a href="https://wa.me/923209976848">Join LoopM</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-right">
+    <div class="nav-btn">
+      <a href="https://wa.me/923209976848" class="cta-btn">Let's Talk Business</a>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>About LoopM</h1>
+  <p>We build scalable digital solutions that empower businesses worldwide. Our approach combines creativity, cutting-edge technology, and deep industry insights to ensure every project exceeds expectations.</p>
+</section>
+
+<section class="section">
+  <h2>Who We Are</h2>
+  <p>LoopM Technologies is a modern digital company delivering web, mobile, AI, and enterprise solutions for startups and global businesses. Our team of skilled developers, designers, and strategists work together to create robust digital experiences that align with your vision.</p>
+  <img src="assets/images/meet.jpg" alt="Team Meeting" class="about-img">
+</section>
+
+<section class="section">
+  <h2>Our Mission</h2>
+  <p>To deliver scalable, innovative, and reliable digital solutions that drive business growth and long-term success. We aim to empower organizations with technology that streamlines operations, enhances customer engagement, and opens new market opportunities.</p>
+</section>
+
+<section class="section">
+  <h2>Core Values</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Innovation</h3>
+      <p>We push boundaries with modern technology, constantly exploring new ideas and creative solutions. Every project is approached with curiosity and the drive to improve.</p>
+    </div>
+    <div class="card">
+      <h3>Quality</h3>
+      <p>We deliver high-performance solutions with precision and excellence. Quality is at the heart of everything we do, from code and design to customer service.</p>
+    </div>
+    <div class="card">
+      <h3>Transparency</h3>
+      <p>Clear and honest communication is essential for trust. We keep clients informed at every stage, providing full visibility into our processes and timelines.</p>
+    </div>
+    <div class="card">
+      <h3>Growth</h3>
+      <p>We grow with our clients, constantly adapting to evolving business needs. Our goal is to build long-lasting relationships and help businesses scale sustainably.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-bottom: 120px;">
+  <h2>Why Choose Us</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Expert Team</h3>
+      <p>Our professionals bring years of experience in various domains. Each team member contributes specialized skills to deliver exceptional results that meet business goals.</p>
+    </div>
+    <div class="card">
+      <h3>Modern Tech</h3>
+      <p>We use the latest tools, frameworks, and platforms to build scalable and efficient solutions optimized for high performance and reliability.</p>
+    </div>
+    <div class="card">
+      <h3>Client Focus</h3>
+      <p>Your success is our priority. We work closely with you to understand your vision, challenges, and goals, creating tailored solutions that drive measurable impact.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 LoopM Technologies. All rights reserved.</p>
+</footer>
+
+<script>
+// Hamburger and Nav Logic (Exact match for ERP)
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+const dropdowns = document.querySelectorAll('.nav-menu .dropdown');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('show');
+  hamburger.classList.toggle('active');
+});
+
+// Mobile Dropdown Toggle
+dropdowns.forEach(drop => {
+  drop.addEventListener('click', (e) => {
+    if(window.innerWidth <= 768){
+      // Toggle the active class to show/hide the dropdown menu
+      drop.classList.toggle('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1423,15 +1423,7 @@ margin-bottom:4px;
   opacity: 1;
   transform: none;
 }
-/* =========================
-   FOOTER
-========================= */
-footer{
-background:var(--dark);
-color:var(--white);
-padding:20px 40px;
-text-align:center;
-}
+
 
 /* =========================
    MOBILE
@@ -1485,38 +1477,75 @@ gap:30px;
 }
 
 
-
-/* ================= BUSINESS FOOTER ================= */
-/* ================= BUSINESS FOOTER ================= */
+/* ================= BUSINESS FOOTER - COMPACT ================= */
 .business-footer {
-  background: #000;      /* Black background */
-  color: #fff;           /* White text */
-  padding: 80px 40px;    /* Space inside the footer */
-  margin-top: 100px;     /* Push footer away from previous section */
+  background: #000;
+  color: #fff;
+
+  padding: 40px 20px;   /* 🔻 reduced from 80px 40px */
+  margin-top: 40px;     /* 🔻 reduced from 100px */
 }
 
+/* Grid tighter */
 .footer-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 50px;
-  max-width: 1200px;
-  margin: 0 auto;       /* Center the content */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;            /* 🔻 reduced from 50px */
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-.footer-column h3,
-.footer-column h4 {
-  color: #fff;           /* White headers */
-}
-
-.footer-column h4 {
-  color: var(--accent);  /* Optional: keep red accent for subheadings */
-}
-
-.footer-column p {
-  font-size: 14px;
-  line-height: 1.8;
+/* Headings tighter */
+.footer-column h3 {
+  font-size: 18px;
   margin-bottom: 8px;
-  color: #fff;           /* White paragraph text */
+}
+
+.footer-column h4 {
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: var(--accent);
+}
+
+/* Text tighter */
+.footer-column p {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 4px;   /* 🔻 less spacing between lines */
+}
+/* 🔥 Remove extra space inside columns */
+.footer-column p:last-child {
+  margin-bottom: 0;   /* IMPORTANT */
+}
+
+/* 🔥 Ensure columns don't stretch vertically */
+.footer-container {
+  align-items: start;   /* prevents stretching */
+}
+
+/* 🔥 Remove any hidden extra spacing */
+.footer-column {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/* 🔥 Tighten container bottom */
+.business-footer {
+  padding-bottom: 10px;   /* reduce bottom space */
+}
+
+/* 🔥 Make copyright stick close */
+footer {
+  margin-top: 0;
+  padding-top: 5px;
+}
+
+/* Remove unnecessary bottom space */
+footer {
+  background: var(--dark);
+  color: var(--white);
+  padding: 10px 20px;   /* 🔻 reduced */
+  margin: 0;            /* 🔥 remove gap */
 }
 
 
@@ -1990,6 +2019,20 @@ body::before{
     transform: translateX(-33.333%);
   }
 }
+.business-footer {
+  height: auto;        /* ✅ fix */
+  min-height: auto;    /* ✅ fix */
+  padding: 25px 20px;
+}
+footer {
+  text-align: center;      /* ✅ horizontal center */
+  padding: 12px 20px;
+}
+
+footer p {
+  margin: 0;               /* 🔥 remove extra bottom gap */
+  font-size: 13px;
+}
 
 </style>
 </head>
@@ -2033,17 +2076,17 @@ body::before{
       <li class="dropdown">
         <a href="#">Who We Are</a>
         <ul class="dropdown-menu">
-          <li><a href="#">About Us</a></li>
+          <li><a href="about.html">About Us</a></li>
           <li><a href="team.html">Team</a></li>
-          <li><a href="#">Culture</a></li>
+          <li><a href="culture.html">Culture</a></li>
         </ul>
       </li>
       <li class="dropdown">
         <a href="#">How We Deliver</a>
         <ul class="dropdown-menu">
-          <li><a href="#">Process</a></li>
-          <li><a href="#">Case Studies</a></li>
-          <li><a href="#">Testimonials</a></li>
+          <li><a href="process.html">Process</a></li>
+          <li><a href="casestudies.html">Case Studies</a></li>
+          <li><a href="test.html">Testimonials</a></li>
         </ul>
       </li>
       <li><a href="mailto:farhan.riphah21@gmail.com">Join LoopM</a></li>
@@ -2246,7 +2289,7 @@ body::before{
 </section>
 
 <footer>
-<p>© 2026 LoopM Technologies. All rights reserved.</p>
+<p>Designed & Developed by Farhan Ahmed © 2026 LoopM Technologies. All rights reserved.</p>
 </footer>
 
 
